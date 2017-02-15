@@ -1490,7 +1490,7 @@ function check_user() {
 	//Main
 
 	
-	//var  apipath_base_photo_dm='http://127.0.0.1:8000/demo/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
+	//var  apipath_base_photo_dm='http://127.0.0.1:8000/acme/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
 	
 	//var  apipath_base_photo_dm='http://c003.cloudapp.net/demo/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
 
@@ -2573,7 +2573,7 @@ function repCancelReq_sup(rep_id){
 	
 	$("#wait_image_tourCancelSup").show();
 	$("#err_tourCancelSup").html('');
-	alert (localStorage.base_url+'repCancelReq_sup?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_pending='+rep_id)
+	//alert (localStorage.base_url+'repCancelReq_sup?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_pending='+rep_id)
 
 	
 	$.ajax(localStorage.base_url+'repCancelReq_sup?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_pending='+rep_id,{
@@ -2626,71 +2626,16 @@ function repCancelReq_sup(rep_id){
 	
 	
 }
-function tourCReq_done(id){
+function tourCReq_delete(id){
 	
 	
 	$("#wait_image_tourCancelSup").show();
 	$("#err_tourCancelSup").html('');
 	
-	//alert (localStorage.base_url+'tourCReq_done?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_pending='+localStorage.repPendingSup+'&rowId='+id)
+	//alert (localStorage.base_url+'tourCReq_delete?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_pending='+localStorage.repPendingSup+'&rowId='+id)
 
 	
-	$.ajax(localStorage.base_url+'tourCReq_done?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_pending='+localStorage.repPendingSup+'&rowId='+id,{
-								type: 'POST',
-								timeout: 30000,
-								error: function(xhr) {
-								//alert ('Error: ' + xhr.status + ' ' + xhr.statusText);
-								$("#wait_image_tourCancelSup").hide();
-								$("#err_tourCancelSup").html('Network Timeout. Please check your Internet connection..');
-													},
-								success:function(data, status,xhr){	
-									 if (status!='success'){
-										$("#err_tourCancelSup").html('Network Timeout. Please check your Internet connection...');
-										$("#wait_image_tourCancelSup").hide();
-									 }
-									 else{	
-									 	var resultArray = data.replace('</START>','').replace('</END>','').split('<SYNCDATA>');	
-										
-										if (resultArray[0]=='FAILED'){
-											$("#err_tourCancelSup").text("Approved route not available");	
-											$("#wait_image_tourCancelSup").hide();		
-											
-										}
-										
-										else if (resultArray[0]=='SUCCESS'){
-											
-											$("#wait_image_tourCancelSup").hide();
-											$('#tourCancelShowSup').html(resultArray[1]);
-										
-									
-										}
-									//------- 
-	
-									
-																
-								 //else if
-								
-								
-							} //else
-							
-						}
-						  
-				 });//end ajax
-			
-		//	$.afui.loadContent("#page_repCancelReq_sup",true,true,'right');	 
-	
-	
-}
-function tourCReq_reject(id){
-	
-	
-	$("#wait_image_tourCancelSup").show();
-	$("#err_tourCancelSup").html('');
-	
-	//alert (localStorage.base_url+'tourCReq_reject?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_pending='+localStorage.repPendingSup+'&rowId='+id)
-
-	
-	$.ajax(localStorage.base_url+'tourCReq_reject?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_pending='+localStorage.repPendingSup+'&rowId='+id,{
+	$.ajax(localStorage.base_url+'tourCReq_delete?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_pending='+localStorage.repPendingSup+'&rowId='+id,{
 								type: 'POST',
 								timeout: 30000,
 								error: function(xhr) {
@@ -3261,7 +3206,7 @@ function repCancelReqSubmit(){
 										else if (resultArray[0]=='SUCCESS'){
 																			
 										//$('#tour_rep_pending_show_lv').empty()
-										$('#tourCancelShow').html(resultArray[1]);
+										$('#tourCancelShow').html('Submitted Successfully');
 										$("#wait_image_tourCancel").hide();
 										//$.afui.loadContent("#page_tour_cancel",true,true,'right');
 										
@@ -3541,7 +3486,7 @@ function tourCheckFirst(){
 				
 				
 				
-			nextMonthTable=nextMonthTable+selectCombo+'</br></br><input type="submit" style="width:30px;" value=" OK " onClick="setDiv('+i+')" /><br><br></div></td></tr>'
+			nextMonthTable=nextMonthTable+selectCombo+'</br><input type="submit" style="width:30px;" value=" OK " onClick="setDiv('+i+')" /><br><br></div></td></tr>'
 			
 			
 			
@@ -10766,20 +10711,21 @@ function setPrProduct(){
 	}
 	//localStorage.prProdID_Str=prProdID_Str;
 }
-/************* jahangirEditedStart check_boxTrue_pr ************************/
 function check_boxTrue_pr(product_id){	
 	var camp_combo=$("#prName"+product_id).text();
 	var camp_combo=$("#prName"+product_id).text();
 	var camp_span="#prSpan"+product_id
 	var medInpVal = $("#prInputVal"+product_id).val();
 	var ppid=$("#doc_pr_id"+product_id).val();
-	var conCatVal = ppid+'<||>'+camp_combo+'<||>'+medInpVal;
+	var conCatVal = ppid+'<conVal>'+camp_combo+'<conVal>'+medInpVal;
 	
 	getDocPrData_keyup(product_id, conCatVal, 'true');
 	$("#prName"+product_id).addClass('bgc');
+	//$(camp_combo).click(function(){
+	//	$(this).css('color','red');	
+	//);
 
 	}
-/************* jahangirEditedEnd check_boxTrue_pr ************************/
 function getDocPrData_keyup(product_id, conCatVal, status){
 	//localStorage.prProdID_Str='';
 	//alert ('local : '+localStorage.prProdID_Str)
@@ -10866,41 +10812,37 @@ function getDocDatapr(){
 	$.afui.loadContent("#doctorprCartPage",true,true,'right');
 
 }
-/************* jahangirEditedStart getDocDataprCart *****************/
 function getDocDataprCart(){	
 	
 	$('#prCart').empty();
 	campaign_doc_str=localStorage.prProdID_Str
 	
 	var campaignList = campaign_doc_str.split('<rd>');
+	//var campaignIdList = campaignList.split('<conVal>');
+	//alert(campaignIdList);
 	var campaignListLength=campaignList.length;
 	var pID;
 	var inpVal;
 	cart_list=''
 	for ( i=0; i < campaignListLength; i++){
 		var pIDv=campaignList[i];
-		var pidSplit = pIDv.split('<||>');
+		var pidSplit = pIDv.split('<conVal>');
 		
 		for(n=0; n<pidSplit.length; n++){
 			ppID=pidSplit[0];
 			pID=pidSplit[1];
 			inpVal=pidSplit[2];
-			
-			
 		}
-		if(inpVal==undefined||inpVal==''){
+		if(pID!=''){
+				if(inpVal=="undefined"||inpVal==''){
 					inpVal=0;
 				}
-				
-		if((pID!='') && (pID!=undefined)){
-				// onClick="removeCarItemPr(\''+ppID+'\');"
-				cart_list+='<tr style="font-size:14px" id="cartPr_'+ppID+'"><td > </br>'+pID+'</br></td><td><input id="inpId'+pID+'" type="text" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px" value="'+inpVal+'"/></td><td style="background-color:#E7F1FE"  align="center" width="10%"  onClick="removeCarItemPr(\''+ppID+'\',\''+pID+'\',\''+inpVal+'\');"><img  src="cancel.png" width="20" height="20" alt="X" id="myImage1"  onClick="removeCarItemPr(\''+ppID+'\',\''+pID+'\',\''+inpVal+'\');"> </td></tr>';
+				cart_list+='<tr style="font-size:14px" id="cartPr_'+ppID+'"><td > </br>'+pID+'</br></td><td><input id="inpId'+pID+'" type="text" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px" value="'+inpVal+'"/></td><td style="background-color:#E7F1FE"  align="center" width="10%" onClick="removeCarItemPr(\''+ppID+'\');"><img  src="cancel.png" width="20" height="20" alt="X" id="myImage1"  onClick="removeCarItemPr(\''+ppID+'\');"> </td></tr>';
 			}
 			
 	}
 	$('#prCart').append(cart_list);
 }
-/************* jahangirEditedEnd getDocDataprCart *****************/
 
 function doctorprCartPage(){	
 	$.afui.loadContent("#doctorprCartPage",true,true,'right');
@@ -10913,28 +10855,26 @@ function page_imageSingle(){
 function page_prItemPage(){	
 	$.afui.loadContent("#page_prItemPage",true,true,'right');
 }
-/*********** jahangirEditedStart removeCarItemPr ***************/
-
-function removeCarItemPr(product_get, prName, inVal){
-	$("#cartPr_"+product_get).remove();
-	var repl1='';
-	iStr=localStorage.prProdID_Str.split('<rd>');
-	iLen=iStr.length
-	for(i=0;i<iLen;i++){
-		iStrD=iStr[i].split('<||>');
-		if(iStrD[0]!=product_get){
-			if (repl1==''){
-				repl1=iStr[i]
-			}else{
-				repl1+='<rd>'+iStr[i]
-			}				
-		}				
-	}
-	localStorage.prProdID_Str=repl1;
+function removeCarItemPr(product_idGet){
 	
+	$("#cartPr_"+product_idGet).remove();
+	campaign_doc_str=localStorage.prProdID_Str
+	cartLength=campaign_doc_str.split('<rd>').length;
+	//alert (localStorage.prProdID_Str)
+	if (campaign_doc_str.indexOf(product_idGet)==0 & cartLength == 1){
+		campaign_doc_str=campaign_doc_str.replace(product_idGet,'')
+	}
+	else if (campaign_doc_str.indexOf(product_idGet)==0 & cartLength > 1){
+		campaign_doc_str=campaign_doc_str.replace(product_idGet+"<rd>",'')
+	}
+	else if (campaign_doc_str.indexOf(product_idGet)>0 & cartLength > 1){
+		campaign_doc_str=campaign_doc_str.replace("<rd>"+product_idGet,'')
+	}
+		
+	localStorage.prProdID_Str=campaign_doc_str
+	
+	//alert (localStorage.prProdID_Str)
 }
-
-/*********** jahangirEditedEnd removeCarItemPr ***************/
 function mp() {
 	var doctorId=localStorage.visit_client.split('|')[1]	
 	var areaId=localStorage.visit_market_show.split('|')[1]
