@@ -1445,7 +1445,7 @@ function afterSync(){
 		localStorage.prProdID_Str=''
 		localStorage.opProdID_Str=''
 		localStorage.market_doctorVisit=''
-		//localStorage.tourSubmitStr=''
+		localStorage.tourSubmitStr=''
 		
 		localStorage.picFlag=0;
 		
