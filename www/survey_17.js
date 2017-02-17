@@ -17,6 +17,12 @@ $.afui.useOSThemes=false;
         });
     }
 
+
+
+
+
+
+
     $(document).ready(function(){
         $.afui.launch();
 		//localStorage.prProdID_Str='';
@@ -1439,6 +1445,7 @@ function afterSync(){
 		localStorage.prProdID_Str=''
 		localStorage.opProdID_Str=''
 		localStorage.market_doctorVisit=''
+		localStorage.tourSubmitStr=''
 		
 		localStorage.picFlag=0;
 		
@@ -1490,9 +1497,10 @@ function check_user() {
 	//Main
 
 	
-	//var  apipath_base_photo_dm='http://127.0.0.1:8000/acme/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
+	//var  apipath_base_photo_dm='http://127.0.0.1:8000/demo/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
 	
-	//var  apipath_base_photo_dm='http://c003.cloudapp.net/demo/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
+	//var  apipath_base_photo_dm='http://a007.yeapps.com/acme/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
+
 
 
   var apipath_base_photo_dm ='http://e2.businesssolutionapps.com/welcome/dmpath_live_new/get_path?CID='+cid +'&HTTPPASS=e99business321cba'
@@ -2422,7 +2430,7 @@ function feedback() {
 }
 
 function tour(){
-	
+	//alert ('aaaaaaaaaa')
 	localStorage.tourFlag=1;
 	localStorage.saved_data_submit=0;
 	localStorage.doctor_flag=0;
@@ -2430,6 +2438,7 @@ function tour(){
 	//alert (localStorage.user_type)
 	//if (localStorage.user_type=='rep'){
 		//showSubmitDocShow()
+		
 		addMarketListTour()
 	
 	$("#err_marketTour").html('');
@@ -2573,7 +2582,7 @@ function repCancelReq_sup(rep_id){
 	
 	$("#wait_image_tourCancelSup").show();
 	$("#err_tourCancelSup").html('');
-	//alert (localStorage.base_url+'repCancelReq_sup?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_pending='+rep_id)
+	alert (localStorage.base_url+'repCancelReq_sup?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_pending='+rep_id)
 
 	
 	$.ajax(localStorage.base_url+'repCancelReq_sup?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_pending='+rep_id,{
@@ -2626,16 +2635,71 @@ function repCancelReq_sup(rep_id){
 	
 	
 }
-function tourCReq_delete(id){
+function tourCReq_done(id){
 	
 	
 	$("#wait_image_tourCancelSup").show();
 	$("#err_tourCancelSup").html('');
 	
-	//alert (localStorage.base_url+'tourCReq_delete?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_pending='+localStorage.repPendingSup+'&rowId='+id)
+	//alert (localStorage.base_url+'tourCReq_done?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_pending='+localStorage.repPendingSup+'&rowId='+id)
 
 	
-	$.ajax(localStorage.base_url+'tourCReq_delete?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_pending='+localStorage.repPendingSup+'&rowId='+id,{
+	$.ajax(localStorage.base_url+'tourCReq_done?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_pending='+localStorage.repPendingSup+'&rowId='+id,{
+								type: 'POST',
+								timeout: 30000,
+								error: function(xhr) {
+								//alert ('Error: ' + xhr.status + ' ' + xhr.statusText);
+								$("#wait_image_tourCancelSup").hide();
+								$("#err_tourCancelSup").html('Network Timeout. Please check your Internet connection..');
+													},
+								success:function(data, status,xhr){	
+									 if (status!='success'){
+										$("#err_tourCancelSup").html('Network Timeout. Please check your Internet connection...');
+										$("#wait_image_tourCancelSup").hide();
+									 }
+									 else{	
+									 	var resultArray = data.replace('</START>','').replace('</END>','').split('<SYNCDATA>');	
+										
+										if (resultArray[0]=='FAILED'){
+											$("#err_tourCancelSup").text("Approved route not available");	
+											$("#wait_image_tourCancelSup").hide();		
+											
+										}
+										
+										else if (resultArray[0]=='SUCCESS'){
+											
+											$("#wait_image_tourCancelSup").hide();
+											$('#tourCancelShowSup').html(resultArray[1]);
+										
+									
+										}
+									//------- 
+	
+									
+																
+								 //else if
+								
+								
+							} //else
+							
+						}
+						  
+				 });//end ajax
+			
+		//	$.afui.loadContent("#page_repCancelReq_sup",true,true,'right');	 
+	
+	
+}
+function tourCReq_reject(id){
+	
+	
+	$("#wait_image_tourCancelSup").show();
+	$("#err_tourCancelSup").html('');
+	
+	//alert (localStorage.base_url+'tourCReq_reject?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_pending='+localStorage.repPendingSup+'&rowId='+id)
+
+	
+	$.ajax(localStorage.base_url+'tourCReq_reject?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_pending='+localStorage.repPendingSup+'&rowId='+id,{
 								type: 'POST',
 								timeout: 30000,
 								error: function(xhr) {
@@ -3043,7 +3107,7 @@ function repCancelReqShow(i){
 	$("#dayNumdit").html(editday+' '+monthShow)
 	$("#infoEdit").html(editinfo)
 	
-	var selectCombo='</br><select id="othersAll" style=" width:100px" data-native-menu="false"  >'
+	var selectCombo='</br>&nbsp;&nbsp;&nbsp;&nbsp;<select id="othersAll" style=" width:100px" data-native-menu="false"  >'
 	selectCombo=selectCombo+'<option value="" >Select</option>'
 	selectCombo=selectCombo+'<option value="HOLIDAY" >HOLIDAY</option>'
 	selectCombo=selectCombo+'<option value="MEETING" >MEETING</option>'
@@ -3061,7 +3125,7 @@ function repCancelReqShow(i){
 		var marketIdShow='['+marketId+']'
 		if (marketName==''){marketIdShow=marketId}
 		if (marketId!=''){
-		amndTable=amndTable+'<table width="100%" border="0"  cellpadding="0" cellspacing="0" style="border-radius:5px;"><tr style="border-bottom:1px solid #D2EEE9;"><td width="60px" style="text-align:center; padding-left:5px;"><input class="docCampaign" type="checkbox"  name="'+checkId+'" value="checkbox" id="'+checkId+'"><label for="'+checkId+'"></br></label></td><td  style="text-align:left;"></br>'+marketName+'</br></td></tr></table>'
+		amndTable=amndTable+'<table width="100%" border="0"  cellpadding="0" cellspacing="0" style="border-radius:5px;"><tr style="border-bottom:1px solid #D2EEE9;"><td width="60px" style="text-align:center; padding-left:5px;"><input class="docCampaign" type="checkbox"  name="'+checkId+'" value="checkbox" id="'+checkId+'"><label for="'+checkId+'">marketName</label></td><td  style="text-align:left;"></br></td></tr></table>'
 		}
 		else{
 			amndTable=amndTable+'<table width="100%" border="0"  cellpadding="0" cellspacing="0" style="border-radius:5px;"><tr style="border-bottom:1px solid #D2EEE9;"><td width="60px" style="text-align:center; padding-left:5px;"></br></td></tr></table>'
@@ -3206,7 +3270,7 @@ function repCancelReqSubmit(){
 										else if (resultArray[0]=='SUCCESS'){
 																			
 										//$('#tour_rep_pending_show_lv').empty()
-										$('#tourCancelShow').html('Submitted Successfully');
+										$('#tourCancelShow').html(resultArray[1]);
 										$("#wait_image_tourCancel").hide();
 										//$.afui.loadContent("#page_tour_cancel",true,true,'right');
 										
@@ -3325,7 +3389,7 @@ function tourCheckFirst(){
 						
 						localStorage.appFlag=resultArray[5];
 						
-												//alert (NextStatus)
+						//alert (localStorage.appFlag)
 						
 						
 					}
@@ -3336,7 +3400,7 @@ function tourCheckFirst(){
 
 	
 	var NextStatus='Draft'
-	if (localStorage.appFlag==1){NextStatus='Approved'}
+	
 //	====================================================
 	//var weekday = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 	var weekday = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
@@ -3445,7 +3509,8 @@ function tourCheckFirst(){
 	//alert (localStorage.docNextMonthRow)
 	var nextMonthTable=''
 	if (localStorage.docNextMonthRow==''){
-			
+			alert (localStorage.tourSubmitStr)
+			if (localStorage.tourSubmitStr==''){
 			nextMonthTable='<table width="100%" border="0">  <tr style="font-size:24px; color:#039">    <td >'+monthNext+'</td><td>&nbsp;</td> <td>&nbsp;</td>    <td align="right" style="font-size:16px; color:#039">'+NextStatus+'</td>  </tr></table><table style="border-style:solid; border-width:thin; border-color:#096;background-color:#EDFEED" width="100%" border="1" cellspacing="0">'
 			
 			for (var i=0; i < daysNext; i++){
@@ -3469,11 +3534,11 @@ function tourCheckFirst(){
 					var marketIdShow='['+marketId+']'
 					if (marketName==''){ marketIdShow=''+marketId}
 					if (marketId!=''){
-					nextMonthTable=nextMonthTable+'<div id="next_'+i+'"><table width="100%" border="0"  cellpadding="0" cellspacing="0" style="border-radius:5px;"><tr style="border-bottom:1px solid #D2EEE9;"><td width="60px" style="text-align:center; padding-left:5px;"><input class="docCampaign" type="checkbox"  name="'+checkId+'" value="checkbox" id="'+checkId+'"><label for="'+checkId+'"></br></label></td><td  style="text-align:left;"></br>'+marketName+'</br></td></tr></table>'
+					nextMonthTable=nextMonthTable+'<div id="next_'+i+'"><table width="100%" border="0"  cellpadding="0" cellspacing="0" style="border-radius:5px;"><tr style="border-bottom:1px solid #D2EEE9;"><td width="60px" style="text-align:center; padding-left:5px;"><input class="docCampaign" type="checkbox"  name="'+checkId+'" value="checkbox" id="'+checkId+'"><label for="'+checkId+'">'+marketName+'</label></td><td align="left"></br>'+'</br></td></tr></table>'
 					
 					//alert (checkId)
 					}
-					var selectCombo='</br><select id="othersAll'+i+'" style=" width:100px" data-native-menu="false"  >'
+					var selectCombo='</br><select id="othersAll'+i+'" style="font-size:12px; width:100px; height:40px" data-native-menu="false"  >'
 						selectCombo=selectCombo+'<option value="" >Select</option>'
                         selectCombo=selectCombo+'<option value="HOLIDAY" >HOLIDAY</option>'
 						selectCombo=selectCombo+'<option value="MEETING" >MEETING</option>'
@@ -3486,17 +3551,70 @@ function tourCheckFirst(){
 				
 				
 				
-			nextMonthTable=nextMonthTable+selectCombo+'</br><input type="submit" style="width:30px;" value=" OK " onClick="setDiv('+i+')" /><br><br></div></td></tr>'
+			nextMonthTable=nextMonthTable+selectCombo+'</br></br><input type="submit"  value="   OK   " onClick="setDiv('+i+')" /><br><br></div></td></tr>'
 			
 			
 			
 			}
-			//alert (nextMonthTable)
-			nextMonthTable=nextMonthTable+'</br></table><input type="submit" id="nextMonthSubmitButton"  onClick="tourSubmit_doc();"   style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="     Submit      "   /></br></br>'
 			
+			nextMonthTable=nextMonthTable+'</table></br></br><input type="submit" id="nextMonthSubmitButton"  onClick="tourSubmit_doc();"   style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="     Submit      "   /></br></br><input type="submit" id="nextMonthSubmitButton"  onClick="tourSave_doc();"   style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="     Save      "   /><br><br>'
+			//alert (nextMonthTable)
+			}//if notSaved
+			else{
+				var tourSubmitStr=localStorage.tourSubmitStr
+				nextMonthTable='<table width="100%" border="0">  <tr style="font-size:24px; color:#039">    <td >'+monthNext+'</td><td>&nbsp;</td> <td>&nbsp;</td>    <td align="right" style="font-size:16px; color:#039">'+NextStatus+'</td>  </tr></table><table style="border-style:solid; border-width:thin; border-color:#096;background-color:#EDFEED" width="100%" border="1" cellspacing="0">'
+			
+			for (var i=0; i < daysNext; i++){
+				tourStrGet=''
+				var dayShow=i+1
+				var aNext = new Date(monthNextGet+'/'+dayShow+'/'+yearNext);
+				//alert (aNext)
+				var dayNameNext=weekday[aNext.getDay()];
+				var dateNextMonth = yearNext+'-'+monthNextGet+'-'+dayShow;
+				//alert (tourSubmitStr)
+				
+				nextMonthTable=nextMonthTable+'<tr ><td onClick="toggleDivNext('+i+')" width="50px" height="14px"> '+'<font >'+dayShow+'</font>'+'&nbsp;&nbsp;'+'<font >'+dayNameNext+'</font>'+'<input type="hidden" id="'+i+'_date" value="'+dateNextMonth+'"  /></td>'
+				nextMonthTable=nextMonthTable+'<td>'
+		
+				var marketList=(localStorage.marketTourStr).split('<rd>')
+				nextMonthTable=nextMonthTable+'<div id="nextShow'+i+'"></div>'
+				for (var m=0; m < marketList.length; m++){
+					
+					var marketId=marketList[m].split('<fd>')[0]
+					var marketName=marketList[m].split('<fd>')[1]
+					var checkId=i+'n'+m+'_'+marketId
+					var marketIdShow='['+marketId+']'
+					if (marketName==''){ marketIdShow=''+marketId}
+					if (marketId!=''){
+					nextMonthTable=nextMonthTable+'<div id="next_'+i+'"><table width="100%" border="0"  cellpadding="0" cellspacing="0" style="border-radius:5px;"><tr style="border-bottom:1px solid #D2EEE9;"><td width="60px" style="text-align:center; padding-left:5px;"><input class="docCampaign" type="checkbox"  name="'+checkId+'" value="checkbox" id="'+checkId+'"><label for="'+checkId+'">'+marketName+'</label></td><td align="left"></br>'+'</br></td></tr></table>'
+					
+					
+					}
+					var selectCombo='</br><select id="othersAll'+i+'" style="font-size:12px; width:100px; height:40px" data-native-menu="false"  >'
+						selectCombo=selectCombo+'<option value="" >Select</option>'
+                        selectCombo=selectCombo+'<option value="HOLIDAY" >HOLIDAY</option>'
+						selectCombo=selectCombo+'<option value="MEETING" >MEETING</option>'
+						selectCombo=selectCombo+'<option value="LEAVE" >LEAVE</option>'
+						selectCombo=selectCombo+'<option value="OTHERS" >OTHERS</option>'
+                        selectCombo=selectCombo+'</select>'
+					
+				 
+				}		 
+				
+				
+				
+			nextMonthTable=nextMonthTable+selectCombo+'</br></br><input type="submit"  value="   OK   " onClick="setDiv('+i+')" /><br><br></div></td></tr>'
+			 
+			 
+			
+			}
+			//alert (nextMonthTable)
+			nextMonthTable=nextMonthTable+'</table></br></br><input type="submit" id="nextMonthSubmitButton"  onClick="tourSubmit_doc();"   style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="     Submit      "   /></br></br><input type="submit" id="nextMonthSubmitButton"  onClick="tourSave_doc();"   style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="     Save      "   /><br><br>'
+			}
 	}
 	else{
 		NextStatus='Submitted'
+		if (localStorage.appFlag==1){NextStatus='Approved'}
 		nextMonthTable='<table width="100%" border="0">  <tr style="font-size:24px; color:#039">    <td id="nextMonthShow">'+monthNext+'</td><td>&nbsp;</td> <td>&nbsp;</td>    <td align="right" style="font-size:16px; color:#039">'+NextStatus+'</td>  </tr></table><table style="border-style:solid; border-width:thin; border-color:#096;background-color:#EDFEED" width="100%" border="1" cellspacing="0">'
 			var docNextMonthRow=localStorage.docNextMonthRow
 			
@@ -3552,6 +3670,51 @@ function tourCheckFirst(){
 	}
 	//alert (nextMonthTable)
 	$('#nextMonth').html(nextMonthTable)
+	
+	//alert (localStorage.tourSubmitStr)
+	if (localStorage.tourSubmitStr != '' ){
+		for (var i=0; i < daysNext; i++){
+					tourStrGet=''
+					var dayShow=i+1
+					var aNext = new Date(monthNextGet+'/'+dayShow+'/'+yearNext);
+					//alert (aNext)
+					var dayNameNext=weekday[aNext.getDay()];
+					var dateNextMonth = yearNext+'-'+monthNextGet+'-'+dayShow;
+					var checkStr=dateNextMonth+'<fd>'+marketId+'<fd>'+marketName
+					for (var m=0; m < marketList.length; m++){
+						var marketId=marketList[m].split('<fd>')[0]
+						var marketName=marketList[m].split('<fd>')[1]
+						var checkId=i+'n'+m+'_'+marketId
+						var checkStr=dateNextMonth+'<fd>'+marketId+'<fd>'+marketName
+						var checkStrHOLIDAY=dateNextMonth+'<fd>HOLIDAY<fd>HOLIDAY'
+						var checkStrMEETING=dateNextMonth+'<fd>MEETING<fd>MEETING'
+						var checkStrLEAVE=dateNextMonth+'<fd>LEAVE<fd>LEAVE'
+						var checkStrOTHERS=dateNextMonth+'<fd>OTHERS<fd>OTHERS'
+						
+						if (tourSubmitStr.indexOf(checkStr)!=-1) {
+								var checkIdget='#'+i+'n'+m+'_'+marketId
+								$(checkIdget).attr("checked", true);	
+						  }
+						else if (tourSubmitStr.indexOf(checkStrHOLIDAY)!=-1) {
+								$('#othersAll'+i).val('HOLIDAY').attr("selected", "selected");
+							} 
+						else if (tourSubmitStr.indexOf(checkStrMEETING)!=-1) {
+								$('#othersAll'+i).val('MEETING').attr("selected", "selected");
+							} 
+						else if (tourSubmitStr.indexOf(checkStrLEAVE)!=-1) {
+								//alert ('#othersAll'+i)
+								$('#othersAll'+i).val('LEAVE').attr("selected", "selected");
+							} 
+						else if (tourSubmitStr.indexOf(checkStrOTHERS)!=-1) {
+								$('#othersAll'+i).val('OTHERS').attr("selected", "selected");
+							}
+	
+					}
+				}		 
+	
+	}
+	
+	  
 	if (localStorage.docNextMonthRow==''){
 		for (var i=0; i < daysNext; i++){
 			$("#next_"+i).hide();
@@ -3599,6 +3762,7 @@ function toggleDivNext(i){
 }
 function addMarketListTour() {
 	$("#wait_image_refresh").hide();
+	//alert ('test')
 	tourCheckFirst()
 	//-----------------------------------------------------------
 	nextMShow()
@@ -5456,6 +5620,67 @@ function getDocTour_keyup(docID){
 	}	
 	
 
+function tourSave_doc(){	
+$("#wait_image_retTour").show();	
+$("#err_marketTour").html('');
+	var d = new Date();
+	var monthNextGet = d.getMonth()+2;
+	var dayNext = d.getDate();
+	var yearNext =d.getFullYear();
+	var daysNext = Math.round(((new Date(yearNext, monthNextGet))-(new Date(yearNext, monthNextGet-1)))/86400000);
+	var submitStr=''
+	var errFlag=0
+	//alert (daysNext)
+	for (var i=0; i < daysNext; i++){
+		var dayShow=i+1
+		var dateNextMonth = yearNext+'-'+monthNextGet+'-'+dayShow;
+		var checkFlag=1
+
+		var marketList=(localStorage.marketTourStr).split('<rd>')
+		var comboValue=''
+		comboValue= $("#othersAll"+i).val();
+		//alert (comboValue)
+			for (var m=0; m < marketList.length; m++){
+				
+				var dateGet=''
+				
+				var marketId=marketList[m].split('<fd>')[0]
+				var marketName=marketList[m].split('<fd>')[1]
+				var checkId=i+'n'+m+"_"+marketId
+				var check = $("#"+checkId).prop("checked");
+				//alert (check)
+					if(check) {
+						checkFlag=0
+						dateGet=$("#"+i+"_date").val();
+						if (submitStr==''){
+							submitStr=dateGet+'<fd>'+marketId+'<fd>'+marketName
+						}
+						else{
+							submitStr=submitStr+'<rd>'+dateGet+'<fd>'+marketId+'<fd>'+marketName
+						}
+					}
+					 
+				
+				
+			}
+			if (comboValue!=''){
+					dateGet=$("#"+i+"_date").val();
+						if (submitStr==''){
+							submitStr=dateGet+'<fd>'+comboValue+'<fd>'+comboValue
+						}
+						else{
+							submitStr=submitStr+'<rd>'+dateGet+'<fd>'+comboValue+'<fd>'+comboValue
+						}
+					
+				}
+		
+		
+			
+	}
+	localStorage.tourSubmitStr=submitStr
+	$("#wait_image_retTour").hide();
+	$("#err_marketTour").html('Saved Successfully');
+}
 
 function tourSubmit_doc(){	
 $("#wait_image_retTour").show();	
@@ -5550,6 +5775,7 @@ $("#err_marketTour").html('');
 															localStorage.docNextMonthRow='';
 															
 															//localStorage.appFlag=''; 
+															localStorage.tourSubmitStr=''
 															$("#nextMonth").html('<div style="font-size:20px;color:#C00" > Submitted Successfully </div>');
 															//$("#nextMonthSubmitButton").hide();
 															
@@ -10812,37 +11038,41 @@ function getDocDatapr(){
 	$.afui.loadContent("#doctorprCartPage",true,true,'right');
 
 }
+/************* jahangirEditedStart getDocDataprCart *****************/
 function getDocDataprCart(){	
 	
 	$('#prCart').empty();
 	campaign_doc_str=localStorage.prProdID_Str
 	
 	var campaignList = campaign_doc_str.split('<rd>');
-	//var campaignIdList = campaignList.split('<conVal>');
-	//alert(campaignIdList);
 	var campaignListLength=campaignList.length;
 	var pID;
 	var inpVal;
 	cart_list=''
 	for ( i=0; i < campaignListLength; i++){
 		var pIDv=campaignList[i];
-		var pidSplit = pIDv.split('<conVal>');
+		var pidSplit = pIDv.split('<||>');
 		
 		for(n=0; n<pidSplit.length; n++){
 			ppID=pidSplit[0];
 			pID=pidSplit[1];
 			inpVal=pidSplit[2];
+			
+			
 		}
-		if(pID!=''){
-				if(inpVal=="undefined"||inpVal==''){
+		if(inpVal==undefined||inpVal==''){
 					inpVal=0;
 				}
-				cart_list+='<tr style="font-size:14px" id="cartPr_'+ppID+'"><td > </br>'+pID+'</br></td><td><input id="inpId'+pID+'" type="text" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px" value="'+inpVal+'"/></td><td style="background-color:#E7F1FE"  align="center" width="10%" onClick="removeCarItemPr(\''+ppID+'\');"><img  src="cancel.png" width="20" height="20" alt="X" id="myImage1"  onClick="removeCarItemPr(\''+ppID+'\');"> </td></tr>';
+				
+		if((pID!='') && (pID!=undefined)){
+				// onClick="removeCarItemPr(\''+ppID+'\');"
+				cart_list+='<tr style="font-size:14px" id="cartPr_'+ppID+'"><td > </br>'+pID+'</br></td><td><input id="inpId'+pID+'" type="text" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px" value="'+inpVal+'"/></td><td style="background-color:#E7F1FE"  align="center" width="10%"  onClick="removeCarItemPr(\''+ppID+'\',\''+pID+'\',\''+inpVal+'\');"><img  src="cancel.png" width="20" height="20" alt="X" id="myImage1"  onClick="removeCarItemPr(\''+ppID+'\',\''+pID+'\',\''+inpVal+'\');"> </td></tr>';
 			}
 			
 	}
 	$('#prCart').append(cart_list);
 }
+/************* jahangirEditedEnd getDocDataprCart *****************/
 
 function doctorprCartPage(){	
 	$.afui.loadContent("#doctorprCartPage",true,true,'right');
@@ -10855,26 +11085,28 @@ function page_imageSingle(){
 function page_prItemPage(){	
 	$.afui.loadContent("#page_prItemPage",true,true,'right');
 }
-function removeCarItemPr(product_idGet){
+/*********** jahangirEditedStart removeCarItemPr ***************/
+
+function removeCarItemPr(product_get, prName, inVal){
+	$("#cartPr_"+product_get).remove();
+	var repl1='';
+	iStr=localStorage.prProdID_Str.split('<rd>');
+	iLen=iStr.length
+	for(i=0;i<iLen;i++){
+		iStrD=iStr[i].split('<||>');
+		if(iStrD[0]!=product_get){
+			if (repl1==''){
+				repl1=iStr[i]
+			}else{
+				repl1+='<rd>'+iStr[i]
+			}				
+		}				
+	}
+	localStorage.prProdID_Str=repl1;
 	
-	$("#cartPr_"+product_idGet).remove();
-	campaign_doc_str=localStorage.prProdID_Str
-	cartLength=campaign_doc_str.split('<rd>').length;
-	//alert (localStorage.prProdID_Str)
-	if (campaign_doc_str.indexOf(product_idGet)==0 & cartLength == 1){
-		campaign_doc_str=campaign_doc_str.replace(product_idGet,'')
-	}
-	else if (campaign_doc_str.indexOf(product_idGet)==0 & cartLength > 1){
-		campaign_doc_str=campaign_doc_str.replace(product_idGet+"<rd>",'')
-	}
-	else if (campaign_doc_str.indexOf(product_idGet)>0 & cartLength > 1){
-		campaign_doc_str=campaign_doc_str.replace("<rd>"+product_idGet,'')
-	}
-		
-	localStorage.prProdID_Str=campaign_doc_str
-	
-	//alert (localStorage.prProdID_Str)
 }
+
+/*********** jahangirEditedEnd removeCarItemPr ***************/
 function mp() {
 	var doctorId=localStorage.visit_client.split('|')[1]	
 	var areaId=localStorage.visit_market_show.split('|')[1]
@@ -11776,6 +12008,8 @@ function page_opItemPage(){
 	setOpProduct()
 	$.afui.loadContent("#page_opItemPage",true,true,'right');
 }
+
+
 //==============================Sync Doctor=======================
 function doctor_sync(){
 	$("#wait_image_login").show();

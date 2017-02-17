@@ -17,9 +17,12 @@ $.afui.useOSThemes=false;
         });
     }
 
+/******** jahangirEditedStart16Feb apipath *****************/
 
+//var  apipath ='http://127.0.0.1:8000/acme/medSearch/'
+var  apipath ='http://a007.yeapps.com/acme/medSearch/'
 
-
+/******** jahangirEditedEnd16 apipath *****************/
 
 
 
@@ -1497,13 +1500,13 @@ function check_user() {
 	//Main
 
 	
-	//var  apipath_base_photo_dm='http://127.0.0.1:8000/demo/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
+	//var  apipath_base_photo_dm='http://127.0.0.1:8000/acme/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
 	
-	//var  apipath_base_photo_dm='http://a007.yeapps.com/acme/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
+	var  apipath_base_photo_dm='http://a007.yeapps.com/acme/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
 
 
 
-  var apipath_base_photo_dm ='http://e2.businesssolutionapps.com/welcome/dmpath_live_new/get_path?CID='+cid +'&HTTPPASS=e99business321cba'
+  //var apipath_base_photo_dm ='http://e2.businesssolutionapps.com/welcome/dmpath_live_new/get_path?CID='+cid +'&HTTPPASS=e99business321cba'
  
 	
 	var user_id=$("#user_id").val();
@@ -3764,6 +3767,7 @@ function addMarketListTour() {
 	$("#wait_image_refresh").hide();
 	//alert ('test')
 	tourCheckFirst()
+	// nextCh
 	//-----------------------------------------------------------
 	nextMShow()
 	$.afui.loadContent("#page_tour_market",true,true,'right');
@@ -10487,6 +10491,8 @@ function cancelPicture(i){
 	if (picNo==9){localStorage.prPhoto9=''}
 	if (picNo==10){localStorage.prPhoto10=''}
 }
+
+/************* jahangirEditedStart16Feb setPrProduct ************************/
 function setPrProduct(){
 	prProdID_Str=''
 		if (localStorage.pr_A.length != '') {
@@ -10499,7 +10505,7 @@ function setPrProduct(){
 				var pr_id_A=prArray_A[0];	
 				var pr_name_A=prArray_A[1];
 				
-				pr_tbl_A=pr_tbl_A+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_A +'" onClick="check_boxTrue_pr(\''+pr_id_A+'\')"><font id="prName'+ pr_id_A +'" class="name" >'+ pr_name_A+'</font><input type="hidden" id="doc_pr_id'+pr_id_A+'" value="'+pr_id_A+'" ></span><span><input type="text" id="prInputVal'+pr_id_A+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
+				pr_tbl_A=pr_tbl_A+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_A +'" onClick="check_boxTrue_pr(\''+pr_id_A+'\')"><font id="prName'+ pr_id_A +'" class="name" >'+ pr_name_A+'</font><input type="hidden" id="doc_pr_id'+pr_id_A+'" value="'+pr_id_A+'" ></span><span><input type="number" id="prInputVal'+pr_id_A+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
 				//prProdID_Str=prProdID_Str+pr_id_A+'<rd>'
 				}
 		localStorage.pr_tbl_A=pr_tbl_A		
@@ -10518,7 +10524,7 @@ function setPrProduct(){
 				var pr_id_B=prArray_B[0];	
 				var pr_name_B=prArray_B[1];
 				
-				pr_tbl_B=pr_tbl_B+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_B +'" onClick="check_boxTrue_pr(\''+pr_id_B+'\')"><font id="prName'+ pr_id_B +'" class="name" >'+ pr_name_B+'</font><input type="hidden" id="doc_pr_id'+pr_id_B+'" value="'+pr_id_B+'" ></span><span><input type="text" id="prInputVal'+pr_id_B+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
+				pr_tbl_B=pr_tbl_B+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_B +'" onClick="check_boxTrue_pr(\''+pr_id_B+'\')"><font id="prName'+ pr_id_B +'" class="name" >'+ pr_name_B+'</font><input type="hidden" id="doc_pr_id'+pr_id_B+'" value="'+pr_id_B+'" ></span><span><input type="number" id="prInputVal'+pr_id_B+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
 				}
 		localStorage.pr_tbl_B=pr_tbl_B		
 		$("#pr_id_lv").append(localStorage.pr_tbl_B);	
@@ -10535,7 +10541,7 @@ function setPrProduct(){
 				var pr_id_C=prArray_C[0];	
 				var pr_name_C=prArray_C[1];
 				
-				pr_tbl_C=pr_tbl_C+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_C +'" onClick="check_boxTrue_pr(\''+pr_id_C+'\')"><font id="prName'+ pr_id_C +'" class="name" >'+ pr_name_C+'</font><input type="hidden" id="doc_pr_id'+pr_id_C+'" value="'+pr_id_C+'" ></span><span><input type="text" id="prInputVal'+pr_id_C+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
+				pr_tbl_C=pr_tbl_C+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_C +'" onClick="check_boxTrue_pr(\''+pr_id_C+'\')"><font id="prName'+ pr_id_C +'" class="name" >'+ pr_name_C+'</font><input type="hidden" id="doc_pr_id'+pr_id_C+'" value="'+pr_id_C+'" ></span><span><input type="number" id="prInputVal'+pr_id_C+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
 				//var pName=$("#prName"+pr_id_C).html();
 				
 				}
@@ -10554,7 +10560,7 @@ function setPrProduct(){
 				var pr_id_D=prArray_D[0];	
 				var pr_name_D=prArray_D[1];
 				
-				pr_tbl_D=pr_tbl_D+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_D +'" onClick="check_boxTrue_pr(\''+pr_id_D+'\')"><font id="prName'+ pr_id_D +'" class="name" >'+ pr_name_D+'</font><input type="hidden" id="doc_pr_id'+pr_id_D+'" value="'+pr_id_D+'" ></span><span><input type="text" id="prInputVal'+pr_id_D+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
+				pr_tbl_D=pr_tbl_D+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_D +'" onClick="check_boxTrue_pr(\''+pr_id_D+'\')"><font id="prName'+ pr_id_D +'" class="name" >'+ pr_name_D+'</font><input type="hidden" id="doc_pr_id'+pr_id_D+'" value="'+pr_id_D+'" ></span><span><input type="number" id="prInputVal'+pr_id_D+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
 				
 				//prProdID_Str=prProdID_Str+pr_id_D+'<rd>'
 				}
@@ -10573,7 +10579,7 @@ function setPrProduct(){
 				var pr_id_E=prArray_E[0];	
 				var pr_name_E=prArray_E[1];
 				
-				pr_tbl_E=pr_tbl_E+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_E +'" onClick="check_boxTrue_pr(\''+pr_id_E+'\')"><font id="prName'+ pr_id_E +'" class="name" >'+ pr_name_E+'</font><input type="hidden" id="doc_pr_id'+pr_id_E+'" value="'+pr_id_E+'" ></span><span><input type="text" id="prInputVal'+pr_id_E+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
+				pr_tbl_E=pr_tbl_E+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_E +'" onClick="check_boxTrue_pr(\''+pr_id_E+'\')"><font id="prName'+ pr_id_E +'" class="name" >'+ pr_name_E+'</font><input type="hidden" id="doc_pr_id'+pr_id_E+'" value="'+pr_id_E+'" ></span><span><input type="number" id="prInputVal'+pr_id_E+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
 				//prProdID_Str=prProdID_Str+pr_id_E+'<rd>'	
 				}
 		localStorage.pr_tbl_E=pr_tbl_E		
@@ -10591,7 +10597,7 @@ function setPrProduct(){
 				var pr_id_F=prArray_F[0];	
 				var pr_name_F=prArray_F[1];
 				
-				pr_tbl_F=pr_tbl_F+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_F +'" onClick="check_boxTrue_pr(\''+pr_id_F+'\')"><font id="prName'+ pr_id_F +'" class="name" >'+ pr_name_F+'</font><input type="hidden" id="doc_pr_id'+pr_id_F+'" value="'+pr_id_F+'" ></span><span><input type="text" id="prInputVal'+pr_id_F+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
+				pr_tbl_F=pr_tbl_F+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_F +'" onClick="check_boxTrue_pr(\''+pr_id_F+'\')"><font id="prName'+ pr_id_F +'" class="name" >'+ pr_name_F+'</font><input type="hidden" id="doc_pr_id'+pr_id_F+'" value="'+pr_id_F+'" ></span><span><input type="number" id="prInputVal'+pr_id_F+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
 				//prProdID_Str=prProdID_Str+pr_id_F+'<rd>'
 				}
 		localStorage.pr_tbl_F=pr_tbl_F		
@@ -10608,7 +10614,7 @@ function setPrProduct(){
 				var pr_id_G=prArray_G[0];	
 				var pr_name_G=prArray_G[1];
 				
-				pr_tbl_G=pr_tbl_G+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_G +'" onClick="check_boxTrue_pr(\''+pr_id_G+'\')"><font id="prName'+ pr_id_G +'" class="name" >'+ pr_name_G+'</font><input type="hidden" id="doc_pr_id'+pr_id_G+'" value="'+pr_id_G+'" ></span><span><input type="text" id="prInputVal'+pr_id_G+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
+				pr_tbl_G=pr_tbl_G+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_G +'" onClick="check_boxTrue_pr(\''+pr_id_G+'\')"><font id="prName'+ pr_id_G +'" class="name" >'+ pr_name_G+'</font><input type="hidden" id="doc_pr_id'+pr_id_G+'" value="'+pr_id_G+'" ></span><span><input type="number" id="prInputVal'+pr_id_G+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
 				//prProdID_Str=prProdID_Str+pr_id_G+'<rd>'
 				}
 		localStorage.pr_tbl_G=pr_tbl_G		
@@ -10626,7 +10632,7 @@ function setPrProduct(){
 				var pr_id_H=prArray_H[0];	
 				var pr_name_H=prArray_H[1];
 				
-				pr_tbl_H=pr_tbl_H+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_H +'" onClick="check_boxTrue_pr(\''+pr_id_H+'\')"><font id="prName'+ pr_id_H +'" class="name" >'+ pr_name_H+'</font><input type="hidden" id="doc_pr_id'+pr_id_H+'" value="'+pr_id_H+'" ></span><span><input type="text" id="prInputVal'+pr_id_H+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
+				pr_tbl_H=pr_tbl_H+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_H +'" onClick="check_boxTrue_pr(\''+pr_id_H+'\')"><font id="prName'+ pr_id_H +'" class="name" >'+ pr_name_H+'</font><input type="hidden" id="doc_pr_id'+pr_id_H+'" value="'+pr_id_H+'" ></span><span><input type="number" id="prInputVal'+pr_id_H+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
 				//prProdID_Str=prProdID_Str+pr_id_H+'<rd>'
 				}
 		localStorage.pr_tbl_H=pr_tbl_H		
@@ -10645,7 +10651,7 @@ function setPrProduct(){
 				var pr_id_I=prArray_I[0];	
 				var pr_name_I=prArray_I[1];
 				
-				pr_tbl_I=pr_tbl_I+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_I +'" onClick="check_boxTrue_pr(\''+pr_id_I+'\')"><font id="prName'+ pr_id_I +'" class="name" >'+ pr_name_I+'</font><input type="hidden" id="doc_pr_id'+pr_id_I+'" value="'+pr_id_I+'" ></span><span><input type="text" id="prInputVal'+pr_id_I+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
+				pr_tbl_I=pr_tbl_I+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_I +'" onClick="check_boxTrue_pr(\''+pr_id_I+'\')"><font id="prName'+ pr_id_I +'" class="name" >'+ pr_name_I+'</font><input type="hidden" id="doc_pr_id'+pr_id_I+'" value="'+pr_id_I+'" ></span><span><input type="number" id="prInputVal'+pr_id_I+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
 				//prProdID_Str=prProdID_Str+pr_id_I+'<rd>'	
 				}
 		localStorage.pr_tbl_I=pr_tbl_I		
@@ -10663,7 +10669,7 @@ function setPrProduct(){
 				var pr_id_J=prArray_J[0];	
 				var pr_name_J=prArray_J[1];
 				
-				pr_tbl_J=pr_tbl_J+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_J +'" onClick="check_boxTrue_pr(\''+pr_id_J+'\')"><font id="prName'+ pr_id_J +'" class="name" >'+ pr_name_J+'</font><input type="hidden" id="doc_pr_id'+pr_id_J+'" value="'+pr_id_J+'" ></span><span><input type="text" id="prInputVal'+pr_id_J+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
+				pr_tbl_J=pr_tbl_J+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_J +'" onClick="check_boxTrue_pr(\''+pr_id_J+'\')"><font id="prName'+ pr_id_J +'" class="name" >'+ pr_name_J+'</font><input type="hidden" id="doc_pr_id'+pr_id_J+'" value="'+pr_id_J+'" ></span><span><input type="number" id="prInputVal'+pr_id_J+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
 				//prProdID_Str=prProdID_Str+pr_id_J+'<rd>'	
 				}
 		localStorage.pr_tbl_J=pr_tbl_J		
@@ -10681,7 +10687,7 @@ function setPrProduct(){
 				var pr_id_K=prArray_K[0];	
 				var pr_name_K=prArray_K[1];
 				
-				pr_tbl_K=pr_tbl_K+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_K +'" onClick="check_boxTrue_pr(\''+pr_id_K+'\')"><font id="prName'+ pr_id_K +'" class="name" >'+ pr_name_K+'</font><input type="hidden" id="doc_pr_id'+pr_id_K+'" value="'+pr_id_K+'" ></span><span><input type="text" id="prInputVal'+pr_id_K+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
+				pr_tbl_K=pr_tbl_K+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_K +'" onClick="check_boxTrue_pr(\''+pr_id_K+'\')"><font id="prName'+ pr_id_K +'" class="name" >'+ pr_name_K+'</font><input type="hidden" id="doc_pr_id'+pr_id_K+'" value="'+pr_id_K+'" ></span><span><input type="number" id="prInputVal'+pr_id_K+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
 				//prProdID_Str=prProdID_Str+pr_id_K+'<rd>'	
 				}
 		localStorage.pr_tbl_K=pr_tbl_K		
@@ -10699,7 +10705,7 @@ function setPrProduct(){
 				var pr_id_L=prArray_L[0];	
 				var pr_name_L=prArray_L[1];
 				
-				pr_tbl_L=pr_tbl_L+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_L +'" onClick="check_boxTrue_pr(\''+pr_id_L+'\')"><font id="prName'+ pr_id_L +'" class="name" >'+ pr_name_L+'</font><input type="hidden" id="doc_pr_id'+pr_id_L+'" value="'+pr_id_L+'" ></span><span><input type="text" id="prInputVal'+pr_id_L+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
+				pr_tbl_L=pr_tbl_L+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_L +'" onClick="check_boxTrue_pr(\''+pr_id_L+'\')"><font id="prName'+ pr_id_L +'" class="name" >'+ pr_name_L+'</font><input type="hidden" id="doc_pr_id'+pr_id_L+'" value="'+pr_id_L+'" ></span><span><input type="number" id="prInputVal'+pr_id_L+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
 				//prProdID_Str=prProdID_Str+pr_id_L+'<rd>'	
 				}
 		localStorage.pr_tbl_L=pr_tbl_L	
@@ -10716,7 +10722,7 @@ function setPrProduct(){
 				var pr_id_M=prArray_M[0];	
 				var pr_name_M=prArray_M[1];
 				
-				pr_tbl_M=pr_tbl_M+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_M +'" onClick="check_boxTrue_pr(\''+pr_id_M+'\')"><font id="prName'+ pr_id_M +'" class="name" >'+ pr_name_M+'</font><input type="hidden" id="doc_pr_id'+pr_id_M+'" value="'+pr_id_M+'" ></span><span><input type="text" id="prInputVal'+pr_id_M+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
+				pr_tbl_M=pr_tbl_M+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_M +'" onClick="check_boxTrue_pr(\''+pr_id_M+'\')"><font id="prName'+ pr_id_M +'" class="name" >'+ pr_name_M+'</font><input type="hidden" id="doc_pr_id'+pr_id_M+'" value="'+pr_id_M+'" ></span><span><input type="number" id="prInputVal'+pr_id_M+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
 				}
 		localStorage.pr_tbl_M=pr_tbl_M	
 		$("#pr_id_lv").append(localStorage.pr_tbl_M);	
@@ -10733,7 +10739,7 @@ function setPrProduct(){
 				var pr_id_N=prArray_N[0];	
 				var pr_name_N=prArray_N[1];
 					
-				pr_tbl_N=pr_tbl_N+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_N +'" onClick="check_boxTrue_pr(\''+pr_id_N+'\')"><font id="prName'+ pr_id_N +'" class="name" >'+ pr_name_N+'</font><input type="hidden" id="doc_pr_id'+pr_id_N+'" value="'+pr_id_N+'" ></span><span><input type="text" id="prInputVal'+pr_id_N+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
+				pr_tbl_N=pr_tbl_N+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_N +'" onClick="check_boxTrue_pr(\''+pr_id_N+'\')"><font id="prName'+ pr_id_N +'" class="name" >'+ pr_name_N+'</font><input type="hidden" id="doc_pr_id'+pr_id_N+'" value="'+pr_id_N+'" ></span><span><input type="number" id="prInputVal'+pr_id_N+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
 				}
 		localStorage.pr_tbl_N=pr_tbl_N	
 		$("#pr_id_lv").append(localStorage.pr_tbl_N);	
@@ -10749,7 +10755,7 @@ function setPrProduct(){
 				var pr_id_O=prArray_O[0];	
 				var pr_name_O=prArray_O[1];
 				
-				pr_tbl_O=pr_tbl_O+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_O +'" onClick="check_boxTrue_pr(\''+pr_id_O+'\')"><font id="prName'+ pr_id_O +'" class="name" >'+ pr_name_O+'</font><input type="hidden" id="doc_pr_id'+pr_id_O+'" value="'+pr_id_O+'" ></span><span><input type="text" id="prInputVal'+pr_id_O+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
+				pr_tbl_O=pr_tbl_O+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_O +'" onClick="check_boxTrue_pr(\''+pr_id_O+'\')"><font id="prName'+ pr_id_O +'" class="name" >'+ pr_name_O+'</font><input type="hidden" id="doc_pr_id'+pr_id_O+'" value="'+pr_id_O+'" ></span><span><input type="number" id="prInputVal'+pr_id_O+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
 				}
 		localStorage.pr_tbl_O=pr_tbl_O
 		$("#pr_id_lv").append(localStorage.pr_tbl_O);	
@@ -10765,7 +10771,7 @@ function setPrProduct(){
 				var pr_id_P=prArray_P[0];	
 				var pr_name_P=prArray_P[1];
 				
-				pr_tbl_P=pr_tbl_P+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_P +'" onClick="check_boxTrue_pr(\''+pr_id_P+'\')"><font id="prName'+ pr_id_P +'" class="name" >'+ pr_name_P+'</font><input type="hidden" id="doc_pr_id'+pr_id_P+'" value="'+pr_id_P+'" ></span><span><input type="text" id="prInputVal'+pr_id_P+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
+				pr_tbl_P=pr_tbl_P+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_P +'" onClick="check_boxTrue_pr(\''+pr_id_P+'\')"><font id="prName'+ pr_id_P +'" class="name" >'+ pr_name_P+'</font><input type="hidden" id="doc_pr_id'+pr_id_P+'" value="'+pr_id_P+'" ></span><span><input type="number" id="prInputVal'+pr_id_P+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
 				}
 		localStorage.pr_tbl_P=pr_tbl_P
 		$("#pr_id_lv").append(localStorage.pr_tbl_P);	
@@ -10781,7 +10787,7 @@ function setPrProduct(){
 				var pr_id_Q=prArray_Q[0];	
 				var pr_name_Q=prArray_Q[1];
 				
-				pr_tbl_Q=pr_tbl_Q+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_Q +'" onClick="check_boxTrue_pr(\''+pr_id_Q+'\')"><font id="prName'+ pr_id_Q +'" class="name" >'+ pr_name_Q+'</font><input type="hidden" id="doc_pr_id'+pr_id_Q+'" value="'+pr_id_Q+'" ></span><span><input type="text" id="prInputVal'+pr_id_Q+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
+				pr_tbl_Q=pr_tbl_Q+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_Q +'" onClick="check_boxTrue_pr(\''+pr_id_Q+'\')"><font id="prName'+ pr_id_Q +'" class="name" >'+ pr_name_Q+'</font><input type="hidden" id="doc_pr_id'+pr_id_Q+'" value="'+pr_id_Q+'" ></span><span><input type="number" id="prInputVal'+pr_id_Q+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
 				}
 		localStorage.pr_tbl_Q=pr_tbl_Q
 		$("#pr_id_lv").append(localStorage.pr_tbl_Q);	
@@ -10797,7 +10803,7 @@ function setPrProduct(){
 				var pr_id_R=prArray_R[0];	
 				var pr_name_R=prArray_R[1];
 				
-				pr_tbl_R=pr_tbl_R+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_R +'" onClick="check_boxTrue_pr(\''+pr_id_R+'\')"><font id="prName'+ pr_id_R +'" class="name" >'+ pr_name_R+'</font><input type="hidden" id="doc_pr_id'+pr_id_R+'" value="'+pr_id_R+'" ></span><span><input type="text" id="prInputVal'+pr_id_R+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
+				pr_tbl_R=pr_tbl_R+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_R +'" onClick="check_boxTrue_pr(\''+pr_id_R+'\')"><font id="prName'+ pr_id_R +'" class="name" >'+ pr_name_R+'</font><input type="hidden" id="doc_pr_id'+pr_id_R+'" value="'+pr_id_R+'" ></span><span><input type="number" id="prInputVal'+pr_id_R+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
 				}
 		localStorage.pr_tbl_R=pr_tbl_R
 		$("#pr_id_lv").append(localStorage.pr_tbl_R);	
@@ -10813,7 +10819,7 @@ function setPrProduct(){
 				var pr_id_S=prArray_S[0];	
 				var pr_name_S=prArray_S[1];
 
-				pr_tbl_S=pr_tbl_S+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_S +'" onClick="check_boxTrue_pr(\''+pr_id_S+'\')"><font id="prName'+ pr_id_S +'" class="name" >'+ pr_name_S+'</font><input type="hidden" id="doc_pr_id'+pr_id_S+'" value="'+pr_id_S+'" ></span><span><input type="text" id="prInputVal'+pr_id_S+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
+				pr_tbl_S=pr_tbl_S+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_S +'" onClick="check_boxTrue_pr(\''+pr_id_S+'\')"><font id="prName'+ pr_id_S +'" class="name" >'+ pr_name_S+'</font><input type="hidden" id="doc_pr_id'+pr_id_S+'" value="'+pr_id_S+'" ></span><span><input type="number" id="prInputVal'+pr_id_S+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
 				}
 		localStorage.pr_tbl_S=pr_tbl_S
 		$("#pr_id_lv").append(localStorage.pr_tbl_S);	
@@ -10829,7 +10835,7 @@ function setPrProduct(){
 				var pr_id_T=prArray_T[0];	
 				var pr_name_T=prArray_T[1];
 				
-				pr_tbl_T=pr_tbl_T+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_T +'" onClick="check_boxTrue_pr(\''+pr_id_T+'\')"><font id="prName'+ pr_id_T +'" class="name" >'+ pr_name_T+'</font><input type="hidden" id="doc_pr_id'+pr_id_T+'" value="'+pr_id_T+'" ></span><span><input type="text" id="prInputVal'+pr_id_T+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
+				pr_tbl_T=pr_tbl_T+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_T +'" onClick="check_boxTrue_pr(\''+pr_id_T+'\')"><font id="prName'+ pr_id_T +'" class="name" >'+ pr_name_T+'</font><input type="hidden" id="doc_pr_id'+pr_id_T+'" value="'+pr_id_T+'" ></span><span><input type="number" id="prInputVal'+pr_id_T+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
 				}
 		localStorage.pr_tbl_T=pr_tbl_T
 		$("#pr_id_lv").append(localStorage.pr_tbl_T);	
@@ -10845,7 +10851,7 @@ function setPrProduct(){
 				var pr_id_U=prArray_U[0];	
 				var pr_name_U=prArray_U[1];
 				
-				pr_tbl_U=pr_tbl_U+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_U +'" onClick="check_boxTrue_pr(\''+pr_id_U+'\')"><font id="prName'+ pr_id_U +'" class="name" >'+ pr_name_U+'</font><input type="hidden" id="doc_pr_id'+pr_id_U+'" value="'+pr_id_U+'" ></span><span><input type="text" id="prInputVal'+pr_id_U+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
+				pr_tbl_U=pr_tbl_U+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_U +'" onClick="check_boxTrue_pr(\''+pr_id_U+'\')"><font id="prName'+ pr_id_U +'" class="name" >'+ pr_name_U+'</font><input type="hidden" id="doc_pr_id'+pr_id_U+'" value="'+pr_id_U+'" ></span><span><input type="number" id="prInputVal'+pr_id_U+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
 				}
 		localStorage.pr_tbl_U=pr_tbl_U
 		$("#pr_id_lv").append(localStorage.pr_tbl_U);	
@@ -10861,7 +10867,7 @@ function setPrProduct(){
 				var pr_id_V=prArray_V[0];	
 				var pr_name_V=prArray_V[1];
 					
-				pr_tbl_V=pr_tbl_V+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_V +'" onClick="check_boxTrue_pr(\''+pr_id_V+'\')"><font id="prName'+ pr_id_V +'" class="name" >'+ pr_name_V+'</font><input type="hidden" id="doc_pr_id'+pr_id_V+'" value="'+pr_id_V+'" ></span><span><input type="text" id="prInputVal'+pr_id_V+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
+				pr_tbl_V=pr_tbl_V+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_V +'" onClick="check_boxTrue_pr(\''+pr_id_V+'\')"><font id="prName'+ pr_id_V +'" class="name" >'+ pr_name_V+'</font><input type="hidden" id="doc_pr_id'+pr_id_V+'" value="'+pr_id_V+'" ></span><span><input type="number" id="prInputVal'+pr_id_V+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
 				}
 		localStorage.pr_tbl_V=pr_tbl_V
 		$("#pr_id_lv").append(localStorage.pr_tbl_V);	
@@ -10877,7 +10883,7 @@ function setPrProduct(){
 				var pr_id_W=prArray_W[0];	
 				var pr_name_W=prArray_W[1];
 				
-				pr_tbl_W=pr_tbl_W+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_W +'" onClick="check_boxTrue_pr(\''+pr_id_W+'\')"><font id="prName'+ pr_id_W +'" class="name" >'+ pr_name_W+'</font><input type="hidden" id="doc_pr_id'+pr_id_W+'" value="'+pr_id_W+'" ></span><span><input type="text" id="prInputVal'+pr_id_W+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
+				pr_tbl_W=pr_tbl_W+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_W +'" onClick="check_boxTrue_pr(\''+pr_id_W+'\')"><font id="prName'+ pr_id_W +'" class="name" >'+ pr_name_W+'</font><input type="hidden" id="doc_pr_id'+pr_id_W+'" value="'+pr_id_W+'" ></span><span><input type="number" id="prInputVal'+pr_id_W+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
 				}
 		//localStorage.pr_tbl_W=pr_tbl_W
 		$("#pr_id_lv").append(localStorage.pr_tbl_W);	
@@ -10896,7 +10902,7 @@ function setPrProduct(){
 				
 				pr_tbl_X=pr_tbl_X+'<li  style="border-bottom-style:solid; border-color:#CBE4E4;border-bottom-width:thin "  onClick="check_boxTrue_pr(\''+pr_id_X+'\')"  class="name"><font id="prName'+ pr_id_X +'" class="name" >'+ pr_name_X+'</font><input type="hidden" id="doc_pr_id'+pr_id_X+'" value="'+pr_id_X+'" > '+'</li>';	
 				//prProdID_Str=prProdID_Str+pr_id_X+'<rd>'	
-				pr_tbl_X=pr_tbl_X+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_X +'" onClick="check_boxTrue_pr(\''+pr_id_X+'\')"><font id="prName'+ pr_id_X +'" class="name" >'+ pr_name_X+'</font><input type="hidden" id="doc_pr_id'+pr_id_X+'" value="'+pr_id_X+'" ></span><span><input type="text" id="prInputVal'+pr_id_X+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
+				pr_tbl_X=pr_tbl_X+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_X +'" onClick="check_boxTrue_pr(\''+pr_id_X+'\')"><font id="prName'+ pr_id_X +'" class="name" >'+ pr_name_X+'</font><input type="hidden" id="doc_pr_id'+pr_id_X+'" value="'+pr_id_X+'" ></span><span><input type="number" id="prInputVal'+pr_id_X+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
 				}
 		localStorage.pr_tbl_X=pr_tbl_X
 		$("#pr_id_lv").append(localStorage.pr_tbl_Y);	
@@ -10913,7 +10919,7 @@ function setPrProduct(){
 				var pr_id_Y=prArray_Y[0];	
 				var pr_name_Y=prArray_Y[1];
 				
-				pr_tbl_Y=pr_tbl_Y+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_Y +'" onClick="check_boxTrue_pr(\''+pr_id_Y+'\')"><font id="prName'+ pr_id_Y +'" class="name" >'+ pr_name_y+'</font><input type="hidden" id="doc_pr_id'+pr_id_Y+'" value="'+pr_id_Y+'" ></span><span><input type="text" id="prInputVal'+pr_id_Y+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
+				pr_tbl_Y=pr_tbl_Y+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_Y +'" onClick="check_boxTrue_pr(\''+pr_id_Y+'\')"><font id="prName'+ pr_id_Y +'" class="name" >'+ pr_name_y+'</font><input type="hidden" id="doc_pr_id'+pr_id_Y+'" value="'+pr_id_Y+'" ></span><span><input type="number" id="prInputVal'+pr_id_Y+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
 				//prProdID_Str=prProdID_Str+pr_id_Y+'<rd>'	
 				}
 		localStorage.pr_tbl_Y=pr_tbl_Y
@@ -10929,7 +10935,7 @@ function setPrProduct(){
 				var prArray_Z = prList_Z[j].split('<fd>');
 				var pr_id_Z=prArray_Z[0];	
 				var pr_name_Z=prArray_Z[1];
-				pr_tbl_Z=pr_tbl_Z+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_Z +'" onClick="check_boxTrue_pr(\''+pr_id_Z+'\')"><font id="prName'+ pr_id_Z +'" class="name" >'+ pr_name_Z+'</font><input type="hidden" id="doc_pr_id'+pr_id_Z+'" value="'+pr_id_Z+'" ></span><span><input type="text" id="prInputVal'+pr_id_Z+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';	
+				pr_tbl_Z=pr_tbl_Z+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_Z +'" onClick="check_boxTrue_pr(\''+pr_id_Z+'\')"><font id="prName'+ pr_id_Z +'" class="name" >'+ pr_name_Z+'</font><input type="hidden" id="doc_pr_id'+pr_id_Z+'" value="'+pr_id_Z+'" ></span><span><input type="number" id="prInputVal'+pr_id_Z+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';	
 				//prProdID_Str=prProdID_Str+pr_id_Z+'<rd>'	
 				}
 		localStorage.pr_tbl_Z=pr_tbl_Z
@@ -10937,21 +10943,22 @@ function setPrProduct(){
 	}
 	//localStorage.prProdID_Str=prProdID_Str;
 }
+
+/************* jahangirEditedStart15Feb check_boxTrue_pr ************************/
 function check_boxTrue_pr(product_id){	
 	var camp_combo=$("#prName"+product_id).text();
 	var camp_combo=$("#prName"+product_id).text();
 	var camp_span="#prSpan"+product_id
 	var medInpVal = $("#prInputVal"+product_id).val();
 	var ppid=$("#doc_pr_id"+product_id).val();
-	var conCatVal = ppid+'<conVal>'+camp_combo+'<conVal>'+medInpVal;
+	var conCatVal = ppid+'<||>'+camp_combo+'<||>'+medInpVal;
 	
 	getDocPrData_keyup(product_id, conCatVal, 'true');
 	$("#prName"+product_id).addClass('bgc');
-	//$(camp_combo).click(function(){
-	//	$(this).css('color','red');	
-	//);
 
 	}
+/************* jahangirEditedEnd15Feb check_boxTrue_pr ************************/
+	
 function getDocPrData_keyup(product_id, conCatVal, status){
 	//localStorage.prProdID_Str='';
 	//alert ('local : '+localStorage.prProdID_Str)
@@ -11038,7 +11045,8 @@ function getDocDatapr(){
 	$.afui.loadContent("#doctorprCartPage",true,true,'right');
 
 }
-/************* jahangirEditedStart getDocDataprCart *****************/
+
+/************* jahangirEditedStart15Feb getDocDataprCart *****************/
 function getDocDataprCart(){	
 	
 	$('#prCart').empty();
@@ -11072,7 +11080,7 @@ function getDocDataprCart(){
 	}
 	$('#prCart').append(cart_list);
 }
-/************* jahangirEditedEnd getDocDataprCart *****************/
+/************* jahangirEditedEnd15Feb getDocDataprCart *****************/
 
 function doctorprCartPage(){	
 	$.afui.loadContent("#doctorprCartPage",true,true,'right');
@@ -11085,7 +11093,8 @@ function page_imageSingle(){
 function page_prItemPage(){	
 	$.afui.loadContent("#page_prItemPage",true,true,'right');
 }
-/*********** jahangirEditedStart removeCarItemPr ***************/
+
+/*********** jahangirEditedStart15Feb removeCarItemPr ***************/
 
 function removeCarItemPr(product_get, prName, inVal){
 	$("#cartPr_"+product_get).remove();
@@ -11106,7 +11115,8 @@ function removeCarItemPr(product_get, prName, inVal){
 	
 }
 
-/*********** jahangirEditedEnd removeCarItemPr ***************/
+/*********** jahangirEditedEnd15Feb removeCarItemPr ***************/
+
 function mp() {
 	var doctorId=localStorage.visit_client.split('|')[1]	
 	var areaId=localStorage.visit_market_show.split('|')[1]
@@ -11139,6 +11149,8 @@ function mp() {
 	});	
 	$("#myDiv").toggle();
 }
+
+/************ jahangirEditedStart17Feb prescription_submit **************/
 function prescription_submit(){
 	$("#error_prescription_submit").html("")		
 	$("#wait_image_prescription").show();
@@ -11149,7 +11161,6 @@ function prescription_submit(){
 	
 	var areaId=localStorage.visit_market_show.split('|')[1]
 	
-	var checkOther=$("#checkOther").attr("checked") ? 1 : 0;
 	
 	//alert (checkOther)
 	if (doctor_name==''){		
@@ -11318,6 +11329,8 @@ function prescription_submit(){
 	}
 //$.afui.loadContent("#page_confirm_visit_success",true,true,'right');
 }
+
+/************ jahangirEditedEnd17Feb prescription_submit **************/
 
 
 function prsearchItem() {
@@ -11844,6 +11857,8 @@ function check_boxTrue_op(product_id){
 	});
 
 	}
+	
+	
 function getDocOpData_keyup(product_id,status){
 	//alert (status)
 	var pid=$("#doc_op_id"+product_id).val();
@@ -11923,28 +11938,39 @@ function getDocDataop(){
 	
 	$.afui.loadContent("#doctoropCartPage",true,true,'right');;
 }
+
+/******* jahangirEditedStart16Feb getDocDataopCart **************/
 function getDocDataopCart(){	
 	//alert (localStorage.prProdID_Str)
 	$('#opCart').empty();
 	campaign_doc_str=localStorage.opProdID_Str
 	
-	var campaignList = campaign_doc_str.split('<rd>');
-	var campaignListLength=campaignList.length
+	var campaignList = campaign_doc_str.split('||');
+	var campaignListLength=campaignList.length;
+	var medId='';
+	var medName='';
+	var medVal='';
 	cart_list=''
+	
 	for ( i=0; i < campaignListLength; i++){
-	var pID=campaignList[i];
-	//$("#opCart").empty();
-	//alert (pID)
-	if(pID!=''){
-		var pName=$("#opName"+pID).html();
-		//alert ("#prName"+pID)
-		cart_list+='<tr style="font-size:14px" id="cartOp_'+pID+'"><td > </br>'+pName+'</br></td><td style="background-color:#E7F1FE"  align="center" width="10%" onClick="removeCarItemOp(\''+pID+'\');"><img  src="cancel.png" width="20" height="20" alt="X" id="myImage1"  onClick="removeCarItemOp(\''+pID+'\');"> </td></tr>';
 		
+		var pID=campaignList[i];
+		var pIdSpilt = pID.split('|');
+		
+		for(n=0; n < pIdSpilt.length; n++){
+			medId = pIdSpilt[0];
+			medName = pIdSpilt[1];
+			medVal = pIdSpilt[2];
+		}
+		if(medId!=''){
+			cart_list+='<tr style="font-size:14px" id="cartOp_'+medId+'"><td > </br>'+medName+'</br></td><td><input id="inpId'+medId+'" type="text" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px" value="'+medVal+'"/></td><td style="background-color:#E7F1FE"  align="center" width="10%" onClick="removeCarItemOp(\''+medId+'\');"><img  src="cancel.png" width="20" height="20" alt="X" id="myImage1"  onClick="removeCarItemOp(\''+medId+'\');"> </td></tr>';
+			
 		}	
 	}
 	//alert (cart_list)
 	$('#opCart').append(cart_list);
 }
+/******* jahangirEditedEnd16 getDocDataopCart **************/
 function getDocDataop(){	
 	getDocDataopCart();
 	$.afui.loadContent("#doctoropCartPage",true,true,'right');
@@ -11954,25 +11980,34 @@ function doctoropCartPage(){
 	$.afui.loadContent("#doctoropCartPage",true,true,'right');
 
 }
-function removeCarItemOp(product_idGet){	
-	campaign_doc_str=localStorage.opProdID_Str
-	cartLength=campaign_doc_str.split('<rd>').length
-	$("#cartOp_"+product_idGet).remove();
-	//alert (localStorage.prProdID_Str)
-	if (campaign_doc_str.indexOf(product_idGet)==0 & cartLength == 1){
-		campaign_doc_str=campaign_doc_str.replace(product_idGet,'')
-	}
-	else if (campaign_doc_str.indexOf(product_idGet)==0 & cartLength > 1){
-		campaign_doc_str=campaign_doc_str.replace(product_idGet+"<rd>",'')
-	}
-	else if (campaign_doc_str.indexOf(product_idGet)>0 & cartLength > 1){
-		campaign_doc_str=campaign_doc_str.replace("<rd>"+product_idGet,'')
-	}
-		
-	localStorage.opProdID_Str=campaign_doc_str
+
+
+/******* jahangirEditedStart16Start removeCarItemOp **************/
+function removeCarItemOp(product_idGet){
 	
-	//alert (localStorage.prProdID_Str)
+	$("#cartOp_"+product_idGet).remove();
+	var repl1='';
+	
+	//localStorage.opProdID_Str='';
+	//alert(localStorage.opProdID_Str);
+	iStr=localStorage.opProdID_Str.split('||');
+	iLen=iStr.length
+	for(i=0;i<iLen;i++){
+		iStrD=iStr[i].split('|');
+		//alert(iStrD[0]);
+		if(iStrD[0]!=product_idGet){
+			if (repl1==''){
+				repl1=iStr[i]
+			}else{
+				repl1+='||'+iStr[i]
+			}				
+		}				
+	}
+	localStorage.opProdID_Str=repl1;
 }
+/******* jahangirEditedEnd16 removeCarItemOp **************/
+
+
 //============================================
 function gotoPic(picNo) {
 	var imageDiv="myImage"+picNo
@@ -12296,6 +12331,79 @@ function cameraError(message){
 	
 }
 
+/*************** jahangirEditedStart16Feb medicine search******************/
+function searchMedicine(){
+	// opitemSearch
+	var searchValue = $("#opitemSearch").val();
+	
+	if(searchValue.length<3){
+		$('#medicineList').html('<p>Type minimum 3 character <span style="color:red;"><sup>*</sup></span></p>');
+	}
+	else{
+		//alert(apipath+'search_medicine?searchValue='+searchValue);
+		$.ajax({
+			  url: apipath+'search_medicine?searchValue='+searchValue,
+			  success: function(resStr) {
+				if (resStr!=""){
+					keywordStr=resStr.split("||");
+					  var keywordS='';
+					  for (i=0;i<keywordStr.length;i++){
+						  keywordLi=keywordStr[i].split("|")
+						  var pID=keywordLi[0].trim();
+						  var medName=keywordLi[1];
+						  keywordS+='<tr id="medListUl">'
+						  keywordS+='<td  id="medId'+pID+'"  onclick="medClick(\''+pID+'\',\''+medName+'\')">'
+						  keywordS+='<span style="margin-bottom:10px; " >'+medName+'</span>' 
+						  keywordS+='</td>'
+						  keywordS+='<td>'
+						  keywordS+='<input  id="inpId'+pID+'" type="number" style="width:56px; height:35px;" value=""/>'
+						  keywordS+='</td>'
+						  keywordS+='</tr>'
+					  }
+					  
+					$('#medicineList').empty();
+					$('#medicineList').append(keywordS).trigger('create');
+					 
+					$(".error").text("");
+					 
+					  url="#page_opItemPage";					
+					  $.mobile.navigate(url);
+				
+				
+				}else{
+					$(".error").text("Invalid keywords");
+				}
+			
+			  }
+			
+		});
+	}
+}
+/*********** jahangirEditedEnd16Feb medicine search *********/
+
+/*********** jahangirEditedStart16Feb medClick  *********/
+function medClick(pid, name){
+	$("#medId"+pid).addClass('bgc');
+	//alert(localStorage.opProdID_Str);
+	var inpVal = $("#inpId"+pid).val();
+	if(inpVal==''||inpVal==undefined){
+		inpVal=0;
+	}
+	var pConcat = pid+'|'+name+'|'+inpVal;
+	var campaign_doc_str=localStorage.opProdID_Str
+	
+	if(campaign_doc_str.indexOf(pid)==-1){
+			if (campaign_doc_str==''){
+				campaign_doc_str=pConcat
+			}else{
+				campaign_doc_str+='||'+pConcat
+			}
+	}
+	localStorage.opProdID_Str=campaign_doc_str;
+	
+}
+
+/*********** jahangirEditedEnd16Feb medClick  *********/
 $('#ThumbnailTest_buttonTakePhotosNow').click(function(){
     takePicture();
 });
