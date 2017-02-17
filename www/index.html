@@ -43,6 +43,35 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		.bgc{
 			color:red;
 		}
+		/********** jahangirEditedStart16Feb css ***************/
+		#imgStyle img{
+			border: 3px solid #ffffff;
+			border-radius: 5px;
+			width:56px !important;
+			height:70px !important;
+		}
+		
+		#medicineList ul {
+			margin: 46px auto auto auto;
+			padding: 2px 0;
+			list-style: none;
+			background:#ffffff;
+		}
+		#medicineList ul li {
+			border-bottom: 1px dashed #4C9ED9;
+			margin: 8px 0;
+		}
+		
+		#medicineList ul li a {
+			text-decoration: none;
+			color: #222222;
+		}
+		
+		#medicineList ul li:hover a{
+			background-color:#4C9ED9 !important;
+			color:#4C9ED9;
+		}
+		/********** jahangirEditedEnd16Feb css ***************/
 	 </style>
 
 </head>
@@ -65,7 +94,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
   
             
             
-            
+        
             
             
           <!--  //============Login page Start-->
@@ -4774,203 +4803,67 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     </div>  
     
      
+<!------------------------ jahangirEditedStart16Feb oportunity ----------------->
  <!--    ======================Oportunety==========================-->
 <!--//==============================opportunity Page=================-->
 
       <div class="view" id="opItemPageView">
         <div class="pages">
-         <header style="height:70px">
-         </br>
-          <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                 
-                            <td width="2%" onClick="search_setfocus()">
-                     
-                            </td>
-                    <td width="50%" onClick="search_setfocus()">
-                       <!--<div class="input-group">-->   
-                        
-                        <input id="opitemSearch" type="text" id="opitemSearch" style="width:100%; color:#000; background-color:#F4F8FF; font-weight:normal" placeholder="Search"   />
-                        <!--</div>-->
-                          
-                            
-                            </td>
-                            <td onClick="opsearchItem()" width="10%"><img src="search-icon.png" width="30" height="30" alt="S"  ></td>
-                            <td  width="5px"></td>
-                            <td align="right" onClick="opcancelSearch()" width="10%"><img src="cross_white.png" width="20" height="20" alt="Next"  ></td>
-                             <td  width="5px"></td>
-                            <td align="right">
-                            <img src="icon-arrow-right_1.png" width="40" height="40" alt="Next" onClick="getDocDataop()" >
-                            <!-- <img  class="icon right"   alt="Next" onClick="getDocCampaignData()" >-->
-           <!--  <input type="submit" id="input" style="height:40px;  " onClick="getDocCampaignData()"  />-->
-                     
-                            </td>
-                            <td width="2%">
-                     
-                            </td>
-                          </tr>
-                        </table>
-         
-         
-         </header> 
+			 <header style="height:70px">
+			 </br>
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td width="2%" onClick="search_setfocus()">
+				 
+						</td>
+						<td width="50%" onClick="search_setfocus()">
+						   <!--<div class="input-group">-->   
+							
+							<input id="opitemSearch" type="text" id="opitemSearch" style="width:100%; color:#000; background-color:#F4F8FF; font-weight:normal" placeholder="Search"   />
+							<!--</div>-->    
+						</td>
+						<td onClick="searchMedicine()" width="10%"><img src="search-icon.png" width="40" height="40" alt="S"  ></td>
+						<td  width="5px"></td>
+						<td align="right" onClick="opcancelSearch()" width="10%"><img src="cross_white.png" width="20" height="20" alt="Next"  ></td>
+						<td  width="5px"></td>
+						<td align="right">
+							<img src="icon-arrow-right_1.png" width="40" height="40" alt="Next" onClick="getDocDataop()" >
+						</td>
+						<td width="2%">
+				 
+						</td>
+					</tr>
+							
+				</table>
+			</header> 
             <div class="panel" id="page_opItemPage" style="background-color:#EDFEED">
-            </br></br></br></br></br>
-            
-                <!--<div class="card">-->
-                    <!--<h1>Sync</h1>-->
-                      
-                   <!-- </br>-->
-                   
-                            
-                            <div id="myerror_doctor_op" style="color:#C00"></div> 
-                            <div class="input-group">
-                        
-                        <table width="100%" border="0"   >
-                <tr>
-               <!-- <td id="itemTD" width="90%"  style="vertical-align:top;overflow:scroll; height:700px; display:block">-->
-                <td >
-                 <div id="container" style="max-height:700px;overflow:scroll;">
-                 <ul class="list" id="op_id_lv" style="background-color:#EDFEED">
-                        
-                        </ul>
-                  </div>
-                 </td>
-                
-                 <td style="vertical-align:top" >
-                    <table >
-                    <tr  onClick="searchOpChar('A')">
-                    <td height="20px" >A</td>
-                    </tr>
-                    <tr  >
-                  
-                    <tr style="vertical-align:top" onClick="searchOpChar('B')">
-                    <td height="20px">B</td>
-                    </tr>
-                    
-                    <tr style="vertical-align:top" onClick="searchOpChar('C')">
-                    <td height="20px">C</td>
-                    </tr>
-                    
-                    <tr style="vertical-align:top" onClick="searchOpChar('D')">
-                    <td height="20px">D</td>
-                    </tr>
-                    
-                    <tr style="vertical-align:top" onClick="searchOpChar('E')">
-                    <td height="20px">E</td>
-                    </tr>
-                    
-                    <tr style="vertical-align:top" onClick="searchOpChar('F')">
-                    <td height="20px">F</td>
-                    </tr>
-                    
-                    <tr style="vertical-align:top" onClick="searchOpChar('G')">
-                    <td height="20px">G</td>
-                    </tr>
-                    
-                    <tr style="vertical-align:top" onClick="searchOpChar('H')">
-                    <td height="20px">H</td>
-                    </tr>
-                    
-                    <tr style="vertical-align:top" onClick="searchOpChar('I')">
-                    <td height="20px">I</td>
-                    </tr>
-                  
-                    
-                    <tr style="vertical-align:top" onClick="searchOpChar('J')">
-                    <td height="20px">J</td>
-                    </tr>
-                    
-                    <tr style="vertical-align:top" onClick="searchOpChar('K')">
-                    <td height="20px">K</td>
-                    </tr>
-                    
-                    <tr style="vertical-align:top" onClick="searchOpChar('L')">
-                    <td height="20px">L</td>
-                    </tr>
-                    
-                    <tr style="vertical-align:top" onClick="searchOpChar('M')">
-                    <td height="20px">M</td>
-                    
-                    </tr>
-                    <tr style="vertical-align:top" onClick="searchOpChar('N')">
-                    <td height="20px">N</td>
-                    </tr>
-                    
-                    <tr style="vertical-align:top" onClick="searchOpChar('O')">
-                    <td height="20px">O</td>
-                    </tr>
-                    
-                    <tr style="vertical-align:top" onClick="searchOpChar('P')">
-                    <td height="20px">P</td>
-                    </tr>
-                    
-                    <tr style="vertical-align:top" onClick="searchOpChar('Q')">
-                    <td height="20px">Q</td>
-                    </tr>
-                   
-                    
-                    <tr style="vertical-align:top" onClick="searchOpChar('R')">
-                    <td height="20px">R</td>
-                    </tr>
-                  
-                    
-                    <tr style="vertical-align:top" onClick="searchOpChar('S')">
-                    <td height="20px">S</td>
-                    </tr>
-                    
-                    <tr style="vertical-align:top" onClick="searchOpChar('T')">
-                    <td height="20px">T</td>
-                    </tr>
-                    
-                    <tr style="vertical-align:top" onClick="searchOpChar('U')">
-                    <td height="20px">U</td>
-                    </tr>
-                    
-                    <tr style="vertical-align:top" onClick="searchOpChar('V')">
-                    <td height="20px">V</td>
-                    </tr>
-
-                    
-                    <tr style="vertical-align:top" onClick="searchOpChar('W')">
-                    <td height="20px">W</td>
-                    </tr>
-                    
-                    <tr style="vertical-align:top" onClick="searchOpChar('X')">
-                    <td height="20px">X</td>
-                    </tr>
-                    
-                    <tr style="vertical-align:top" onClick="searchOpChar('Y')">
-                    <td height="20px">Y</td>
-                    </tr>
-                    
-                    <tr style="vertical-align:top" onClick="searchOpChar('Z')">
-                    <td height="20px">Z</td>
-                    </tr>
-                    </table>
-                </td>
-                </tr>
-                </table>
-  
-                 </div>
-                   </div> 
+				</br></br>
+				<div id="myerror_doctor_op" style="color:#C00"></div> 
+				<div id="users">
+					<table width="100%" border="1" cellspacing="0"  id="medicineList"  style="border-color:#999;background-color:#EDFEED; margin:42px auto auto auto;" >
+               		</table>
+					<!--	 
+					<div id="medicineList">
+					</div>
+					-->
+				</div>
+                           
+            </div> 
                <!-- </div>-->
-            </div>
+        </div>
        
-        <footer>
-        
-                <table width="100%" border="0">
-  <tr>
-    <td align="left">  <a onClick="getDocDatapr()" class="icon left" ></a></td>
-     <td >&nbsp;</td>
-    <td width="40%" style="font-size:16px; color:#FFF">Opportunity</td>
-  </tr>
-</table>	
-         
-		  <!--<a onClick="homePage()" class="icon home" >Home</a>-->
-          
-           </footer>
+    <footer>
+		<table width="100%" border="0">
+		  <tr>
+			<td align="left">  <a onClick="getDocDatapr()" class="icon left" ></a></td>
+			 <td >&nbsp;</td>
+			<td width="40%" style="font-size:16px; color:#FFF">Opportunity</td>
+		  </tr>
+		</table>
+    </footer>
 
-    </div>    
+    </div>     
+<!------------------------ jahangirEditedEnd16Feb oportunity ----------------->
  
 
 <!--=========================Cart page=====================-->
