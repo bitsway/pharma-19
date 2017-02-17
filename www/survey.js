@@ -3509,7 +3509,7 @@ function tourCheckFirst(){
 	//alert (localStorage.docNextMonthRow)
 	var nextMonthTable=''
 	if (localStorage.docNextMonthRow==''){
-			//alert (localStorage.tourSubmitStr)
+			alert (localStorage.tourSubmitStr)
 			if (localStorage.tourSubmitStr==''){
 			nextMonthTable='<table width="100%" border="0">  <tr style="font-size:24px; color:#039">    <td >'+monthNext+'</td><td>&nbsp;</td> <td>&nbsp;</td>    <td align="right" style="font-size:16px; color:#039">'+NextStatus+'</td>  </tr></table><table style="border-style:solid; border-width:thin; border-color:#096;background-color:#EDFEED" width="100%" border="1" cellspacing="0">'
 			
