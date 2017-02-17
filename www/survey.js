@@ -3539,8 +3539,8 @@ function tourCheckFirst(){
 					var marketIdShow='['+marketId+']'
 					if (marketName==''){ marketIdShow=''+marketId}
 					if (marketId!=''){
-					//nextMonthTable=nextMonthTable+'<div id="next_'+i+'"><table width="100%" border="0"  cellpadding="0" cellspacing="0" style="border-radius:5px;"><tr style="border-bottom:1px solid #D2EEE9;"><td width="60px" style="text-align:center; padding-left:5px;"><input class="docCampaign" type="checkbox"  name="'+checkId+'" value="checkbox" id="'+checkId+'"><label for="'+checkId+'">'+marketName+'</label></td><td align="left"></br>'+'</br></td></tr></table>'
-					nextMonthTable=nextMonthTable+'<div id="next_'+i+'"><table width="100%" border="0"  cellpadding="0" cellspacing="0" style="border-radius:5px;"><tr style="border-bottom:1px solid #D2EEE9;"><td width="60px" style="text-align:center; padding-left:5px;"><input class="docCampaign" type="checkbox"  name="'+checkId+'" value="checkbox" id="'+checkId+'"><label for="'+checkId+'">'+marketName+'</label></td></tr></table>'
+					nextMonthTable=nextMonthTable+'<div id="next_'+i+'"><table width="100%" border="0"  cellpadding="0" cellspacing="0" style="border-radius:5px;"><tr style="border-bottom:1px solid #D2EEE9;"><td width="60px" style="text-align:center; padding-left:5px;"><input class="docCampaign" type="checkbox"  name="'+checkId+'" value="checkbox" id="'+checkId+'"><label for="'+checkId+'"></br></label></td><td align="left"></br>'+marketName+'</br></td></tr></table>'
+				//	nextMonthTable=nextMonthTable+'<div id="next_'+i+'"><table width="100%" border="0"  cellpadding="0" cellspacing="0" style="border-radius:5px;"><tr style="border-bottom:1px solid #D2EEE9;"><td width="60px" style="text-align:center; padding-left:5px;"><input class="docCampaign" type="checkbox"  name="'+checkId+'" value="checkbox" id="'+checkId+'"><label for="'+checkId+'">'+marketName+'</label></td></tr></table>'
 					
 					//alert (checkId)
 					}
