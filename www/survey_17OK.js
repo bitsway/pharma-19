@@ -1502,11 +1502,11 @@ function check_user() {
 	
 	//var  apipath_base_photo_dm='http://127.0.0.1:8000/acme/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
 	
-	//var  apipath_base_photo_dm='http://a007.yeapps.com/acme/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
+	var  apipath_base_photo_dm='http://a007.yeapps.com/acme/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
 
 
 
-  var apipath_base_photo_dm ='http://e2.businesssolutionapps.com/welcome/dmpath_live_new/get_path?CID='+cid +'&HTTPPASS=e99business321cba'
+  //var apipath_base_photo_dm ='http://e2.businesssolutionapps.com/welcome/dmpath_live_new/get_path?CID='+cid +'&HTTPPASS=e99business321cba'
  
 	
 	var user_id=$("#user_id").val();
@@ -3512,10 +3512,8 @@ function tourCheckFirst(){
 	//alert (localStorage.docNextMonthRow)
 	var nextMonthTable=''
 	if (localStorage.docNextMonthRow==''){
-			//alert (localStorage.tourSubmitStr)
-			if (localStorage.tourSubmitStr!=''){
-				var tourSubmitStr=localStorage.tourSubmitStr
-			}
+			alert (localStorage.tourSubmitStr)
+			if (localStorage.tourSubmitStr==''){
 			nextMonthTable='<table width="100%" border="0">  <tr style="font-size:24px; color:#039">    <td >'+monthNext+'</td><td>&nbsp;</td> <td>&nbsp;</td>    <td align="right" style="font-size:16px; color:#039">'+NextStatus+'</td>  </tr></table><table style="border-style:solid; border-width:thin; border-color:#096;background-color:#EDFEED" width="100%" border="1" cellspacing="0">'
 			
 			for (var i=0; i < daysNext; i++){
@@ -3539,8 +3537,7 @@ function tourCheckFirst(){
 					var marketIdShow='['+marketId+']'
 					if (marketName==''){ marketIdShow=''+marketId}
 					if (marketId!=''){
-					//nextMonthTable=nextMonthTable+'<div id="next_'+i+'"><table width="100%" border="0"  cellpadding="0" cellspacing="0" style="border-radius:5px;"><tr style="border-bottom:1px solid #D2EEE9;"><td width="60px" style="text-align:center; padding-left:5px;"><input class="docCampaign" type="checkbox"  name="'+checkId+'" value="checkbox" id="'+checkId+'"><label for="'+checkId+'">'+marketName+'</label></td><td align="left"></br>'+'</br></td></tr></table>'
-					nextMonthTable=nextMonthTable+'<div id="next_'+i+'"><table width="100%" border="0"  cellpadding="0" cellspacing="0" style="border-radius:5px;"><tr style="border-bottom:1px solid #D2EEE9;"><td width="60px" style="text-align:center; padding-left:5px;"><input class="docCampaign" type="checkbox"  name="'+checkId+'" value="checkbox" id="'+checkId+'"><label for="'+checkId+'">'+marketName+'</label></td></tr></table>'
+					nextMonthTable=nextMonthTable+'<div id="next_'+i+'"><table width="100%" border="0"  cellpadding="0" cellspacing="0" style="border-radius:5px;"><tr style="border-bottom:1px solid #D2EEE9;"><td width="60px" style="text-align:center; padding-left:5px;"><input class="docCampaign" type="checkbox"  name="'+checkId+'" value="checkbox" id="'+checkId+'"><label for="'+checkId+'">'+marketName+'</label></td><td align="left"></br>'+'</br></td></tr></table>'
 					
 					//alert (checkId)
 					}
@@ -3565,7 +3562,58 @@ function tourCheckFirst(){
 			
 			nextMonthTable=nextMonthTable+'</table></br></br><input type="submit" id="nextMonthSubmitButton"  onClick="tourSubmit_doc();"   style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="     Submit      "   /></br></br><input type="submit" id="nextMonthSubmitButton"  onClick="tourSave_doc();"   style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="     Save      "   /><br><br>'
 			//alert (nextMonthTable)
+			}//if notSaved
+			else{
+				var tourSubmitStr=localStorage.tourSubmitStr
+				nextMonthTable='<table width="100%" border="0">  <tr style="font-size:24px; color:#039">    <td >'+monthNext+'</td><td>&nbsp;</td> <td>&nbsp;</td>    <td align="right" style="font-size:16px; color:#039">'+NextStatus+'</td>  </tr></table><table style="border-style:solid; border-width:thin; border-color:#096;background-color:#EDFEED" width="100%" border="1" cellspacing="0">'
 			
+			for (var i=0; i < daysNext; i++){
+				tourStrGet=''
+				var dayShow=i+1
+				var aNext = new Date(monthNextGet+'/'+dayShow+'/'+yearNext);
+				//alert (aNext)
+				var dayNameNext=weekday[aNext.getDay()];
+				var dateNextMonth = yearNext+'-'+monthNextGet+'-'+dayShow;
+				//alert (tourSubmitStr)
+				
+				nextMonthTable=nextMonthTable+'<tr ><td onClick="toggleDivNext('+i+')" width="50px" height="14px"> '+'<font >'+dayShow+'</font>'+'&nbsp;&nbsp;'+'<font >'+dayNameNext+'</font>'+'<input type="hidden" id="'+i+'_date" value="'+dateNextMonth+'"  /></td>'
+				nextMonthTable=nextMonthTable+'<td>'
+		
+				var marketList=(localStorage.marketTourStr).split('<rd>')
+				nextMonthTable=nextMonthTable+'<div id="nextShow'+i+'"></div>'
+				for (var m=0; m < marketList.length; m++){
+					
+					var marketId=marketList[m].split('<fd>')[0]
+					var marketName=marketList[m].split('<fd>')[1]
+					var checkId=i+'n'+m+'_'+marketId
+					var marketIdShow='['+marketId+']'
+					if (marketName==''){ marketIdShow=''+marketId}
+					if (marketId!=''){
+					nextMonthTable=nextMonthTable+'<div id="next_'+i+'"><table width="100%" border="0"  cellpadding="0" cellspacing="0" style="border-radius:5px;"><tr style="border-bottom:1px solid #D2EEE9;"><td width="60px" style="text-align:center; padding-left:5px;"><input class="docCampaign" type="checkbox"  name="'+checkId+'" value="checkbox" id="'+checkId+'"><label for="'+checkId+'">'+marketName+'</label></td><td align="left"></br>'+'</br></td></tr></table>'
+					
+					
+					}
+					var selectCombo='</br><select id="othersAll'+i+'" style="font-size:12px; width:100px; height:40px" data-native-menu="false"  >'
+						selectCombo=selectCombo+'<option value="" >Select</option>'
+                        selectCombo=selectCombo+'<option value="HOLIDAY" >HOLIDAY</option>'
+						selectCombo=selectCombo+'<option value="MEETING" >MEETING</option>'
+						selectCombo=selectCombo+'<option value="LEAVE" >LEAVE</option>'
+						selectCombo=selectCombo+'<option value="OTHERS" >OTHERS</option>'
+                        selectCombo=selectCombo+'</select>'
+					
+				 
+				}		 
+				
+				
+				
+			nextMonthTable=nextMonthTable+selectCombo+'</br></br><input type="submit"  value="   OK   " onClick="setDiv('+i+')" /><br><br></div></td></tr>'
+			 
+			 
+			
+			}
+			//alert (nextMonthTable)
+			nextMonthTable=nextMonthTable+'</table></br></br><input type="submit" id="nextMonthSubmitButton"  onClick="tourSubmit_doc();"   style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="     Submit      "   /></br></br><input type="submit" id="nextMonthSubmitButton"  onClick="tourSave_doc();"   style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="     Save      "   /><br><br>'
+			}
 	}
 	else{
 		NextStatus='Submitted'
