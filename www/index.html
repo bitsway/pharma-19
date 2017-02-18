@@ -15,8 +15,8 @@
     <link rel="stylesheet" type="text/css" href="build/af.ui.css" />
 
      <script type="text/javascript" charset="utf-8" src="lib/jquery.min.js"></script>
-    <script src="zoom/jquery.panzoom.js"></script>
-    <script src="zoom/jquery.mousewheel.js"></script>
+    <script src="jquery.panzoom.js"></script>
+    <script src="jquery.mousewheel.js"></script>
     <script type="text/javascript" charset="utf-8" src="lib/fastclick.js"></script>
     <script type="text/javascript" charset="utf-8" src="src/af.shim.js"></script>
     <script type="text/javascript" charset="utf-8" src="src/af.ui.js"></script>
@@ -1000,7 +1000,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
         </table>
 </header> 
             <div class="panel" id="page_visit_doc" style="background-color:#EDFEED">
-            </br></br>
+            </br></br></br>
                 <!--<div class="card">-->
                     <!--<h1>Sync</h1>-->
                      
@@ -1013,7 +1013,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
   <tr>
     <td><span class="visit_client"  style="color:#00A3F0; font-size:18px" ></span></td>
     
-    <td align="right"><br><img onClick="page_doctor_profile()" style="height:20px; width:20px" src="editProfile.png"</td>
+    <!--<td align="right"><br><img onClick="page_doctor_profile()" style="height:20px; width:20px" src="editProfile.png"></td>-->
   </tr>
 </table>
 
@@ -1292,7 +1292,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
          
 		             <table width="100%" border="0">
   <tr>
-    <td align="left" width="50%"> <a onClick="page_visit_doc()" class="icon left" ></a></td>
+    <td align="left" width="50%"> <a onClick="page_market_ret()" class="icon left" ></a></td>
     <td align="right"><a onClick="#"  ></a></a>
 		
       			 
@@ -4153,23 +4153,46 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
         <div class="pages">
          <header><h1>RX capture</h1></header> 
             <div class="panel" id="imageSinglePage" style="background-color:#EDFEED">
-            </br></br></br>
-                <!--<div class="card">-->
-                    <!--<h1>Sync</h1>-->
-                    <!-- <div id="error_image" style="color:#C00"></div> 
-					 <div><b>Market :</b><span class="market"></span></div>
-                     <div><b>Doctor :</b><span class="visit_client" style="font-weight:bold"></span></div>  -->
-					
+            </br>
+					<!------------ previous image 
                     <div style="overflow:scroll; width:100%">
                    <img src="images.png"  alt="Image" width="100%"  id="myImagePrescription_show"></td>
-                      </div>         
-                          
-                                                                
+                      </div>    
+				--------->
+            <!--- zoom image start -->   
+			<section>
+			  <div class="parent">
+				<div class="panzoom">
+				  <img src="Penguins.jpg"  alt="Image" style="width:100%; height:370px"  id="myImagePrescription_show"></td>
+				</div>
+			  </div>
+			  <div class="buttons">
+				<button class="zoom-in">&nbsp;&nbsp;+&nbsp;&nbsp;</button>&nbsp;&nbsp;
+				<button class="zoom-out">&nbsp;&nbsp;-&nbsp;&nbsp;</button>
+				<!--
+				<input type="range" class="zoom-range">
+				<button class="reset">Reset</button>
+				-->
+			  </div>
+			  <script>
+			  // ../test/libs/jquery.js
+			  // jquery.min.js
+				(function() {
+				  var $section = $('section').first();
+				  $section.find('.panzoom').panzoom({
+					$zoomIn: $section.find(".zoom-in"),
+					$zoomOut: $section.find(".zoom-out"),
+					$zoomRange: $section.find(".zoom-range"),
+					$reset: $section.find(".reset")
+				  });
+				})();
+			  </script>
+			</section><!--- zoom image end -->      
+                        <!----
 						<input type="submit" id="imageNext" onClick="page_prItemPage()" style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="     Next     "   />
-                      
-                   <!-- </div>-->
-                    
-               <!-- </div>-->
+						---->     
+						<!--- view change start here --->
+						<input type="submit" id="imageNext" onClick="page_opItemPage()" style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="     Next     "   />
             </div>
         </div>
         <footer>
@@ -4646,7 +4669,10 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     <footer>
 		<table width="100%" border="0">
 		  <tr>
+		  <!------
 			<td align="left">  <a onClick="getDocDatapr()" class="icon left" ></a></td>
+		  ------>
+			<td align="left">  <a onClick="page_imageSingle()" class="icon left" ></a></td>
 			 <td >&nbsp;</td>
 			<td width="40%" style="font-size:16px; color:#FFF">Opportunity</td>
 		  </tr>
