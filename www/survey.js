@@ -1505,6 +1505,8 @@ function check_user() {
 	
 	//var  apipath_base_photo_dm='http://a007.yeapps.com/acme/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
 
+
+
    var apipath_base_photo_dm ='http://e2.businesssolutionapps.com/welcome/dmpath_live_new/get_path?CID='+cid +'&HTTPPASS=e99business321cba'
  
 	
@@ -10466,6 +10468,7 @@ function cancelPicture(i){
 
 
 /************* jahangirEditedStart18Feb setPrProduct ************************/
+
 function setPrProduct(){
 	prProdID_Str=''
 		if (localStorage.pr_A.length != '') {
@@ -10920,14 +10923,14 @@ function setPrProduct(){
 /************* jahangirEditedEnd18Feb setPrProduct ************************/
 
 /************* jahangirEditedStart18Feb check_boxTrue_pr ************************/
-function check_boxTrue_inp_val(product_id){	
+function check_boxTrue_inp_val(product_id){ 	
 	var camp_combo=$("#prName"+product_id).text();
 	var camp_combo=$("#prName"+product_id).text();
 	var camp_span="#prSpan"+product_id
 	var medInpVal = $("#prInputVal"+product_id).val();
 	var ppid=$("#doc_pr_id"+product_id).val();
 	var conCatVal = product_id+'<||>'+camp_combo+'<||>'+medInpVal;
-	if(medInpVal!=0 && medInpVal!= undefined){
+	if(medInpVal>0 && medInpVal!= undefined){
 		
 		getDocPrData_keyup(product_id, conCatVal, 'true');
 		$("#prName"+product_id).addClass('bgc');
@@ -10940,6 +10943,7 @@ function check_boxTrue_inp_val(product_id){
 /************* jahangirEditedEnd18Feb check_boxTrue_pr ************************/
 
 /************* jahangirEditedStart15Feb check_boxTrue_pr ************************/
+/*
 function check_boxTrue_pr(product_id){	
 	var camp_combo=$("#prName"+product_id).text();
 	var camp_combo=$("#prName"+product_id).text();
@@ -10952,6 +10956,7 @@ function check_boxTrue_pr(product_id){
 	$("#prName"+product_id).addClass('bgc');
 
 	}
+	*/
 /************* jahangirEditedEnd15Feb check_boxTrue_pr ************************/
 	
 function getDocPrData_keyup(product_id, conCatVal, status){
@@ -12035,7 +12040,7 @@ function gotoPic(picNo) {
 function page_prItemPage(){
 	setPrProduct();
 	$('font').removeClass('bgc');
-	$('input').val('');
+	$('#pr_id_lv input').val('');
 	localStorage.opProdID_Str='';
 	localStorage.prProdID_Str='';
 	$.afui.loadContent("#page_prItemPage",true,true,'right');
@@ -12399,13 +12404,14 @@ function searchMedicine(){
 function medClickVal(pid, name){
 	var inpVal = $("#inpId"+pid).val();
 	if(inpVal!=0 && inpVal!=undefined){
-		medClick(pid, name)
+		medClick2(pid, name)
+		
 	}
 }
 /*********** jahangirEditedEnd18Feb medClickVal *********/
 
 /*********** jahangirEditedStart16Feb medClick  *********/
-function medClick(pid, name){
+function medClick2(pid, name){
 	$("#medId"+pid).addClass('bgc');
 	//alert(localStorage.opProdID_Str);
 	var inpVal = $("#inpId"+pid).val();
