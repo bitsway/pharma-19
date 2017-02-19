@@ -5675,6 +5675,7 @@ $("#err_marketTour").html('');
 		var comboValue=''
 		comboValue= $("#othersAll"+i).val();
 		//alert (comboValue)
+		
 			for (var m=0; m < marketList.length; m++){
 				
 				var dateGet=''
@@ -5683,7 +5684,7 @@ $("#err_marketTour").html('');
 				var marketName=marketList[m].split('<fd>')[1]
 				var checkId=i+'n'+m+"_"+marketId
 				var check = $("#"+checkId).prop("checked");
-				//alert (check)
+				if (comboValue==''){
 					if(check) {
 						checkFlag=0
 						dateGet=$("#"+i+"_date").val();
@@ -5694,20 +5695,20 @@ $("#err_marketTour").html('');
 							submitStr=submitStr+'<rd>'+dateGet+'<fd>'+marketId+'<fd>'+marketName
 						}
 					}
-					 
+				}
 				
 				
 			}
 			if (comboValue!=''){
-					dateGet=$("#"+i+"_date").val();
-						if (submitStr==''){
-							submitStr=dateGet+'<fd>'+comboValue+'<fd>'+comboValue
-						}
-						else{
-							submitStr=submitStr+'<rd>'+dateGet+'<fd>'+comboValue+'<fd>'+comboValue
-						}
-					
-				}
+				dateGet=$("#"+i+"_date").val();
+					if (submitStr==''){
+						submitStr=dateGet+'<fd>'+comboValue+'<fd>'+comboValue
+					}
+					else{
+						submitStr=submitStr+'<rd>'+dateGet+'<fd>'+comboValue+'<fd>'+comboValue
+					}
+				
+			}
 		//alert (checkFlag)
 		if ((comboValue=='') && (checkFlag==1)){errFlag=1}
 			
@@ -5993,7 +5994,7 @@ function tourCancel_doc(){
 		$("#err_pendingRouteTour").html('Network Timeout. Please check your Internet connection..');
 	}
 	else{
-		alert (localStorage.base_url+'tourCancel_doc?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&pendingRep='+localStorage.pendingRep);
+		//alert (localStorage.base_url+'tourCancel_doc?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&pendingRep='+localStorage.pendingRep);
 		$.ajax(localStorage.base_url+'tourCancel_doc?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&pendingRep='+localStorage.pendingRep,{
 
 								type: 'POST',
@@ -7164,6 +7165,7 @@ function visitSubmit_doc(){
 												//$("#errorChkVSubmit").html(msg1);
 												
 											// $("#errorChkVSubmit_doc_t").html(localStorage.base_url+'doctor_visit_submit_pharma?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&client_id='+visitClientId+'&visit_type='+visit_type+'&schedule_date='+scheduled_date+'&msg='+msg+'&lat='+lat+'&long='+longitude+'&v_with='+v_with+'&route='+market_Id+'&doc_others='+doc_others)
+											
 											 $("#errorChkVSubmit_doc_t").val(localStorage.base_url+'doctor_visit_submit_pharma?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&client_id='+visitClientId+'&visit_type='+visit_type+'&schedule_date='+scheduled_date+'&msg='+encodeURI(msg)+'&lat='+lat+'&long='+longitude+'&v_with='+v_with+'&route='+market_Id+'&doc_others='+doc_others+'&location_detail='+localStorage.location_detail+'imageName='+imageName)
 												// ajax-------
 												//alert (localStorage.location_error);
@@ -7172,7 +7174,8 @@ function visitSubmit_doc(){
 											}
 											else {	
 												$("#visit_submit_doc").hide();
-												$("#wait_image_visit_submit_doc").show();	
+												$("#wait_image_visit_submit_doc").show();
+												//alert (localStorage.base_url+'doctor_visit_submit_pharma?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&client_id='+visitClientId+'&visit_type='+visit_type+'&schedule_date='+scheduled_date+'&msg=' +encodeURI(msg)+'&lat='+lat+'&long='+longitude+'&v_with='+v_with+'&route='+market_Id+'&doc_others='+doc_others+'&location_detail='+localStorage.location_detail+'imageName='+imageName)	
 										$.ajax(localStorage.base_url+'doctor_visit_submit_pharma?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&client_id='+visitClientId+'&visit_type='+visit_type+'&schedule_date='+scheduled_date+'&msg=' +encodeURI(msg)+'&lat='+lat+'&long='+longitude+'&v_with='+v_with+'&route='+market_Id+'&doc_others='+doc_others+'&location_detail='+localStorage.location_detail+'imageName='+imageName,{
 										// cid:localStorage.cid,rep_id:localStorage.user_id,rep_pass:localStorage.user_pass,synccode:localStorage.synccode,
 										type: 'POST',
@@ -9400,9 +9403,9 @@ function page_notice() {
 	$("#wait_image_notice").show();
 	$("#error_notice").html('');
 	//alert (client);
-	$("#error_noticeTxt").val(localStorage.report_url+'notice_report?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccodlocalStore);
+	$("#error_noticeTxt").val(localStorage.report_url+'notice_report?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode);
 	// ajax-------
-	//alert (localStorage.report_url+'notice_report?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccodlocalStore)
+	//alert (localStorage.report_url+'notice_report?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode)
 			$.ajax(localStorage.report_url+'notice_report?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode,{
 
 								type: 'POST',
