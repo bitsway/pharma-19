@@ -10928,7 +10928,7 @@ function check_boxTrue_inp_val(product_id){
 	var camp_span="#prSpan"+product_id
 	var medInpVal = $("#prInputVal"+product_id).val();
 	var ppid=$("#doc_pr_id"+product_id).val();
-	var conCatVal = product_id+'<||>'+camp_combo+'<||>'+medInpVal;
+	var conCatVal = ppid+'<||>'+camp_combo+'<||>'+medInpVal;
 	if(medInpVal!=0 && medInpVal!= undefined){
 		
 		getDocPrData_keyup(product_id, conCatVal, 'true');
@@ -10948,7 +10948,7 @@ function check_boxTrue_pr(product_id){
 	var camp_span="#prSpan"+product_id
 	var medInpVal = $("#prInputVal"+product_id).val();
 	var ppid=$("#doc_pr_id"+product_id).val();
-	var conCatVal = product_id+'<||>'+camp_combo+'<||>'+medInpVal;
+	var conCatVal = ppid+'<||>'+camp_combo+'<||>'+medInpVal;
 	
 	getDocPrData_keyup(product_id, conCatVal, 'true');
 	$("#prName"+product_id).addClass('bgc');
@@ -10970,7 +10970,7 @@ function getDocPrData_keyup(product_id, conCatVal, status){
 	if (camp_combo_val == 'true' ){
 		
 		//alert (campaign_doc_str.indexOf(pid))
-		if (campaign_doc_str.indexOf(product_id)==-1){
+		if (campaign_doc_str.indexOf(pid)==-1){
 			//alert(campaign_doc_str.indexOf(pid));
 			if (campaign_doc_str==''){
 				campaign_doc_str=pidConcat
@@ -12035,15 +12035,7 @@ function gotoPic(picNo) {
 	}
 }
 function page_prItemPage(){
-	setPrProduct();
-	$('font').removeClass('bgc');
-	$('input').val('');
-	localStorage.opProdID_Str='';
-	localStorage.prProdID_Str='';
-	$.afui.loadContent("#page_prItemPage",true,true,'right');
-}
-function page_prItemPage2(){
-	
+	setPrProduct()
 	$.afui.loadContent("#page_prItemPage",true,true,'right');
 }
 
