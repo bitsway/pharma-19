@@ -3514,11 +3514,13 @@ function tourCheckFirst(){
 	//alert (localStorage.docNextMonthRow)
 	var MvalueFlag=0
 	//alert (localStorage.darftValue)
-	if (localStorage.darftValue!='' & localStorage.appFlag==0){
+	//alert (localStorage.appFlag)
+	if (localStorage.darftValue!='' & localStorage.appFlag==2){
 		NextStatus='Draft'
 		localStorage.tourSubmitStr=localStorage.darftValue
 		MvalueFlag=1
 	}
+	
 	
 	if  (localStorage.docNextMonthRow=='') {MvalueFlag=1}
 	var nextMonthTable=''
