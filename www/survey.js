@@ -5028,7 +5028,7 @@ function marketNext_doc() {
 							var mClientName=mClientValueArray[1];
 							//alert (mClientID)
 							if (mClientID!=''){
-								if ((localStorage.doctor_flag==1) & (localStorage.doctor_plan_flag==0)){
+								if ((localStorage.doctor_flag==1) & (localStorage.doctor_plan_flag==0) & (localStorage.doctor_pr==0)){
 									unscheduled_m_client_list+='<li class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-location" style="border-bottom-style:solid; border-color:#CBE4E4;border-bottom-width:thin"><table><tr><td><img onClick="page_doctor_profile(\''+mClientName+'|'+mClientID+'\')" style="height:20px; width:20px" src="editProfile.png">&nbsp;&nbsp;&nbsp;&nbsp;</td><td><a onClick="page_doctor_profile(\''+mClientName+'|'+mClientID+'\')"><font class="name" style="font-size:18; font-weight:600; color:#306161">'+mClientName+'|'+mClientID+'</font></a></td></tr></table></li>';
 								}
 								else{
