@@ -3392,7 +3392,8 @@ function tourCheckFirst(){
 						localStorage.docNextMonthRow=resultArray[4];
 						
 						localStorage.appFlag=resultArray[5];
-						
+						$('#thisMonth').html('')
+						$('#nextMonth').html('')
 						//alert (localStorage.appFlag)
 						
 						
