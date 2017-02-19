@@ -12345,7 +12345,9 @@ function searchMedicine(){
 						  keywordS+='<span style="margin-bottom:10px; " >'+medName+'</span>' 
 						  keywordS+='</td>'
 						  keywordS+='<td>'
-						  keywordS+='<input  id="inpId'+pID+'" type="number" style="width:56px; height:35px;" value=""/>'
+						  /******* jahangirEditedStart19Feb medClickVal *********/
+						  keywordS+='<input onmouseout="medClickVal(\''+pID+'\',\''+medName+'\')" id="inpId'+pID+'" type="number" style="width:56px; height:35px;" value=""/>'
+						  /******* jahangirEditedEnd19Feb medClickVal *********/
 						  keywordS+='</td>'
 						  keywordS+='</tr>'
 					  }
