@@ -1507,7 +1507,7 @@ function check_user() {
 
 
 
-  var apipath_base_photo_dm ='http://e2.businesssolutionapps.com/welcome/dmpath_live_new/get_path?CID='+cid +'&HTTPPASS=e99business321cba'
+   var apipath_base_photo_dm ='http://e2.businesssolutionapps.com/welcome/dmpath_live_new/get_path?CID='+cid +'&HTTPPASS=e99business321cba'
  
 	
 	var user_id=$("#user_id").val();
@@ -2586,7 +2586,7 @@ function repCancelReq_sup(rep_id){
 	
 	$("#wait_image_tourCancelSup").show();
 	$("#err_tourCancelSup").html('');
-	alert (localStorage.base_url+'repCancelReq_sup?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_pending='+rep_id)
+	//alert (localStorage.base_url+'repCancelReq_sup?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_pending='+rep_id)
 
 	
 	$.ajax(localStorage.base_url+'repCancelReq_sup?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_pending='+rep_id,{
@@ -3392,6 +3392,7 @@ function tourCheckFirst(){
 						localStorage.docNextMonthRow=resultArray[4];
 						
 						localStorage.appFlag=resultArray[5];
+						localStorage.darftValue=resultArray[6];
 						//$('#thisMonth').html('')
 						//$('#nextMonth').html('')
 						//alert (localStorage.appFlag)
@@ -3512,8 +3513,15 @@ function tourCheckFirst(){
 
 	var daysNext = Math.round(((new Date(yearNext, monthNextGet))-(new Date(yearNext, monthNextGet-1)))/86400000);
 	//alert (localStorage.docNextMonthRow)
+	var MvalueFlag=0
+	if (localStorage.darftValue!='' & localStorage.appFlag==0){
+		NextStatus='Draft'
+		localStorage.tourSubmitStr=localStorage.darftValue
+		MvalueFlag=1
+	}
+	if (localStorage.docNextMonthRow==''){MvalueFlag=1}
 	var nextMonthTable=''
-	if (localStorage.docNextMonthRow==''){
+	if (MvalueFlag==1){
 			//alert (localStorage.tourSubmitStr)
 			if (localStorage.tourSubmitStr!=''){
 				var tourSubmitStr=localStorage.tourSubmitStr
@@ -3572,6 +3580,7 @@ function tourCheckFirst(){
 	else{
 		NextStatus='Submitted'
 		if (localStorage.appFlag==1){NextStatus='Approved'}
+		
 		nextMonthTable='<table width="100%" border="0">  <tr style="font-size:24px; color:#039">    <td id="nextMonthShow">'+monthNext+'</td><td>&nbsp;</td> <td>&nbsp;</td>    <td align="right" style="font-size:16px; color:#039">'+NextStatus+'</td>  </tr></table><table style="border-style:solid; border-width:thin; border-color:#096;background-color:#EDFEED" width="100%" border="1" cellspacing="0">'
 			var docNextMonthRow=localStorage.docNextMonthRow
 			
@@ -3642,6 +3651,7 @@ function tourCheckFirst(){
 						var marketId=marketList[m].split('<fd>')[0]
 						var marketName=marketList[m].split('<fd>')[1]
 						var checkId=i+'n'+m+'_'+marketId
+						//alert (dateNextMonth)
 						var checkStr=dateNextMonth+'<fd>'+marketId+'<fd>'+marketName
 						var checkStrHOLIDAY=dateNextMonth+'<fd>HOLIDAY<fd>HOLIDAY'
 						var checkStrMEETING=dateNextMonth+'<fd>MEETING<fd>MEETING'
@@ -12028,11 +12038,18 @@ function page_prItemPage(){
 	setPrProduct()
 	$.afui.loadContent("#page_prItemPage",true,true,'right');
 }
+
+/********** jahangirEditedStart19Feb page_opItemPage***********/
 function page_opItemPage(){
-	setOpProduct()
+	//setOpProduct();
+	$("#medicineList").empty();
+	localStorage.opProdID_Str='';
 	$.afui.loadContent("#page_opItemPage",true,true,'right');
 }
-
+function page_opItemPage2(){
+	$.afui.loadContent("#page_opItemPage",true,true,'right');
+}
+/********** jahangirEditedEnd19Feb page_opItemPage***********/
 
 //==============================Sync Doctor=======================
 function doctor_sync(){
