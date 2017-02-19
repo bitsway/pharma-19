@@ -1503,11 +1503,11 @@ function check_user() {
 	//var  apipath_base_photo_dm='http://127.0.0.1:8000/demo/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
 	//var  apipath_base_photo_dm='http://127.0.0.1:8000/acme/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
 	
-	//var  apipath_base_photo_dm='http://a007.yeapps.com/acme/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
+	var  apipath_base_photo_dm='http://a007.yeapps.com/acme/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
 
 
 
-  var apipath_base_photo_dm ='http://e2.businesssolutionapps.com/welcome/dmpath_live_new/get_path?CID='+cid +'&HTTPPASS=e99business321cba'
+ // var apipath_base_photo_dm ='http://e2.businesssolutionapps.com/welcome/dmpath_live_new/get_path?CID='+cid +'&HTTPPASS=e99business321cba'
  
 	
 	var user_id=$("#user_id").val();
@@ -3362,7 +3362,7 @@ function tourCheckFirst(){
 	
 	//showSubmitDocShow()
 //===================================================================
-	//alert (localStorage.base_url+'check_this_n_next_month?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode)
+	alert (localStorage.base_url+'check_this_n_next_month?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode)
 	
 	
 	$.ajax(localStorage.base_url+'check_this_n_next_month?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode,{
@@ -3392,8 +3392,8 @@ function tourCheckFirst(){
 						localStorage.docNextMonthRow=resultArray[4];
 						
 						localStorage.appFlag=resultArray[5];
-						$('#thisMonth').html('')
-						$('#nextMonth').html('')
+						//$('#thisMonth').html('')
+						//$('#nextMonth').html('')
 						//alert (localStorage.appFlag)
 						
 						
