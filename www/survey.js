@@ -3401,8 +3401,7 @@ function tourCheckFirst(){
 					}
 				//------- 
 		} //else
-	}
-});//end ajax
+	
 	$("#wait_image_retTour").hide();
 	
 	var NextStatus='Draft'
@@ -3514,12 +3513,14 @@ function tourCheckFirst(){
 	var daysNext = Math.round(((new Date(yearNext, monthNextGet))-(new Date(yearNext, monthNextGet-1)))/86400000);
 	//alert (localStorage.docNextMonthRow)
 	var MvalueFlag=0
+	//alert (localStorage.darftValue)
 	if (localStorage.darftValue!='' & localStorage.appFlag==0){
 		NextStatus='Draft'
 		localStorage.tourSubmitStr=localStorage.darftValue
 		MvalueFlag=1
 	}
-	if (localStorage.docNextMonthRow==''){MvalueFlag=1}
+	
+	if  (localStorage.docNextMonthRow=='') {MvalueFlag=1}
 	var nextMonthTable=''
 	if (MvalueFlag==1){
 			//alert (localStorage.tourSubmitStr)
@@ -3688,6 +3689,8 @@ function tourCheckFirst(){
 		}
 		
 	}
+  }//Strat
+});//end ajax
 	}
 function setDiv(i){
 	var marketList=(localStorage.marketTourStr).split('<rd>')
