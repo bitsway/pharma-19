@@ -10952,7 +10952,7 @@ function prsearchItem() {
 	//var filter = input.value.toUpperCase();
 	var filter  = $("#pritemSearch").val().toUpperCase();
 	//alert (filter)
-	setPrProductA(searchLetterSet);
+	setPrProductA(filter.charAt(0));
 	//var lis = document.getElementsById('mylist');
 	
 	 var lis =document.getElementById("pr_id_lv").getElementsByTagName("li");
