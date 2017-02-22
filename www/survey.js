@@ -2360,11 +2360,93 @@ function doctor_visit_plan() {
 	localStorage.visit_page="NO";
 	localStorage.scheduleDocFlag=1
 	//addMarketList();
+	
+	//alert (localStorage.base_url+'schedule_sync?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode)
+	$.ajax(localStorage.base_url+'schedule_sync?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode,{
+								type: 'POST',
+								timeout: 30000,
+								error: function(xhr) {
+								//alert ('Error: ' + xhr.status + ' ' + xhr.statusText);
+								
+								$("#d_visit").html('Network Timeout. Please check your Internet connection..');
+													},
+								success:function(data, status,xhr){	
+									 if (status!='success'){
+										$("#d_visit").html('Network Timeout. Please check your Internet connection..');
+									 }
+									 else{	
+									 	var resultArray = data.replace('</START>','').replace('</END>','').split('<SYNCDATA>');	
+										
+										if (resultArray[0]=='FAILED'){
+											$("#d_visit").html("Approved route not available");	
+											
+											
+										}
+										
+										else if (resultArray[0]=='SUCCESS'){
+											localStorage.marketStrDoc=resultArray[1];
+											if (localStorage.marketStrDoc!=''){
+														var docMarketList = localStorage.marketStrDoc.split('<rd>');
+														var docMarketListShowLength=docMarketList.length	
+														var docMarketComb=''
+														var currentDate = new Date()
+														var day = currentDate.getDate();if(day<10)	{day="0" +day};
+														var month = currentDate.getMonth() + 1;if(month<10)	{month="0" +month};
+														var year = currentDate.getFullYear()
+														var CDate=  year + "-" + month + "-" + day
+														//alert (day.length)
+														//var CDate =yyyy+'-'+mm+'-'+dd	
+														var todayFlag=0
+														var tomorrowFlag=0		
+														//alert (docMarketListShowLength)			
+														for (var k=0; k < docMarketListShowLength; k++){
+															var docMarketValueArray = docMarketList[k].split('<fd>');
+															docMarketID=docMarketValueArray[0];
+															docMarketName=docMarketValueArray[1];
+															docMarketDate=docMarketValueArray[2];
+															var docmarketNameID=docMarketName+'|'+docMarketID;
+															
+													//alert (CDate)
+													//alert (docMarketDate)
+													
+													if ((docMarketDate!=CDate) &&(tomorrowFlag==0) && (docMarketDate.length > 5)) {
+																docMarketComb+='<li class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-location" style="border-bottom-style:solid; border-color:#CBE4E4;border-bottom-width:thin;background-color:#EDFBFE"><font  style="font-size:24; font-weight:bold;color:#009">Tomorrow</font></li>';
+																tomorrowFlag=1
+															}
+															if ((docMarketDate==CDate) &&(todayFlag==0)) {
+																docMarketComb+='<li class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-location" style="border-bottom-style:solid; border-color:#CBE4E4;border-bottom-width:thin;background-color:#EDFBFE"><font  style="font-size:24; font-weight:bold;color:#009">Today</font></li>';
+																todayFlag=1
+															}
+															if (docMarketID!=''){
+																docMarketComb+='<li class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-location" style="border-bottom-style:solid; border-color:#CBE4E4;border-bottom-width:thin"><a onClick="setScheduleDate(\''+docMarketDate+'\');marketNextLV(\''+docmarketNameID+'\');"><font class="name" style="font-size:18; font-weight:bold">'+docMarketName+'</a></font></li>';
+															//alert (docMarketComb)	
+																}
+														}
+														
+																					
+														localStorage.docMarketComb=docMarketComb;								
+													}
+										
+									
+										}
+									//------- 
+	
+									
+																
+								 //else if
+								
+								
+							} //else
+							
+						}
+						  
+				 });//end ajax
+				 
 	addMarketListDoctor()
 	$("#addDocanc").hide();
 	$("#blankAnc").hide();
 	$("#dPending").hide();
-	$("#dBlank").show();
+	$("#dBlank").show();				 
 	
 }
 function doctor_visit() {
@@ -10918,8 +11000,7 @@ function setPrProduct(){
 				
 				pr_tbl_A=pr_tbl_A+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_A +'" onClick="check_boxTrue_pr(\''+pr_id_A+'\')"><font id="prName'+ pr_id_A +'" class="name" >'+ pr_name_A+'</font><input type="hidden" id="doc_pr_id'+pr_id_A+'" value="'+pr_id_A+'" ></span><span><input onmouseout="check_boxTrue_inp_val(\''+pr_id_A+'\')" type="number" id="prInputVal'+pr_id_A+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
 				}
-		localStorage.pr_tbl_A=pr_tbl_A	
-		$("#pr_id_lv").empty(); 
+		localStorage.pr_tbl_A=pr_tbl_A		
 		$("#pr_id_lv").append(localStorage.pr_tbl_A);	
 		
 	}
@@ -11107,7 +11188,7 @@ function getDocDataprCart(){
 				
 		if((pID!='') && (pID!=undefined)){
 				// onClick="removeCarItemPr(\''+ppID+'\');"
-				cart_list+='<tr style="font-size:14px" id="cartPr_'+ppID+'"><td > </br>'+pID+'</br></td><td><input id="inpId'+pID+'" type="number" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px" value="'+inpVal+'"/></td><td style="background-color:#E7F1FE"  align="center" width="10%"  onClick="removeCarItemPr(\''+ppID+'\',\''+pID+'\',\''+inpVal+'\');"><img  src="cancel.png" width="20" height="20" alt="X" id="myImage1"  onClick="removeCarItemPr(\''+ppID+'\',\''+pID+'\',\''+inpVal+'\');"> </td></tr>';
+				cart_list+='<tr style="font-size:14px" id="cartPr_'+ppID+'"><td > </br>'+pID+'</br></td><td><input id="inpId'+pID+'" type="text" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px" value="'+inpVal+'"/></td><td style="background-color:#E7F1FE"  align="center" width="10%"  onClick="removeCarItemPr(\''+ppID+'\',\''+pID+'\',\''+inpVal+'\');"><img  src="cancel.png" width="20" height="20" alt="X" id="myImage1"  onClick="removeCarItemPr(\''+ppID+'\',\''+pID+'\',\''+inpVal+'\');"> </td></tr>';
 			}
 			
 	}
@@ -12083,7 +12164,7 @@ function page_prItemPage(){
 	setPrProduct();
 	$('font').removeClass('bgc');
 	$('#pr_id_lv input').val('');
-	$('#pritemSearch').val('');
+	$('#pritemSearch').val(''); 
 	
 	$.afui.loadContent("#page_prItemPage",true,true,'right');
 }
@@ -12112,165 +12193,165 @@ function doctor_sync(){
 	$("#wait_image_login").show();
 	$("#doctorButton").hide();
 	$("#loginButton").hide();
-	alert (localStorage.base_url+'doctor_sync?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+encodeURIComponent(localStorage.user_pass)+'&synccode='+localStorage.synccode)							
-//$.ajax(localStorage.base_url+'doctor_sync?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+encodeURIComponent(localStorage.user_pass)+'&synccode='+localStorage.synccode,{
-//								// cid:localStorage.cid,rep_id:localStorage.user_id,rep_pass:localStorage.user_pass,synccode:localStorage.synccode,
-//								type: 'POST',
-//								timeout: 30000,
-//								error: function(xhr) {
-//									var resultArray = data.split('<SYNCDATA>');
-//									$("#error_login").html(resultArray[1]);
-//									$("#wait_image_login").hide();
-//									$("#doctorButton").show();
-//									$("#loginButton").show();
-//											
-//								},
-//							success:function(data, status,xhr){				
-//					
-//								if (status!='success'){
-//									
-//									$("#error_login").html('Network timeout. Please ensure you have active internet connection.');
-//									$("#wait_image_login").hide();
-//									$("#doctorButton").show();
-//									$("#loginButton").show();
-//								}
-//								else{
-//									   var resultArray = data.split('<SYNCDATA>');	
-//									   
-//										if (resultArray[0]=='FAILED'){						
-//											$("#wait_image_login").hide();
-//											$("#doctorButton").show();		
-//											$("#loginButton").show();						
-//											$("#error_login").html(resultArray[1]);
-//										}else if (resultArray[0]=='SUCCESS'){
-//											
-//											$("#error_login").html("Doctor Synced Successfully");
-//											$("#wait_image_login").hide();
-//											$("#doctorButton").show();		
-//											$("#loginButton").show();							
-//											localStorage.market_doctorVisit=resultArray[1];
-//											localStorage.opProductStr=resultArray[2];
-//											//alert (localStorage.opProductStr)
-//											var op_A=localStorage.opProductStr.split('<AEND>')[0].replace('<ASTART>','');
-//											var op_after_A=localStorage.opProductStr.split('<AEND>')[1]
-//											//alert (op_A)
-//											var op_B=op_after_A.split('<BEND>')[0].replace('<BSTART>','');
-//											var op_after_B=op_after_A.split('<BEND>')[1]
-//											//alert (op_B)
-//											var op_C=op_after_B.split('<CEND>')[0].replace('<CSTART>','');
-//											var op_after_C=op_after_B.split('<CEND>')[1]
-//											//alert (op_C)
-//											var op_D=op_after_C.split('<DEND>')[0].replace('<DSTART>','');
-//											var op_after_D=op_after_C.split('<DEND>')[1]
-//											//alert (op_D)
-//											var op_E=op_after_D.split('<EEND>')[0].replace('<ESTART>','');
-//											var op_after_E=op_after_D.split('<EEND>')[1]
-//											//alert (op_E)
-//											var op_F=op_after_E.split('<FEND>')[0].replace('<FSTART>','');
-//											var op_after_F=op_after_E.split('<FEND>')[1]
-//											//alert (op_F)
-//											var op_G=op_after_F.split('<GEND>')[0].replace('<GSTART>','');
-//											var op_after_G=op_after_F.split('<GEND>')[1]
-//											//alert (op_G)
-//											var op_H=op_after_G.split('<HEND>')[0].replace('<HSTART>','');
-//											var op_after_H=op_after_G.split('<HEND>')[1]
-//											//alert (op_H)
-//											var op_I=op_after_H.split('<IEND>')[0].replace('<ISTART>','');
-//											var op_after_I=op_after_H.split('<IEND>')[1]
-//											//alert (op_I)
-//											var op_J=op_after_I.split('<JEND>')[0].replace('<JSTART>','');
-//											var op_after_J=op_after_I.split('<JEND>')[1]
-//											//alert (op_J)
-//											var op_K=op_after_J.split('<KEND>')[0].replace('<KSTART>','');
-//											var op_after_K=op_after_J.split('<KEND>')[1]
-//											//alert (op_K)
-//											var op_L=op_after_K.split('<LEND>')[0].replace('<LSTART>','');
-//											var op_after_L=op_after_K.split('<LEND>')[1]
-//											//alert (op_L)
-//											var op_M=op_after_L.split('<MEND>')[0].replace('<MSTART>','');
-//											var op_after_M=op_after_L.split('<MEND>')[1]
-//											//alert (op_M)
-//											var op_N=op_after_M.split('<NEND>')[0].replace('<NSTART>','');
-//											var op_after_N=op_after_M.split('<NEND>')[1]
-//											//alert (op_N)
-//											var op_O=op_after_N.split('<OEND>')[0].replace('<OSTART>','');
-//											var op_after_O=op_after_N.split('<OEND>')[1]
-//											//alert (op_O)
-//											var op_P=op_after_O.split('<PEND>')[0].replace('<PSTART>','');
-//											var op_after_P=op_after_O.split('<PEND>')[1]
-//											//alert (op_P)
-//											var op_Q=op_after_P.split('<QEND>')[0].replace('<QSTART>','');
-//											var op_after_Q=op_after_P.split('<QEND>')[1]
-//											//alert (op_Q)
-//											var op_R=op_after_Q.split('<REND>')[0].replace('<RSTART>','');
-//											var op_after_R=op_after_Q.split('<REND>')[1]
-//											//alert (op_R)
-//											var op_S=op_after_R.split('<SEND>')[0].replace('<SSTART>','');
-//											var op_after_S=op_after_R.split('<SEND>')[1]
-//											//alert (op_S)
-//											var op_T=op_after_S.split('<TEND>')[0].replace('<TSTART>','');
-//											var op_after_T=op_after_S.split('<TEND>')[1]
-//											//alert (op_T)
-//											var op_U=op_after_T.split('<UEND>')[0].replace('<USTART>','');
-//											var op_after_U=op_after_T.split('<UEND>')[1]
-//											//alert (op_U)
-//											var op_V=op_after_U.split('<VEND>')[0].replace('<VSTART>','');
-//											var op_after_V=op_after_U.split('<VEND>')[1]
-//											//alert (op_V)
-//											var op_W=op_after_V.split('<WEND>')[0].replace('<WSTART>','');
-//											var op_after_W=op_after_V.split('<WEND>')[1]
-//											//alert (op_W)
-//											var op_X=op_after_W.split('<XEND>')[0].replace('<XSTART>','');
-//											var op_after_X=op_after_W.split('<XEND>')[1]
-//											//alert (op_X)
-//											var op_Y=op_after_X.split('<YEND>')[0].replace('<YSTART>','');
-//											var op_after_Y=op_after_X.split('<YEND>')[1]
-//											//alert (op_after_Y)
-//											var op_Z=op_after_Y.split('<ZEND>')[0].replace('<ZSTART>','');
-//											//var productListStr_after_E=productListStr_after_D.split('</Z>')[1]
-//											//alert (op_Z)
-//											localStorage.op_A=op_A
-//											//alert (localStorage.op_A)
-//											localStorage.op_B=op_B
-//											localStorage.op_C=op_C
-//											localStorage.op_D=op_D
-//											localStorage.op_E=op_E
-//											localStorage.op_F=op_F
-//											localStorage.op_G=op_G
-//											localStorage.op_H=op_H
-//											localStorage.op_I=op_I
-//											localStorage.op_J=op_J
-//											localStorage.op_K=op_K
-//											localStorage.op_L=op_L
-//											localStorage.op_M=op_M
-//											//alert ('1')
-//											localStorage.op_N=op_N
-//											localStorage.pr_O=op_O
-//											localStorage.op_P=op_P
-//											localStorage.op_Q=op_Q
-//											localStorage.op_R=op_R											
-//											localStorage.op_S=op_S
-//											localStorage.op_T=op_T
-//											//alert ('2')
-//											localStorage.op_U=op_U
-//											localStorage.op_V=op_V
-//											localStorage.op_W=op_W
-//											localStorage.op_X=op_X
-//											localStorage.op_Y=op_Y
-//											localStorage.op_Z=op_Z
-//											//alert (localStorage.op_Z)
-//									
-//											
-//
-//										}else{						
-//											$("#error_login").html('Authentication error. Please register and sync to retry.');
-//											$("#wait_image_login").hide();
-//											$("#doctorButton").show();
-//											$("#loginButton").show();
-//											}
-//								}
-//}
-//						});			 
+	//alert (localStorage.base_url+'doctor_sync?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+encodeURIComponent(localStorage.user_pass)+'&synccode='+localStorage.synccode)							
+$.ajax(localStorage.base_url+'doctor_sync?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+encodeURIComponent(localStorage.user_pass)+'&synccode='+localStorage.synccode,{
+								// cid:localStorage.cid,rep_id:localStorage.user_id,rep_pass:localStorage.user_pass,synccode:localStorage.synccode,
+								type: 'POST',
+								timeout: 30000,
+								error: function(xhr) {
+									var resultArray = data.split('<SYNCDATA>');
+									$("#error_login").html(resultArray[1]);
+									$("#wait_image_login").hide();
+									$("#doctorButton").show();
+									$("#loginButton").show();
+											
+								},
+							success:function(data, status,xhr){				
+					
+								if (status!='success'){
+									
+									$("#error_login").html('Network timeout. Please ensure you have active internet connection.');
+									$("#wait_image_login").hide();
+									$("#doctorButton").show();
+									$("#loginButton").show();
+								}
+								else{
+									   var resultArray = data.split('<SYNCDATA>');	
+									   
+										if (resultArray[0]=='FAILED'){						
+											$("#wait_image_login").hide();
+											$("#doctorButton").show();		
+											$("#loginButton").show();						
+											$("#error_login").html(resultArray[1]);
+										}else if (resultArray[0]=='SUCCESS'){
+											
+											$("#error_login").html("Doctor Synced Successfully");
+											$("#wait_image_login").hide();
+											$("#doctorButton").show();		
+											$("#loginButton").show();							
+											localStorage.market_doctorVisit=resultArray[1];
+											localStorage.opProductStr=resultArray[2];
+											//alert (localStorage.opProductStr)
+											var op_A=localStorage.opProductStr.split('<AEND>')[0].replace('<ASTART>','');
+											var op_after_A=localStorage.opProductStr.split('<AEND>')[1]
+											//alert (op_A)
+											var op_B=op_after_A.split('<BEND>')[0].replace('<BSTART>','');
+											var op_after_B=op_after_A.split('<BEND>')[1]
+											//alert (op_B)
+											var op_C=op_after_B.split('<CEND>')[0].replace('<CSTART>','');
+											var op_after_C=op_after_B.split('<CEND>')[1]
+											//alert (op_C)
+											var op_D=op_after_C.split('<DEND>')[0].replace('<DSTART>','');
+											var op_after_D=op_after_C.split('<DEND>')[1]
+											//alert (op_D)
+											var op_E=op_after_D.split('<EEND>')[0].replace('<ESTART>','');
+											var op_after_E=op_after_D.split('<EEND>')[1]
+											//alert (op_E)
+											var op_F=op_after_E.split('<FEND>')[0].replace('<FSTART>','');
+											var op_after_F=op_after_E.split('<FEND>')[1]
+											//alert (op_F)
+											var op_G=op_after_F.split('<GEND>')[0].replace('<GSTART>','');
+											var op_after_G=op_after_F.split('<GEND>')[1]
+											//alert (op_G)
+											var op_H=op_after_G.split('<HEND>')[0].replace('<HSTART>','');
+											var op_after_H=op_after_G.split('<HEND>')[1]
+											//alert (op_H)
+											var op_I=op_after_H.split('<IEND>')[0].replace('<ISTART>','');
+											var op_after_I=op_after_H.split('<IEND>')[1]
+											//alert (op_I)
+											var op_J=op_after_I.split('<JEND>')[0].replace('<JSTART>','');
+											var op_after_J=op_after_I.split('<JEND>')[1]
+											//alert (op_J)
+											var op_K=op_after_J.split('<KEND>')[0].replace('<KSTART>','');
+											var op_after_K=op_after_J.split('<KEND>')[1]
+											//alert (op_K)
+											var op_L=op_after_K.split('<LEND>')[0].replace('<LSTART>','');
+											var op_after_L=op_after_K.split('<LEND>')[1]
+											//alert (op_L)
+											var op_M=op_after_L.split('<MEND>')[0].replace('<MSTART>','');
+											var op_after_M=op_after_L.split('<MEND>')[1]
+											//alert (op_M)
+											var op_N=op_after_M.split('<NEND>')[0].replace('<NSTART>','');
+											var op_after_N=op_after_M.split('<NEND>')[1]
+											//alert (op_N)
+											var op_O=op_after_N.split('<OEND>')[0].replace('<OSTART>','');
+											var op_after_O=op_after_N.split('<OEND>')[1]
+											//alert (op_O)
+											var op_P=op_after_O.split('<PEND>')[0].replace('<PSTART>','');
+											var op_after_P=op_after_O.split('<PEND>')[1]
+											//alert (op_P)
+											var op_Q=op_after_P.split('<QEND>')[0].replace('<QSTART>','');
+											var op_after_Q=op_after_P.split('<QEND>')[1]
+											//alert (op_Q)
+											var op_R=op_after_Q.split('<REND>')[0].replace('<RSTART>','');
+											var op_after_R=op_after_Q.split('<REND>')[1]
+											//alert (op_R)
+											var op_S=op_after_R.split('<SEND>')[0].replace('<SSTART>','');
+											var op_after_S=op_after_R.split('<SEND>')[1]
+											//alert (op_S)
+											var op_T=op_after_S.split('<TEND>')[0].replace('<TSTART>','');
+											var op_after_T=op_after_S.split('<TEND>')[1]
+											//alert (op_T)
+											var op_U=op_after_T.split('<UEND>')[0].replace('<USTART>','');
+											var op_after_U=op_after_T.split('<UEND>')[1]
+											//alert (op_U)
+											var op_V=op_after_U.split('<VEND>')[0].replace('<VSTART>','');
+											var op_after_V=op_after_U.split('<VEND>')[1]
+											//alert (op_V)
+											var op_W=op_after_V.split('<WEND>')[0].replace('<WSTART>','');
+											var op_after_W=op_after_V.split('<WEND>')[1]
+											//alert (op_W)
+											var op_X=op_after_W.split('<XEND>')[0].replace('<XSTART>','');
+											var op_after_X=op_after_W.split('<XEND>')[1]
+											//alert (op_X)
+											var op_Y=op_after_X.split('<YEND>')[0].replace('<YSTART>','');
+											var op_after_Y=op_after_X.split('<YEND>')[1]
+											//alert (op_after_Y)
+											var op_Z=op_after_Y.split('<ZEND>')[0].replace('<ZSTART>','');
+											//var productListStr_after_E=productListStr_after_D.split('</Z>')[1]
+											//alert (op_Z)
+											localStorage.op_A=op_A
+											//alert (localStorage.op_A)
+											localStorage.op_B=op_B
+											localStorage.op_C=op_C
+											localStorage.op_D=op_D
+											localStorage.op_E=op_E
+											localStorage.op_F=op_F
+											localStorage.op_G=op_G
+											localStorage.op_H=op_H
+											localStorage.op_I=op_I
+											localStorage.op_J=op_J
+											localStorage.op_K=op_K
+											localStorage.op_L=op_L
+											localStorage.op_M=op_M
+											//alert ('1')
+											localStorage.op_N=op_N
+											localStorage.pr_O=op_O
+											localStorage.op_P=op_P
+											localStorage.op_Q=op_Q
+											localStorage.op_R=op_R											
+											localStorage.op_S=op_S
+											localStorage.op_T=op_T
+											//alert ('2')
+											localStorage.op_U=op_U
+											localStorage.op_V=op_V
+											localStorage.op_W=op_W
+											localStorage.op_X=op_X
+											localStorage.op_Y=op_Y
+											localStorage.op_Z=op_Z
+											//alert (localStorage.op_Z)
+									
+											
+
+										}else{						
+											$("#error_login").html('Authentication error. Please register and sync to retry.');
+											$("#wait_image_login").hide();
+											$("#doctorButton").show();
+											$("#loginButton").show();
+											}
+								}
+}
+						});			 
 
 }
 //========================================UploadImages================
