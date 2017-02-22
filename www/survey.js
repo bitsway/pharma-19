@@ -1502,7 +1502,7 @@ function check_user() {
 
 	
 	//var  apipath_base_photo_dm='http://127.0.0.1:8000/demo/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
-	//var  apipath_base_photo_dm='http://127.0.0.1:8000/acme/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
+	//var  apipath_base_photo_dm ='http://127.0.0.1:8000/acme/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
 	
 	//var  apipath_base_photo_dm='http://a007.yeapps.com/acme/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
 
@@ -5046,7 +5046,7 @@ function marketNext_doc() {
 							//alert (mClientID)
 							if (mClientID!=''){
 								if ((localStorage.doctor_flag==1) & (localStorage.doctor_plan_flag==0) & (localStorage.doctor_pr==0)){
-									unscheduled_m_client_list+='<li class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-location" style="border-bottom-style:solid; border-color:#CBE4E4;border-bottom-width:thin"><table><tr><td><img onClick="page_doctor_profile(\''+mClientName+'|'+mClientID+'\')" style="height:20px; width:20px" src="editProfile.png">&nbsp;&nbsp;&nbsp;&nbsp;</td><td><a onClick="page_doctor_profile(\''+mClientName+'|'+mClientID+'\')"><font class="name" style="font-size:18; font-weight:600; color:#306161">'+mClientName+'|'+mClientID+'</font></a></td></tr></table></li>';
+									unscheduled_m_client_list+='<li class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-location" style="border-bottom-style:solid; border-color:#CBE4E4;border-bottom-width:thin"><table><tr><td><img onClick="page_doctor_profile(\''+mClientName+'|'+mClientID+'\')" style="height:20px; width:20px" src="editProfile.png">&nbsp;&nbsp;&nbsp;&nbsp;</td><td><a onClick="marketRetailerNextLV(\''+mClientName+'|'+mClientID+'\')"><font class="name" style="font-size:18; font-weight:600; color:#306161">'+mClientName+'|'+mClientID+'</font></a></td></tr></table></li>';
 								}
 								else{
 									unscheduled_m_client_list+='<li class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-location" style="border-bottom-style:solid; border-color:#CBE4E4;border-bottom-width:thin"><a onClick="marketRetailerNextLV(\''+mClientName+'|'+mClientID+'\')"><font class="name" style="font-size:18; font-weight:600; color:#306161">'+mClientName+'|'+mClientID+'</font></a></li>';
@@ -6989,12 +6989,16 @@ function visitSubmit_doc(){
 		var sampleList=sample_doc_Str.split('<rd>');	
 		var sampleListLength=sampleList.length;	
 		sample_submit='';
+		var sampleCount=0
 		for ( i=0; i < sampleListLength; i++){		
 			sample_single=sampleList[i]
 			sample_single_list=sample_single.split('<fd>');
 			var sample_name=''
 			if (sample_single_list[0] !=''){
 				sample_name=$("#sample_name"+sample_single_list[0]).val();
+				sampleCount=sampleCount+1
+				if (sampleCount > 4){break;}
+				$("#errorChkVSubmit_doc").html('First four sample will accept');
 			}
 			//sample_name=sample_name.replace('undefined','')
 			
@@ -10838,6 +10842,8 @@ function prescription_submit(){
 											//var result_string=resultArray[1];
 											
 											
+											localStorage.opProdID_Str='';
+											localStorage.prProdID_Str='';
 											//alert (result_string)
 										
 											//image upload function									
@@ -10951,6 +10957,7 @@ function prsearchItem() {
 	//alert ('aaaaaaaaa ')		
 	//var filter = input.value.toUpperCase();
 	var filter  = $("#pritemSearch").val().toUpperCase();
+	//alert(filter.charAt(0));
 	//alert (filter)
 	setPrProductA(filter.charAt(0));
 	//var lis = document.getElementsById('mylist');
@@ -11655,14 +11662,15 @@ function gotoPic(picNo) {
 	$.afui.loadContent("#imageSinglePage",true,true,'right');
 	}
 }
+
 function page_prItemPage(){
 	setPrProduct();
 	$('font').removeClass('bgc');
 	$('#pr_id_lv input').val('');
-	localStorage.opProdID_Str='';
-	localStorage.prProdID_Str='';
+	
 	$.afui.loadContent("#page_prItemPage",true,true,'right');
 }
+
 function page_prItemPage2(){
 	
 	$.afui.loadContent("#page_prItemPage",true,true,'right');
@@ -11672,7 +11680,8 @@ function page_prItemPage2(){
 function page_opItemPage(){
 	//setOpProduct();
 	$("#medicineList").empty();
-	localStorage.opProdID_Str='';
+	
+	//localStorage.opProdID_Str='';
 	$.afui.loadContent("#page_opItemPage",true,true,'right');
 }
 function page_opItemPage2(){
