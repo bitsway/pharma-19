@@ -7863,6 +7863,54 @@ function cancellDocvisit(){
 			}//Visited with check
 	//}//Sync date check
   }
+//==============Cancell Doctor=======================  
+function cancellDoc(){	
+	$("#myerror_doctor_prof").html('' )
+	$("#wait_image_docProf").show();
+	var market_Id=localStorage.visit_market_show.split('|')[1];
+	var visitDocId=localStorage.visit_client.split('|')[1]	
+	
+	reason=$("#docC_combo").val()
+	
+	
+	
+	
+	$("#doctor_prof").val(localStorage.report_url+'cancellDoc?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&route='+market_Id+'&docId='+visitDocId+'&reason='+reason)
+		$.ajax(localStorage.report_url+'cancellDoc?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&route='+market_Id+'&docId='+visitDocId+'&reason='+reason,{
+
+								type: 'POST',
+								timeout: 30000,
+								error: function(xhr) {
+								 $("#wait_image_docProf").hide();
+								 $("#myerror_doctor_prof").html('Network Timeout. Please check your Internet connection..');
+													},
+								success:function(data, status,xhr){	
+									 $("#wait_image_docProf").hide();
+									 if (status!='success'){
+										$("#myerror_doctor_prof").html('Network Timeout. Please check your Internet connection...');
+										
+									 }
+									 else{	
+									 	var resultArray = data.replace('</START>','').replace('</END>','').split('<SYNCDATA>');	
+										
+								if (resultArray[0]=='FAILED'){
+											$("#myerror_doctor_prof").text(resultArray[1]);	
+											
+										}
+								else if (resultArray[0]=='SUCCESS'){	
+									var result_string=resultArray[1];
+									
+									$("#myerror_doctor_prof").html(result_string)
+									
+								
+							}else{	
+								 $("#wait_image_docProf").hide();
+								 $("#myerror_doctor_prof").html('Network Timeout. Please check your Internet connection..');
+								}
+						}
+					  }
+			 });//end ajax
+  }
 //==============================Doctor visit save===========================
 function saveDocvisit(){	
 	$("#errorChkVSubmit").text("");
@@ -10010,8 +10058,8 @@ function page_doctor_profile(getData) {
 									$("#dMDay").val(dMDay)
 									$("#dMobile").val(dMobile)
 									$("#dCAddress").val(dCAddress)
-									$("#dDistrict").val(dDistrict)
-									$("#dThana").val(dThana)
+									$("#dDistrict").val(dThana+'|'+dDistrict)
+									//$("#dThana").val(dThana)
 									//$("#dCategory").val(dCategory)
 									
 									catList=dCategory.split(',')
