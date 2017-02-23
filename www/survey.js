@@ -11086,7 +11086,8 @@ function setPrProduct(){
 				
 				pr_tbl_A=pr_tbl_A+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_A +'" onClick="check_boxTrue_pr(\''+pr_id_A+'\')"><font id="prName'+ pr_id_A +'" class="name" >'+ pr_name_A+'</font><input type="hidden" id="doc_pr_id'+pr_id_A+'" value="'+pr_id_A+'" ></span><span><input onmouseout="check_boxTrue_inp_val(\''+pr_id_A+'\')" type="number" id="prInputVal'+pr_id_A+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
 				}
-		localStorage.pr_tbl_A=pr_tbl_A		
+		localStorage.pr_tbl_A=pr_tbl_A
+		$("#pr_id_lv").empty();
 		$("#pr_id_lv").append(localStorage.pr_tbl_A);	
 		
 	}
@@ -11537,6 +11538,7 @@ function prescription_submit(){
 
 /************ jahangirEditedStart20Feb prsearchItem **************/
 function prsearchItem() {
+	$("#pr_id_lv").empty();
 	//alert ('aaaaaaaaa ')		
 	//var filter = input.value.toUpperCase();
 	var filter  = $("#pritemSearch").val().toUpperCase();
