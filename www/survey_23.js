@@ -2360,11 +2360,93 @@ function doctor_visit_plan() {
 	localStorage.visit_page="NO";
 	localStorage.scheduleDocFlag=1
 	//addMarketList();
+	
+	//alert (localStorage.base_url+'schedule_sync?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode)
+	$.ajax(localStorage.base_url+'schedule_sync?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode,{
+								type: 'POST',
+								timeout: 30000,
+								error: function(xhr) {
+								//alert ('Error: ' + xhr.status + ' ' + xhr.statusText);
+								
+								$("#d_visit").html('Network Timeout. Please check your Internet connection..');
+													},
+								success:function(data, status,xhr){	
+									 if (status!='success'){
+										$("#d_visit").html('Network Timeout. Please check your Internet connection..');
+									 }
+									 else{	
+									 	var resultArray = data.replace('</START>','').replace('</END>','').split('<SYNCDATA>');	
+										
+										if (resultArray[0]=='FAILED'){
+											$("#d_visit").html("Approved route not available");	
+											
+											
+										}
+										
+										else if (resultArray[0]=='SUCCESS'){
+											localStorage.marketStrDoc=resultArray[1];
+											if (localStorage.marketStrDoc!=''){
+														var docMarketList = localStorage.marketStrDoc.split('<rd>');
+														var docMarketListShowLength=docMarketList.length	
+														var docMarketComb=''
+														var currentDate = new Date()
+														var day = currentDate.getDate();if(day<10)	{day="0" +day};
+														var month = currentDate.getMonth() + 1;if(month<10)	{month="0" +month};
+														var year = currentDate.getFullYear()
+														var CDate=  year + "-" + month + "-" + day
+														//alert (day.length)
+														//var CDate =yyyy+'-'+mm+'-'+dd	
+														var todayFlag=0
+														var tomorrowFlag=0		
+														//alert (docMarketListShowLength)			
+														for (var k=0; k < docMarketListShowLength; k++){
+															var docMarketValueArray = docMarketList[k].split('<fd>');
+															docMarketID=docMarketValueArray[0];
+															docMarketName=docMarketValueArray[1];
+															docMarketDate=docMarketValueArray[2];
+															var docmarketNameID=docMarketName+'|'+docMarketID;
+															
+													//alert (CDate)
+													//alert (docMarketDate)
+													
+													if ((docMarketDate!=CDate) &&(tomorrowFlag==0) && (docMarketDate.length > 5)) {
+																docMarketComb+='<li class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-location" style="border-bottom-style:solid; border-color:#CBE4E4;border-bottom-width:thin;background-color:#EDFBFE"><font  style="font-size:24; font-weight:bold;color:#009">Tomorrow</font></li>';
+																tomorrowFlag=1
+															}
+															if ((docMarketDate==CDate) &&(todayFlag==0)) {
+																docMarketComb+='<li class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-location" style="border-bottom-style:solid; border-color:#CBE4E4;border-bottom-width:thin;background-color:#EDFBFE"><font  style="font-size:24; font-weight:bold;color:#009">Today</font></li>';
+																todayFlag=1
+															}
+															if (docMarketID!=''){
+																docMarketComb+='<li class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-location" style="border-bottom-style:solid; border-color:#CBE4E4;border-bottom-width:thin"><a onClick="setScheduleDate(\''+docMarketDate+'\');marketNextLV(\''+docmarketNameID+'\');"><font class="name" style="font-size:18; font-weight:bold">'+docMarketName+'</a></font></li>';
+															//alert (docMarketComb)	
+																}
+														}
+														
+																					
+														localStorage.docMarketComb=docMarketComb;								
+													}
+										
+									
+										}
+									//------- 
+	
+									
+																
+								 //else if
+								
+								
+							} //else
+							
+						}
+						  
+				 });//end ajax
+				 
 	addMarketListDoctor()
 	$("#addDocanc").hide();
 	$("#blankAnc").hide();
 	$("#dPending").hide();
-	$("#dBlank").show();
+	$("#dBlank").show();				 
 	
 }
 function doctor_visit() {
@@ -7366,6 +7448,421 @@ function visitSubmit_doc(){
 			}//Visited with check
 	//}//Sync date check
   }
+//  =======================Cancell doc visit============================
+function cancellDocvisit(){	
+	$("#errorChkVSubmit").text("");
+	
+	var visitClientId=localStorage.visit_client.split('|')[1]	
+	var visit_type="Schedule"
+	if (localStorage.scheduleDocFlag==0){
+		visit_type="Unschedule"
+	}
+	var scheduled_date=localStorage.scheduled_date
+	
+	
+	var sample_doc_Str=localStorage.productSampleStr;
+	var gift_doc_Str=localStorage.productGiftStr;
+	var campaign_doc_str=localStorage.campaign_doc_str; 
+	
+	var ppm_doc_Str=localStorage.productppmStr;
+	
+	var notes= $("#doc_feedback").val();
+	var doc_others= $("#doc_others").val();
+	//alert (notes);
+	notes=replace_special_char(notes);
+	var reason= $("#docVCancell_combo").val();
+	//alert (reason)
+	//----------------------- Campaign check
+	
+	if (campaign_doc_str.indexOf('undefined')!=-1){
+		campaign_doc_Str=''
+	}else{
+		var campaignList=campaign_doc_str.split('<rd>');	
+		var campaignListLength=campaignList.length;	
+		campaign_submit='';
+		
+		for ( i=0; i < campaignListLength; i++){		
+			
+			var camp_name=''
+			if (campaignList[i] !=''){
+				 camp_name=$("#doc_camp_name"+campaignList[i]).val();
+			}
+			if (campaign_submit==''){
+				campaign_submit=campaignList[i]
+			}
+			else{
+				campaign_submit=campaign_submit+','+campaignList[i]
+			}
+			if (campaignList[i] !=''){
+				campaign_submit=campaign_submit+'|'+camp_name
+			}
+			
+		}
+	}
+	//alert (campaign_submit);
+	//----------------------- Sample check
+	//$("#errorChkVSubmit").html(sample_doc_Str);
+	//alert (sample_doc_Str.indexOf('undefined'));
+	if (sample_doc_Str.indexOf('undefined')!=-1){
+		sample_doc_Str=''
+	}else{
+		var sampleList=sample_doc_Str.split('<rd>');	
+		var sampleListLength=sampleList.length;	
+		sample_submit='';
+		var sampleCount=0
+		for ( i=0; i < sampleListLength; i++){		
+			sample_single=sampleList[i]
+			sample_single_list=sample_single.split('<fd>');
+			var sample_name=''
+			if (sample_single_list[0] !=''){
+				sample_name=$("#sample_name"+sample_single_list[0]).val();
+				sampleCount=sampleCount+1
+				if (sampleCount > 4){break;}
+				$("#errorChkVSubmit_doc").html('First four sample will accept');
+			}
+			//sample_name=sample_name.replace('undefined','')
+			
+			if (sample_submit==''){
+				sample_submit=sample_single_list[1]+','+sample_single_list[0]
+			}
+			else{
+				sample_submit=sample_submit+'.'+sample_single_list[1]+','+sample_single_list[0]
+			}
+			if (sample_single_list[0] !=''){
+				sample_submit=sample_submit+'|'+sample_name
+			}
+			
+		}
+	}
+	
+	//----------------------- Gift check
+	if (gift_doc_Str.indexOf('undefined')!=-1){
+		gift_doc_Str=''
+		gift_submit=''
+	}else{
+		var giftList=gift_doc_Str.split('<rd>');	
+		var giftListLength=giftList.length;	
+		gift_submit='';
+		for ( i=0; i < giftListLength; i++){	
+			gift_single=giftList[i];
+			gift_single_list=gift_single.split('<fd>');
+			 
+			var gift_name=''
+			if (gift_single_list[0] !=''){
+				gift_name=$("#doc_gift_name"+sample_single_list[0]).val();
+			}
+			if (gift_submit==''){
+				gift_submit=gift_single_list[1]+','+gift_single_list[0]+'|'+gift_name
+			}
+			else{
+				gift_submit=gift_submit+'.'+gift_single_list[1]+','+gift_single_list[0]+'|'+gift_name
+			}
+			if (gift_single_list[0] !=''){
+				gift_submit=gift_submit+'|'+gift_name
+			}
+		}
+	}
+	//alert (gift_submit)
+	
+	//----------------------- ppm check
+	if (ppm_doc_Str.indexOf('undefined')!=-1){
+		ppm_doc_Str=''
+		ppm_submit=''
+	}else{
+		var ppmList=ppm_doc_Str.split('<rd>');	
+		var ppmListLength=ppmList.length;	
+		
+		ppm_submit='';
+		for ( i=0; i < ppmListLength; i++){	
+			ppm_single=ppmList[i];
+			ppm_single_list=ppm_single.split('<fd>');
+			var doc_ppm_name=''
+			if (ppm_single_list[0] !=''){
+				doc_ppm_name=$("#doc_ppm_name"+ppm_single_list[0]).val();
+			}
+			if (ppm_submit==''){
+				ppm_submit=ppm_single_list[1]+','+ppm_single_list[0]//+'|'+doc_ppm_name
+				
+			}
+			else{
+				ppm_submit=ppm_submit+'.'+ppm_single_list[1]+','+ppm_single_list[0]//+'|'+doc_ppm_name
+			}
+			if (ppm_single_list[0] != ''){
+					ppm_submit=ppm_submit+'|'+doc_ppm_name
+			}
+		}
+	}
+	//-------------------------------
+	
+	
+	
+	
+
+	//------------------------
+	campaign_submit=campaign_submit.replace('undefined','').replace(',.','');
+	gift_submit=gift_submit.replace('undefined','').replace(',.','');
+	
+	sample_submit=sample_submit.replace('undefined','').replace(',.','');
+	
+	notes=notes.replace('undefined','').replace(',.','');
+	ppm_submit=ppm_submit.replace('undefined','').replace(',.','');
+	
+	
+	
+	if (campaign_submit==','){
+		campaign_submit='';
+		
+	}
+	if (gift_submit==','){
+		gift_submit='';
+		
+	}
+	if (sample_submit==','){
+		sample_submit='';
+		
+	}
+	if (ppm_submit==','){
+		ppm_submit='';
+		
+	}
+	
+	var msg=campaign_submit+'..'+gift_submit+'..'+sample_submit+'..'+notes+'..'+ppm_submit
+	
+	var docVisitPhoto=$("#docVisitPhoto").val();
+	
+	//alert (docVisitPhoto)
+	var lat=$("#lat").val();
+	var longitude=$("#longitude").val();
+	var now = $.now();
+	var imageName=localStorage.user_id+'_'+now+'_docVisit.jpg';
+	
+	var currentDate_1 = new Date()
+	var day_1 = currentDate_1.getDate();if(day_1.length==1)	{day_1="0" +day_1};
+	var month_1 = currentDate_1.getMonth() + 1;if(month_1.length==1)	{month_1="0" +month_1};
+	var year_1 = currentDate_1.getFullYear()
+	var today_1=  year_1 + "-" + month_1 + "-" + day_1
+	
+	var v_with_AM=$("input[name=v_with_AM]:checked").val(); if (v_with_AM==undefined){v_with_AM=''}
+	var v_with_MPO=$("input[name=v_with_MPO]:checked").val(); if (v_with_MPO==undefined){v_with_MPO=''}
+	var v_with_RSM=$("input[name=v_with_RSM]:checked").val(); if (v_with_RSM==undefined){v_with_RSM=''}
+	//alert (v_with_AM)
+	var v_with=v_with_AM+"|"+v_with_MPO+"|"+v_with_RSM
+	//v_with=v_withGet.replace('undefined')
+	//alert (v_with)
+	if (lat=='' || lat==0 || longitude=='' || longitude==0 ){
+							
+		lat=localStorage.latitude
+		longitude=localStorage.latitude
+		localStorage.location_detail="LastLocation-"+localStorage.location_detail;
+	
+	}
+	
+	//if  (localStorage.sync_date!=today_1){
+//	$("#errorChkVSubmit_doc").html('Please sync first');
+//	
+//	}
+//	else{
+			if (reason==''){
+				$("#errorChkVSubmit_doc").html('Please select a reason');		
+			}else{					
+				if (visitClientId=='' || visitClientId==undefined){
+					$("#errorChkVSubmit_doc").html('Invalid Client');		
+				}else{
+					if(visit_type=='' || visit_type==undefined){
+						$("#errorChkVSubmit_doc").html('Invalid Visit Type');
+					}else{
+						var marketNameId=localStorage.visit_market_show.split('|');
+						var market_Id=marketNameId[1];		
+					
+							// ajax-------
+							//alert (localStorage.location_error);
+						if ( localStorage.location_error==2){
+							$("#errorChkVSubmit_doc").html('<font style="color:#F00;">Please activate <font style="font-weight:bold">location </font> and <font style="font-weight:bold"> data </font></font>');
+						}
+						else {	
+							$("#visit_submit_doc").hide();
+							$("#wait_image_visit_submit_doc").show();
+									alert (localStorage.base_url+'cancellDocvisit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&client_id='+visitClientId+'&visit_type='+visit_type+'&schedule_date='+scheduled_date+'&msg=' +encodeURI(msg)+'&lat='+lat+'&long='+longitude+'&v_with='+v_with+'&route='+market_Id+'&doc_others='+doc_others+'&location_detail='+localStorage.location_detail+'&imageName='+imageName+'&reason='+reason)	
+							$.ajax(localStorage.base_url+'cancellDocvisit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&client_id='+visitClientId+'&visit_type='+visit_type+'&schedule_date='+scheduled_date+'&msg=' +encodeURI(msg)+'&lat='+lat+'&long='+longitude+'&v_with='+v_with+'&route='+market_Id+'&doc_others='+doc_others+'&location_detail='+localStorage.location_detail+'&imageName='+imageName+'&reason='+reason,{
+							// cid:localStorage.cid,rep_id:localStorage.user_id,rep_pass:localStorage.user_pass,synccode:localStorage.synccode,
+							type: 'POST',
+							timeout: 30000,
+							error: function(xhr) {
+							//alert ('Error: ' + xhr.status + ' ' + xhr.statusText);
+							$("#wait_image_visit_submit").hide();
+							$("#visit_submit").show();	
+							$("#error_login").html('Network Timeout. Please check your Internet connection..');
+												},
+										success:function(data, status,xhr){	
+												//$.post(localStorage.base_url+'check_user?',{cid: localStorage.cid,rep_id:localStorage.user_id,rep_pass:localStorage.user_pass,synccode:localStorage.synccode,client_id:visitClientId,visit_type:visit_type,schedule_date:scheduled_date,msg:msg,lat:lat,long:longitude,v_with:v_with,route:market_Id,location_detail:localStorage.location_detail},
+		//    						 
+		//								
+		//								 function(data, status){
+											 if (status!='success'){
+												$("#errorChkVSubmit_doc").html('Network Timeout. Please check your Internet connection...');
+												$("#wait_image_visit_submit_doc").hide();
+												$("#visit_submit_doc").show();
+											 }
+											 else{	
+												var resultArray = data.replace('</START>','').replace('</END>','').split('<SYNCDATA>');	
+												
+												if (resultArray[0]=='FAILED'){
+													$("#errorChkVSubmit_doc").html(resultArray[1]);
+													$("#wait_image_visit_submit_doc").hide();
+													$("#visit_submit_doc").show();	
+												}
+											  else if (resultArray[0]=='SUCCESS'){
+												  
+													//uploadPhoto_docVisit(docVisitPhoto, imageName);				
+													//-----------
+													localStorage.visit_client=''
+													localStorage.visit_page=""
+													
+													localStorage.productGiftStr='';
+													localStorage.campaign_doc_str=''
+													localStorage.productSampleStr=''
+													localStorage.productppmStr=''
+													
+													localStorage.campaign_show_1='';
+													localStorage.gift_show_1='';
+													localStorage.sample_show_1='';
+													localStorage.ppm_show_1='';
+													
+																	
+													////-------------
+													// Clear Campaign and sample
+														
+														//localStorage.productOrderStr='';
+														var productList=localStorage.productListStr.split('<rd>');
+														var productLength=productList.length;
+														for ( i=0; i < productLength; i++){
+															var productArray2 = productList[i].split('<fd>');
+															var product_id2=productArray2[0];	
+															var product_name2=productArray2[1];
+															$("#sample_qty"+product_id2).val('');
+															
+															
+															var camp_combo="#doc_camp"+product_id2
+															$(camp_combo).attr('checked', false);
+															//alert (product_id2);
+														}	
+													// Clear Gift
+														
+														//localStorage.productOrderStr='';
+														var giftList=localStorage.gift_string.split('<rd>');
+														var giftLength=giftList.length;
+														for ( i=0; i < giftLength; i++){
+															var giftArray2 = giftList[i].split('<fd>');
+															var gift_id2=giftArray2[0];	
+															//var product_name2=giftArray2[1];
+															$("#gift_qty"+gift_id2).val('');
+														}
+														// Clear ppm
+														
+														//localStorage.productOrderStr='';
+														var ppmList=localStorage.ppm_string.split('<rd>');
+														var ppmLength=ppmList.length;
+														for ( i=0; i < ppmLength; i++){
+															var ppmArray2 = ppmList[i].split('<fd>');
+															var ppm_id2=ppmArray2[0];	
+															//var product_name2=ppmArray2[1];
+															$("#ppm_qty"+ppm_id2).val('');
+															
+			
+														}	
+															
+															//====================================
+														
+														
+														$("#doc_feedback").val('');
+														$("#doc_others").val('');
+														
+														//$(".market").html('');
+														$(".visit_client").html('');
+														//--------------------------------------------------------
+														$("#errorChkVSubmit").html('');
+														$("#lat").val('');
+														$("#longitude").val('');
+														$("#lscPhoto").val('');
+														document.getElementById('myImage').src = '';
+														
+														$("#lat_p").val('');
+														$("#long_p").val('');								
+				//										
+														//$("#checkLocation").html('');
+				//										$("#checkLocationProfileUpdate").html('');
+														
+														$("#v_with_AM").attr('checked', false);
+														$("#v_with_MPO").attr('checked', false);
+														$("#v_with_RSM").attr('checked', false);
+														
+														
+														
+														$("#errorChkVSubmit_doc").html('');
+														$("#wait_image_visit_submit_doc").hide();
+														$("#visit_submit_doc").show();	
+														$("#checkLocation_doc").html('');
+														//$("#visit_location_doc").show();
+														
+														
+														
+														//--
+												//$("#visit_success").html('</br></br>Visit SL: '+resultArray[1]+'</br>Submitted Successfully');
+												
+												$("#visit_success").html('</br></br>Submitted Successfully');
+												
+												if (localStorage.saveSubmitDocFlag==1){
+													saveDelete_doc(localStorage.saveSubmitDocI)
+												}
+												localStorage.visit_page=''
+												//saveDelete_doc(i)
+												
+												
+												
+												
+												/// CANCEL ALLcancelVisitPage();
+												
+													localStorage.campaign_show_1="";
+													localStorage.gift_show_1="";
+													localStorage.ppm_show_1=""
+													localStorage.sample_show_1="";
+													
+													
+													
+													localStorage.productGiftStr='';
+													localStorage.campaign_doc_str=''
+													localStorage.productSampleStr=''
+													localStorage.productppmStr='';
+													
+													set_doc_all();
+													$(".visit_client").html('');
+												
+												
+												
+												
+												//var url = "#page_confirm_visit_success";	
+												var image = document.getElementById('myImageDoc');
+												image.src = "";
+												imagePath = "";
+												$("#docVisitPhoto").val(imagePath);
+												$.afui.loadContent("#page_confirm_visit_success",true,true,'right');
+												//location.reload();
+																											
+									}else{						
+										$("#errorChkVSubmit_doc").html('Network Timeout. Please check your Internet connection.');
+										$("#wait_image_visit_submit_doc").hide();
+										$("#visit_submit_doc").show();								
+										}
+									}
+								}
+							 });//end post	
+							}//error Location
+						}
+					}
+				//  }//locaction check error
+			}//Visited with check
+	//}//Sync date check
+  }
 //==============================Doctor visit save===========================
 function saveDocvisit(){	
 	$("#errorChkVSubmit").text("");
@@ -11667,6 +12164,7 @@ function page_prItemPage(){
 	setPrProduct();
 	$('font').removeClass('bgc');
 	$('#pr_id_lv input').val('');
+	$('#pritemSearch').val(''); 
 	
 	$.afui.loadContent("#page_prItemPage",true,true,'right');
 }
@@ -11679,6 +12177,7 @@ function page_prItemPage2(){
 /********** jahangirEditedStart19Feb page_opItemPage***********/
 function page_opItemPage(){
 	//setOpProduct();
+	$("#opitemSearch").val('');
 	$("#medicineList").empty();
 	
 	//localStorage.opProdID_Str='';

@@ -7682,7 +7682,7 @@ function cancellDocvisit(){
 						else {	
 							$("#visit_submit_doc").hide();
 							$("#wait_image_visit_submit_doc").show();
-									alert (localStorage.base_url+'cancellDocvisit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&client_id='+visitClientId+'&visit_type='+visit_type+'&schedule_date='+scheduled_date+'&msg=' +encodeURI(msg)+'&lat='+lat+'&long='+longitude+'&v_with='+v_with+'&route='+market_Id+'&doc_others='+doc_others+'&location_detail='+localStorage.location_detail+'&imageName='+imageName+'&reason='+reason)	
+									//alert (localStorage.base_url+'cancellDocvisit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&client_id='+visitClientId+'&visit_type='+visit_type+'&schedule_date='+scheduled_date+'&msg=' +encodeURI(msg)+'&lat='+lat+'&long='+longitude+'&v_with='+v_with+'&route='+market_Id+'&doc_others='+doc_others+'&location_detail='+localStorage.location_detail+'&imageName='+imageName+'&reason='+reason)	
 							$.ajax(localStorage.base_url+'cancellDocvisit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&client_id='+visitClientId+'&visit_type='+visit_type+'&schedule_date='+scheduled_date+'&msg=' +encodeURI(msg)+'&lat='+lat+'&long='+longitude+'&v_with='+v_with+'&route='+market_Id+'&doc_others='+doc_others+'&location_detail='+localStorage.location_detail+'&imageName='+imageName+'&reason='+reason,{
 							// cid:localStorage.cid,rep_id:localStorage.user_id,rep_pass:localStorage.user_pass,synccode:localStorage.synccode,
 							type: 'POST',
@@ -10162,8 +10162,46 @@ function page_addDoc() {
 		 $('#dSpacialityAdd').append(opt);
 		
 	}
-//=================================================	
-	
+//========================MicroUnin Combo=========================	
+//alert (localStorage.report_url+'microUnionReady?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&route='+market_Id)
+$.ajax(localStorage.report_url+'microUnionReady?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&route='+market_Id,{
+
+								type: 'POST',
+								timeout: 30000,
+								error: function(xhr) {
+								 alert ('Network Timeout. Please check your Internet connection')
+													},
+								success:function(data, status,xhr){	
+									 if (status!='success'){
+										alert ('Network Timeout. Please check your Internet connection')
+										
+									 }
+									 else{	
+									 	var resultArray = data.replace('</START>','').replace('</END>','').split('<SYNCDATA>');	
+										
+								if (resultArray[0]=='FAILED'){
+											$("#myerror_doctor_add").text(resultArray[1]);	
+											
+										}
+								else if (resultArray[0]=='SUCCESS'){	
+									var result_string=resultArray[1];
+									resultList=result_string.split('<rd>')
+									
+									$('#dMicrounion').empty();
+									for (var s=0; s < resultList.length; s++){
+										var opt='<option value="'+resultList[s]+'">'+resultList[s]+'</option>'
+										 $('#dMicrounion').append(opt);
+										
+									}
+									
+								
+							}else{	
+								alert ('Network Timeout. Please check your Internet connection')
+								}
+						}
+					  }
+			 });//end ajax
+//==========================================	
 	$.afui.loadContent("#page_doctor_add",true,true,'right');
 	
 }
@@ -10189,7 +10227,7 @@ function docAddSubmit() {
 	dMicroUnion=$("#dMicrounion").val()
 	
 	//alert (dCategory)
-	if (dName=='' |  dCategory=='' | dMobile=='' | dCAddress==''){
+	if (dName=='' |  dCategory=='' | dMobile=='' | dCAddress=='' | dMicroUnion==''){
 		$("#myerror_doctor_add").html('Please Complete Mandatory Fields.' )
 		$("#wait_image_docAdd").hide();
 		$("#btn_submit_doc_add").show();
