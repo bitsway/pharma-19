@@ -3448,6 +3448,7 @@ function tourCheckFirst(){
 	//alert (localStorage.base_url+'check_this_n_next_month?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode)
 	
 	localStorage.darftValue=''
+	
 	$.ajax(localStorage.base_url+'check_this_n_next_month?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode,{
 			type: 'POST',
 			timeout: 30000,
@@ -3687,7 +3688,7 @@ function tourCheckFirst(){
 					//alert (dateNextMonth)
 					//alert (docNextMonthRow.indexOf('<'+dateNextMonth+'>'))
 				if (docNextMonthRow.indexOf('<'+dateNextMonth+'>')!=-1){
-					var dateRouteSingleNext=docNextMonthRow.split('<'+dateNextMonth+'>')[1].split('</'+dayCheckFinal+'>')[0]
+					var dateRouteSingleNext=docNextMonthRow.split('<'+dateNextMonth+'>')[1].split('</'+dateNextMonth+'>')[0]
 					//if (dayShow==21){alert (dateRouteSingle)}
 					var marketStrListNextMonth=dateRouteSingleNext.split('<rd>')
 					var dayRouteNext=''
