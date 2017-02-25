@@ -11112,7 +11112,7 @@ function setPrProductA(filter){
 					var pr_id=prArray[0];	
 					var pr_name=prArray[1];
 					
-					pr_tbl=pr_tbl+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id+'" ><font id="prName'+ pr_id+'" class="name" >'+ pr_name+'</font><input type="hidden" id="doc_pr_id'+pr_id+'" value="'+pr_id+'" ></span><span><input onmouseout="check_boxTrue_inp_val(\''+pr_id+'\')" type="number" id="prInputVal'+pr_id+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';					
+					pr_tbl=pr_tbl+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id+'" onClick="check_boxTrue_pr(\''+pr_id_A+'\')"><font id="prName'+ pr_id+'" class="name" >'+ pr_name+'</font><input type="hidden" id="doc_pr_id'+pr_id+'" value="'+pr_id+'" ></span><span><input onmouseout="check_boxTrue_inp_val(\''+pr_id+'\')" type="number" id="prInputVal'+pr_id+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';					
 				}
 				//var bb=eval("localStorage.pr_tbl_"+filter)
 				//bb=pr_tbl;
@@ -11126,40 +11126,43 @@ function setPrProductA(filter){
 }
 /************* jahangirEditedEnd20Feb setPrProduct *******************/
 
-/************* jahangirEditedStart20Feb check_boxTrue_inp_val ************************/
-function check_boxTrue_inp_val(product_id){ 	
+var optionVal = '';
+function check_boxTrue_pr(product_id){
 	var camp_combo=$("#prName"+product_id).text();
-	var medInpVal = $("#prInputVal"+product_id).val();
-	var conCatVal = product_id+'<||>'+camp_combo+'<||>'+medInpVal;
-	if(medInpVal>0){
-		
-		getDocPrData_keyup(product_id, conCatVal, 'true');
-		$("#prName"+product_id).addClass('bgc');
-	}
-	else{
-		return false;
+	var medInpVal = $("#prInputVal"+product_id).val(1);
+	var conCatVal = product_id+'<||>'+camp_combo+'<||>'+1;
+	if(optionVal.indexOf(product_id)==-1){
+		if(optionVal==''){
+			optionVal=conCatVal;
+		}
+		else if(optionVal!=''){
+			optionVal+='<rd>'+conCatVal;
+		}
 	}
 	
+	$("#prName"+product_id).addClass('bgc');
+}
+
+function check_boxTrue_inp_val(product_id){ 
+	var camp_combo=$("#prName"+product_id).text();
+	var medInpVal = $("#prInputVal"+product_id).val();
+	if(medInpVal==undefined || medInpVal==''){
+		medInpVal=0;
+	}
+	var conCatVal = product_id+'<||>'+camp_combo+'<||>'+medInpVal;
+	if(optionVal.indexOf(product_id)==-1){
+		if(medInpVal>0 && optionVal==''){
+			optionVal=conCatVal;
+			$("#prName"+product_id).addClass('bgc');
+		}
+		else if(medInpVal>0 && optionVal!=''){
+			optionVal+='<rd>'+conCatVal;
+			$("#prName"+product_id).addClass('bgc');
+		}
+		
+	}
 	
 }
-/************* jahangirEditedEnd20Feb check_boxTrue_inp_val ************************/
-
-/************* jahangirEditedStart15Feb check_boxTrue_pr ************************/
-/*
-function check_boxTrue_pr(product_id){	
-	var camp_combo=$("#prName"+product_id).text();
-	var camp_combo=$("#prName"+product_id).text();
-	var camp_span="#prSpan"+product_id
-	var medInpVal = $("#prInputVal"+product_id).val();
-	var ppid=$("#doc_pr_id"+product_id).val();
-	var conCatVal = product_id+'<||>'+camp_combo+'<||>'+medInpVal;
-	
-	getDocPrData_keyup(product_id, conCatVal, 'true');
-	$("#prName"+product_id).addClass('bgc');
-
-	}
-	*/
-/************* jahangirEditedEnd15Feb check_boxTrue_pr ************************/
 	
 function getDocPrData_keyup(product_id, conCatVal, status){
 	//localStorage.prProdID_Str='';
@@ -11252,6 +11255,7 @@ function getDocDatapr(){
 function getDocDataprCart(){	
 	
 	$('#prCart').empty();
+	localStorage.prProdID_Str=optionVal;
 	campaign_doc_str=localStorage.prProdID_Str
 	
 	var campaignList = campaign_doc_str.split('<rd>');
@@ -11313,6 +11317,7 @@ function removeCarItemPr(product_get, prName, inVal){
 			}				
 		}				
 	}
+	optionVal=repl1;
 	localStorage.prProdID_Str=repl1;
 	
 }
@@ -12154,6 +12159,7 @@ function getDocDataop(){
 function getDocDataopCart(){	
 	//alert (localStorage.prProdID_Str)
 	$('#opCart').empty();
+	localStorage.opProdID_Str = oprtunityVal;
 	campaign_doc_str=localStorage.opProdID_Str
 	
 	var campaignList = campaign_doc_str.split('||');
@@ -12216,6 +12222,7 @@ function removeCarItemOp(product_idGet){
 			}				
 		}				
 	}
+	oprtunityVal = repl1;
 	localStorage.opProdID_Str=repl1;
 }
 /******* jahangirEditedEnd16 removeCarItemOp **************/
@@ -12585,7 +12592,7 @@ function searchMedicine(){
 						  var medName=keywordLi[1];
 						  keywordS+='<li>'
 						  keywordS+='<div  style="float:left; width:80%"  id="medId'+pID+'">'
-						  keywordS+='<span style="margin-bottom:10px; " >'+medName+'</span>' 
+						  keywordS+='<span onclick="medClickVal2(\''+pID+'\',\''+medName+'\')" style="margin-bottom:10px; " >'+medName+'</span>' 
 						  keywordS+='</div>'
 						  keywordS+='<div style="float:right; width:20%">'
 						  /******* jahangirEditedStart20Feb medClickVal *********/
@@ -12616,11 +12623,39 @@ function searchMedicine(){
 /*********** jahangirEditedEnd16Feb medicine search *********/
 
 /*********** jahangirEditedStart18Feb medClickVal *********/
+var oprtunityVal='';
 function medClickVal(pid, name){
 	var inpVal = $("#inpId"+pid).val();
+	
 	if(inpVal!=0 && inpVal!=undefined){
-		medClick2(pid, name)
+		$("#medId"+pid).addClass('bgc');
+		var inpVal = $("#inpId"+pid).val();
+		if(inpVal==''||inpVal==undefined){
+			inpVal=0;
+		}
+		var pConcat = pid+'|'+name+'|'+inpVal;
 		
+		if(oprtunityVal.indexOf(pid)==-1){
+				if (oprtunityVal==''){
+					oprtunityVal=pConcat
+				}else{
+					oprtunityVal+='||'+pConcat
+				}
+		}
+	}
+}
+
+function medClickVal2(pid, name){
+	var inpVal = $("#inpId"+pid).val(1);
+	$("#medId"+pid).addClass('bgc');
+	var pConcat = pid+'|'+name+'|'+1;
+	
+	if(oprtunityVal.indexOf(pid)==-1){
+			if (oprtunityVal==''){
+				oprtunityVal=pConcat
+			}else{
+				oprtunityVal+='||'+pConcat
+			}
 	}
 }
 /*********** jahangirEditedEnd18Feb medClickVal *********/

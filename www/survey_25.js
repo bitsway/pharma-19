@@ -3448,6 +3448,7 @@ function tourCheckFirst(){
 	//alert (localStorage.base_url+'check_this_n_next_month?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode)
 	
 	localStorage.darftValue=''
+	
 	$.ajax(localStorage.base_url+'check_this_n_next_month?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode,{
 			type: 'POST',
 			timeout: 30000,
@@ -3687,7 +3688,7 @@ function tourCheckFirst(){
 					//alert (dateNextMonth)
 					//alert (docNextMonthRow.indexOf('<'+dateNextMonth+'>'))
 				if (docNextMonthRow.indexOf('<'+dateNextMonth+'>')!=-1){
-					var dateRouteSingleNext=docNextMonthRow.split('<'+dateNextMonth+'>')[1].split('</'+dayCheckFinal+'>')[0]
+					var dateRouteSingleNext=docNextMonthRow.split('<'+dateNextMonth+'>')[1].split('</'+dateNextMonth+'>')[0]
 					//if (dayShow==21){alert (dateRouteSingle)}
 					var marketStrListNextMonth=dateRouteSingleNext.split('<rd>')
 					var dayRouteNext=''
@@ -7863,6 +7864,54 @@ function cancellDocvisit(){
 			}//Visited with check
 	//}//Sync date check
   }
+//==============Cancell Doctor=======================  
+function cancellDoc(){	
+	$("#myerror_doctor_prof").html('' )
+	$("#wait_image_docProf").show();
+	var market_Id=localStorage.visit_market_show.split('|')[1];
+	var visitDocId=localStorage.visit_client.split('|')[1]	
+	
+	reason=$("#docC_combo").val()
+	
+	
+	
+	
+	$("#doctor_prof").val(localStorage.report_url+'cancellDoc?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&route='+market_Id+'&docId='+visitDocId+'&reason='+reason)
+		$.ajax(localStorage.report_url+'cancellDoc?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&route='+market_Id+'&docId='+visitDocId+'&reason='+reason,{
+
+								type: 'POST',
+								timeout: 30000,
+								error: function(xhr) {
+								 $("#wait_image_docProf").hide();
+								 $("#myerror_doctor_prof").html('Network Timeout. Please check your Internet connection..');
+													},
+								success:function(data, status,xhr){	
+									 $("#wait_image_docProf").hide();
+									 if (status!='success'){
+										$("#myerror_doctor_prof").html('Network Timeout. Please check your Internet connection...');
+										
+									 }
+									 else{	
+									 	var resultArray = data.replace('</START>','').replace('</END>','').split('<SYNCDATA>');	
+										
+								if (resultArray[0]=='FAILED'){
+											$("#myerror_doctor_prof").text(resultArray[1]);	
+											
+										}
+								else if (resultArray[0]=='SUCCESS'){	
+									var result_string=resultArray[1];
+									
+									$("#myerror_doctor_prof").html(result_string)
+									
+								
+							}else{	
+								 $("#wait_image_docProf").hide();
+								 $("#myerror_doctor_prof").html('Network Timeout. Please check your Internet connection..');
+								}
+						}
+					  }
+			 });//end ajax
+  }
 //==============================Doctor visit save===========================
 function saveDocvisit(){	
 	$("#errorChkVSubmit").text("");
@@ -10010,8 +10059,8 @@ function page_doctor_profile(getData) {
 									$("#dMDay").val(dMDay)
 									$("#dMobile").val(dMobile)
 									$("#dCAddress").val(dCAddress)
-									$("#dDistrict").val(dDistrict)
-									$("#dThana").val(dThana)
+									$("#dDistrict").val(dThana+'|'+dDistrict)
+									//$("#dThana").val(dThana)
 									//$("#dCategory").val(dCategory)
 									
 									catList=dCategory.split(',')
@@ -11038,7 +11087,8 @@ function setPrProduct(){
 				
 				pr_tbl_A=pr_tbl_A+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id_A +'" onClick="check_boxTrue_pr(\''+pr_id_A+'\')"><font id="prName'+ pr_id_A +'" class="name" >'+ pr_name_A+'</font><input type="hidden" id="doc_pr_id'+pr_id_A+'" value="'+pr_id_A+'" ></span><span><input onmouseout="check_boxTrue_inp_val(\''+pr_id_A+'\')" type="number" id="prInputVal'+pr_id_A+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';
 				}
-		localStorage.pr_tbl_A=pr_tbl_A		
+		localStorage.pr_tbl_A=pr_tbl_A
+		$("#pr_id_lv").empty();
 		$("#pr_id_lv").append(localStorage.pr_tbl_A);	
 		
 	}
@@ -11489,6 +11539,7 @@ function prescription_submit(){
 
 /************ jahangirEditedStart20Feb prsearchItem **************/
 function prsearchItem() {
+	$("#pr_id_lv").empty();
 	//alert ('aaaaaaaaa ')		
 	//var filter = input.value.toUpperCase();
 	var filter  = $("#pritemSearch").val().toUpperCase();
