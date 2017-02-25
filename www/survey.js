@@ -11434,6 +11434,8 @@ function prescription_submit(){
 											
 											localStorage.opProdID_Str='';
 											localStorage.prProdID_Str='';
+											oprtunityVal='';
+											optionVal='';
 											//alert (result_string)
 										
 											//image upload function									
@@ -11479,8 +11481,6 @@ function prescription_submit(){
 											$("#wait_image_prescription").hide();
 											$("#btn_prescription_submit").show();
 											
-											localStorage.prProdID_Str=''
-											localStorage.opProdID_Str=''
 											getDocDataprCart()
 											getDocDataopCart()
 											$("#pr_id_lv").empty()
