@@ -2462,8 +2462,8 @@ function doctor_visit() {
 	localStorage.visit_page="NO";
 	localStorage.scheduleDocFlag=0
 	//addMarketList();
-	if (localStorage.doctor_flag==1 && localStorage.cTeam==1) {addMarketListCteam();}else{addMarketList();}
-	
+	//if (localStorage.doctor_flag==1 && localStorage.cTeam==1) {addMarketListCteam();}else{addMarketList();}
+	addMarketList();
 	$("#addDocanc").show();
 	$("#blankAnc").hide();
 	$("#dPending").show();
