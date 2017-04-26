@@ -11112,7 +11112,7 @@ function setPrProductA(filter){
 					var pr_id=prArray[0];	
 					var pr_name=prArray[1];
 					
-					pr_tbl=pr_tbl+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id+'" onClick="check_boxTrue_pr(\''+pr_id_A+'\')"><font id="prName'+ pr_id+'" class="name" >'+ pr_name+'</font><input type="hidden" id="doc_pr_id'+pr_id+'" value="'+pr_id+'" ></span><span><input onmouseout="check_boxTrue_inp_val(\''+pr_id+'\')" type="number" id="prInputVal'+pr_id+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';					
+					pr_tbl=pr_tbl+'<li  style="border-bottom-style:solid; overflow:hidden;border-color:#CBE4E4;border-bottom-width:thin "  class="name"><span id="prSpan'+ pr_id+'" onClick="check_boxTrue_pr(\''+pr_id+'\')"><font id="prName'+ pr_id+'" class="name" >'+ pr_name+'</font><input type="hidden" id="doc_pr_id'+pr_id+'" value="'+pr_id+'" ></span><span><input onmouseout="check_boxTrue_inp_val(\''+pr_id+'\')" type="number" id="prInputVal'+pr_id+'" style="width:60px; border:1px solid #0088D1; float:right; box-shadow:0px 1px 1px 1px #0088D1; border-radius:5px"/></span></li>';					
 				}
 				//var bb=eval("localStorage.pr_tbl_"+filter)
 				//bb=pr_tbl;
