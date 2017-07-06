@@ -10921,6 +10921,7 @@ function chemist_submit() {
 	chemist_name=chemist_name.replace(",","").replace("'","").replace(";","").replace('"','')
 		// ajax-------
 	if ((chemist_name !='') && (chemist_ph !='' )){
+		$("#chSButton").hide();
 		//alert (localStorage.base_url+'chemist_submit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&market_id='+marketId+'&chemist_name='+encodeURI(chemist_name)+'&chemist_add='+encodeURI(chemist_name)+'&chemist_ph='+encodeURI(chemist_ph)+'&trade_license_no='+encodeURI(trade_license_no)+'&vat_registration_no='+encodeURI(vat_registration_no)+'&chemist_dob='+encodeURI(chemist_dob));
 		
 		// ajax-------
@@ -10929,22 +10930,26 @@ function chemist_submit() {
 					 url: localStorage.base_url+'chemist_submit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&market_id='+marketId+'&chemist_name='+encodeURI(chemist_name)+'&chemist_add='+encodeURI(chemist_name)+'&chemist_ph='+encodeURI(chemist_ph)+'&trade_license_no='+encodeURI(trade_license_no)+'&vat_registration_no='+encodeURI(vat_registration_no)+'&chemist_dob='+encodeURI(chemist_dob),
 					 success: function(result) {
 							if (result==''){
+								$("#chSButton").show();
 								$("#error_chemist_add_page").html('Sorry Network not available');
 							}else{					
 								var resultArray = result.split('<SYNCDATA>');			
-								if (resultArray[0]=='FAILED'){						
+								if (resultArray[0]=='FAILED'){	
+									$("#chSButton").show();					
 									$("#error_chemist_add_page").html(resultArray[1]);								
 								
 								}else if (resultArray[0]=='SUCCESS'){																								
 									$("#error_chemist_add_page").html(resultArray[1]);
+									$("#chSButton").show();
 									
-									
-								}else{						
+								}else{				
+									$("#chSButton").show();		
 									$("#error_chemist_add_page").html('Network Timeout. Please try again.');
 									}
 							}
 						  },
-					  error: function(result) {			  
+					  error: function(result) {		
+					  	  $("#chSButton").show();		  
 						  $("#error_chemist_add_page").html('Network Timeout. Please try again.');		
 					  }
 				 });//end ajax
