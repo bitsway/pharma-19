@@ -10963,6 +10963,56 @@ function chemist_submit() {
 	//$.afui.loadContent("#page_chemist_add",true,true,'right');
 }
 
+//=================BV===================
+function bvSubmit() {	
+	//var marketId=(localStorage.visit_market_show).split('|')[1]
+//	var visit_client=(localStorage.visit_client_show).split('|')[1]
+//	var inactive_reason=$("#inactive_reason").val();
+	var strSubmit="test"
+		// ajax-------
+
+		//alert (localStorage.base_url+'chemist_cancelSubmit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&market_id='+marketId+'&visit_client='+visit_client+'&inactive_reason='+inactive_reason);
+		
+		// ajax-------
+		if (strSubmit!=''){
+			$("#bvSubmit").hide();
+				$.ajax({
+					 type: 'POST',
+					 url: localStorage.base_url+'bvSubmit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&strSubmit='+strSubmit,
+					 success: function(result) {
+							if (result==''){
+								$("#bvSubmit").show();
+								$("#error_bv_page").html('Sorry Network not available');
+							}else{					
+								var resultArray = result.split('<SYNCDATA>');			
+								if (resultArray[0]=='FAILED'){		
+									$("#bvSubmit").show();				
+									$("#error_bv_page").html(resultArray[1]);								
+								
+								}else if (resultArray[0]=='SUCCESS'){	
+									$("#bvSubmit").show();																							
+									$("#error_bv_page").html(resultArray[1]);
+									
+									
+								}else{		
+									$("#bvSubmit").show();
+													
+									$("#error_bv_page").html('Network Timeout. Please try again.');
+									}
+							}
+						  },
+					  error: function(result) {			
+					  	  $("#bvSubmit").show();  
+						  $("#error_bv_page").html('Network Timeout. Please try again.');		
+					  }
+				 });//end ajax
+	
+		}
+}
+
+//==================BV end============
+
+
 function page_chemist_cancel() {	
 	$(".market").html(localStorage.visit_market_show);
 	$(".visit_client").html(localStorage.visit_client_show);
