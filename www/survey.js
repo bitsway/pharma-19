@@ -10965,10 +10965,20 @@ function chemist_submit() {
 
 //=================BV===================
 function bvSubmit() {	
-	//var marketId=(localStorage.visit_market_show).split('|')[1]
-//	var visit_client=(localStorage.visit_client_show).split('|')[1]
-//	var inactive_reason=$("#inactive_reason").val();
-	var strSubmit="test"
+	var Acme=$("#Acme").val();
+	var Square=$("#Square").val();
+	var Beximco=$("#Beximco").val();
+	var Incepta=$("#Incepta").val();
+	var Renata=$("#Renata").val();
+	var Healthcare=$("#Healthcare").val();
+	var Eskayef=$("#Eskayef").val();
+	var ACI=$("#ACI").val();
+	var Aristopharma=$("#Aristopharma").val();
+	var Radiant=$("#Radiant").val();
+	var Opsonin=$("#Opsonin").val();
+	var Others=$("#Others").val();
+	
+	var strSubmit=Acme+"<fd>"+Square+"<fd>"+ Beximco+"<fd>"+ Incepta+"<fd>"+ Renata+"<fd>"+ Healthcare+"<fd>"+ Eskayef+"<fd>"+ ACI+"<fd>"+ Aristopharma+"<fd>"+ Radiant+"<fd>"+ Opsonin+"<fd>"+ Others
 		// ajax-------
 
 		//alert (localStorage.base_url+'chemist_cancelSubmit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&market_id='+marketId+'&visit_client='+visit_client+'&inactive_reason='+inactive_reason);
