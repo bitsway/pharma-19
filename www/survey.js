@@ -2947,8 +2947,8 @@ function repPendingDoc(rep_id){
 											if (month==4){monthThisShow='April'+'  '+year;}
 											if (month==5){monthThisShow='May'+'  '+year;}
 											if (month==6){monthThisShow='June'+'  '+year;}
-											if (month==7){monthThisShow='Juyl'+'  '+year;}
-											if (month==8){monthThisShow='Augusr'+'  '+year;}
+											if (month==7){monthThisShow='July'+'  '+year;}
+											if (month==8){monthThisShow='August'+'  '+year;}
 											if (month==9){monthThisShow='September'+'  '+year;}
 											if (month==10){monthThisShow='October'+'  '+year;}
 											if (month==11){monthThisShow='November'+'  '+year;}
@@ -3506,8 +3506,8 @@ function tourCheckFirst(){
 	if (month==4){monthThisShow='April'+'  '+year;}
 	if (month==5){monthThisShow='May'+'  '+year;}
 	if (month==6){monthThisShow='June'+'  '+year;}
-	if (month==7){monthThisShow='Juyl'+'  '+year;}
-	if (month==8){monthThisShow='Augusr'+'  '+year;}
+	if (month==7){monthThisShow='July'+'  '+year;}
+	if (month==8){monthThisShow='August'+'  '+year;}
 	if (month==9){monthThisShow='September'+'  '+year;}
 	if (month==10){monthThisShow='October'+'  '+year;}
 	if (month==11){monthThisShow='November'+'  '+year;}
@@ -3587,8 +3587,8 @@ function tourCheckFirst(){
 	if (monthNextGet==4){monthNext='April'+'  '+year;}
 	if (monthNextGet==5){monthNext='May'+'  '+year;}
 	if (monthNextGet==6){monthNext='June'+'  '+year;}
-	if (monthNextGet==7){monthNext='Juyl'+'  '+year;}
-	if (monthNextGet==8){monthNext='Augusr'+'  '+year;}
+	if (monthNextGet==7){monthNext='July'+'  '+year;}
+	if (monthNextGet==8){monthNext='August'+'  '+year;}
 	if (monthNextGet==9){monthNext='September'+'  '+year;}
 	if (monthNextGet==10){monthNext='October'+'  '+year;}
 	if (monthNextGet==11){monthNext='November'+'  '+year;}
@@ -5971,8 +5971,8 @@ function repPendingDocView(rep_id){
 										if (month==4){monthThisShow='April'+'  '+year;}
 										if (month==5){monthThisShow='May'+'  '+year;}
 										if (month==6){monthThisShow='June'+'  '+year;}
-										if (month==7){monthThisShow='Juyl'+'  '+year;}
-										if (month==8){monthThisShow='Augusr'+'  '+year;}
+										if (month==7){monthThisShow='July'+'  '+year;}
+										if (month==8){monthThisShow='August'+'  '+year;}
 										if (month==9){monthThisShow='September'+'  '+year;}
 										if (month==10){monthThisShow='October'+'  '+year;}
 										if (month==11){monthThisShow='November'+'  '+year;}
