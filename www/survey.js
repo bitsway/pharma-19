@@ -12565,6 +12565,7 @@ function winPr(r) {
 }
 
 function failPr(error) {
+	alert (error)
 	$("#error_prescription_submit").text('Memory Error. Please take new picture and Submit');
 }
 
