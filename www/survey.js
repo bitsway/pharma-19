@@ -7298,7 +7298,7 @@ function visitSubmit_doc(){
 													$("#visit_submit_doc").show();	
 												}
 											  else if (resultArray[0]=='SUCCESS'){
-												  
+												    alert (docVisitPhoto+' , '+ imageName)
 													uploadPhoto_docVisit(docVisitPhoto, imageName);				
 													//-----------
 													localStorage.visit_client=''
