@@ -12544,6 +12544,7 @@ function failProfile(error) {
 
 function uploadPhoto(imageURI, imageName) {
    // alert (localStorage.photo_submit_url)
+    alert (localStorage.photo_submit_url+'  ,  '+ imageURI+'  ,  '+ imageName)
 	var options = new FileUploadOptions();
     options.fileKey="upload";
     options.fileName=imageName;
@@ -12562,6 +12563,7 @@ function uploadPhoto(imageURI, imageName) {
 }
 
 function winPr(r) {
+	alert (r)
 }
 
 function failPr(error) {
