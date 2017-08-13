@@ -11482,14 +11482,15 @@ function prescription_submit(){
 											
 								},
 							success:function(data, status,xhr){				
-
+						alert (status)
 								if (status!='success'){
-									
+									alert (xhr)
 									$("#error_prescription_submit").html('Network timeout. Please ensure you have active internet connection.');
 									$("#wait_image_prescription").hide();
 									$("#btn_prescription_submit").show();
 								}
 								else{
+									alert (data)
 									   var resultArray = data.split('<SYNCDATA>');	
 										if (resultArray[0]=='FAILED'){						
 											$("#error_prescription_submit").html(resultArray[1]);
