@@ -377,12 +377,13 @@ function page_saved_Doc() {
 	var year = currentDate.getFullYear()
 	//alert (parseInt(day))
 	var today=  year + "-" + month + "-" + day
-	//alert (today)
+	
+	
 	for ( i=0; i < docSaveDataListLength-1; i++){	
 		var singleDoc=docSaveDataList[i]
 		var docShowList=singleDoc.split('<d>');
 		
-		//alert (docShowList[4]+'           '+today)
+		alert (docShowList[4]+'           '+today)
 		if (today==docShowList[4]){
 			//alert ('Yea')
 			docSaveStr=docSaveStr+' <tr onClick="saved_Doc_set(\''+i+'\');"><td  height="30px" >'+docShowList[0]+'</td><td align="center" style="background-color:#006464; color:#FFF; font-size:20px; border-right:hidden"> >></td></tr>'
