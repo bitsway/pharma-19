@@ -383,8 +383,8 @@ function page_saved_Doc() {
 		var singleDoc=docSaveDataList[i]
 		var docShowList=singleDoc.split('<d>');
 		
-		alert (docShowList[4]+'           '+today)
-		if (today==docShowList[4]){
+		//alert (docShowList[4]+'           '+today)
+		if (parseInt(today)==parseInt(docShowList[4])){
 			//alert ('Yea')
 			docSaveStr=docSaveStr+' <tr onClick="saved_Doc_set(\''+i+'\');"><td  height="30px" >'+docShowList[0]+'</td><td align="center" style="background-color:#006464; color:#FFF; font-size:20px; border-right:hidden"> >></td></tr>'
 		}
