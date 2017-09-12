@@ -382,14 +382,14 @@ function page_saved_Doc() {
 	for ( i=0; i < docSaveDataListLength-1; i++){	
 		var singleDoc=docSaveDataList[i]
 		var docShowList=singleDoc.split('<d>');
+		var day_get=docShowList[4].split('-')[2]
 		
 		//alert (docShowList[4]+'           '+today)
-		if (parseInt(today)==parseInt(docShowList[4])){
-			//alert ('Yea')
+		//if (parseInt(today)==parseInt(docShowList[4])){
+		if (parseInt(day)==parseInt(day_get)){
 			docSaveStr=docSaveStr+' <tr onClick="saved_Doc_set(\''+i+'\');"><td  height="30px" >'+docShowList[0]+'</td><td align="center" style="background-color:#006464; color:#FFF; font-size:20px; border-right:hidden"> >></td></tr>'
 		}
 		else{
-			//alert ('No')
 			docSaveStr=docSaveStr+' <tr><td style="color:#900;" height="30px" >'+docShowList[0] +' [Tomorrow]'+'</td><td align="center" style=" border-left:hidden"></td></tr>'
 		}
 	}
