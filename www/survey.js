@@ -384,7 +384,7 @@ function page_saved_Doc() {
 		var docShowList=singleDoc.split('<d>');
 		var day_get=docShowList[4].split('-')[2]
 		
-		alert (parseInt(day)+'           '+parseInt(day_get))
+		//alert (parseInt(day)+'           '+parseInt(day_get))
 		//if (parseInt(today)==parseInt(docShowList[4])){
 		if (parseInt(day)==parseInt(day_get)){
 			docSaveStr=docSaveStr+' <tr onClick="saved_Doc_set(\''+i+'\');"><td  height="30px" >'+docShowList[0]+'</td><td align="center" style="background-color:#006464; color:#FFF; font-size:20px; border-right:hidden"> >></td></tr>'
