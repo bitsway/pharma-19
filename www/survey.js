@@ -11477,7 +11477,7 @@ function prescription_submit(){
 								type: 'POST',
 								timeout: 30000,
 								error: function(xhr) {
-											alert (data)
+											//alert (data)
 											var resultArray = data.split('<SYNCDATA>');
 											$("#error_prescription_submit").html(resultArray[1]);
 											$("#wait_image_prescription").hide();
@@ -11485,7 +11485,7 @@ function prescription_submit(){
 											
 								},
 							success:function(data, status,xhr){				
-						alert (status)
+						//alert (status)
 								if (status!='success'){
 									
 									$("#error_prescription_submit").html('Network timeout. Please ensure you have active internet connection.');
@@ -11493,7 +11493,7 @@ function prescription_submit(){
 									$("#btn_prescription_submit").show();
 								}
 								else{
-									alert (data)
+									//alert (data)
 									   var resultArray = data.split('<SYNCDATA>');	
 										if (resultArray[0]=='FAILED'){						
 											$("#error_prescription_submit").html(resultArray[1]);
@@ -11510,7 +11510,7 @@ function prescription_submit(){
 											//alert (result_string)
 										
 											//image upload function	
-											alert (prescriptionPhoto +'  ,  '+ imageName)								
+											//alert (prescriptionPhoto +'  ,  '+ imageName)								
 											uploadPhoto(prescriptionPhoto, imageName);
 											//var picNo=parseInt(localStorage.picFlag)+1 
 											
