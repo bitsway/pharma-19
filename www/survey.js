@@ -1549,7 +1549,7 @@ function check_user() {
 				
 				var dtaStr=data.replace('<start>','').replace('<end>','')
 				var resultArray = dtaStr.split('<fd>');		
-					if(resultArray.length==4){
+					if(resultArray.length>3){
 						var base_url=resultArray[0];
 						var photo_url=resultArray[1];
 						var photo_submit_url=resultArray[2];
@@ -1576,7 +1576,7 @@ function check_user() {
 							localStorage.photo_submit_url=photo_submit_url;
 							localStorage.report_url=report_url;
 							localStorage.tour_url=tour_url;
-							alert (localStorage.tour_url)
+							//alert (localStorage.tour_url)
 							
 							localStorage.cid=cid;
 							localStorage.user_id=user_id;
