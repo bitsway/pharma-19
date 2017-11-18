@@ -1554,6 +1554,7 @@ function check_user() {
 						var photo_url=resultArray[1];
 						var photo_submit_url=resultArray[2];
 						var report_url=resultArray[3];
+						var tour_url=resultArray[4];
 						
 						
 						//-------------
@@ -5817,9 +5818,9 @@ $("#err_marketTour").html('');
 		
 		
 	if (errFlag==0){
-		//alert (localStorage.base_url+'tourDocEntry?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&submitStr='+encodeURI(submitStr));		
+		//alert (localStorage.tour_url+'tourDocEntry?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&submitStr='+encodeURI(submitStr));		
 				
-			   $.ajax(localStorage.base_url+'tourDocEntry?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&submitStr='+encodeURI(submitStr),{
+			   $.ajax(localStorage.tour_url+'tourDocEntry?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&submitStr='+encodeURI(submitStr),{
 		
 										type: 'POST',
 										timeout: 30000,
