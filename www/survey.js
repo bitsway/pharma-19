@@ -2234,7 +2234,7 @@ localStorage.report_button=' <input type="submit" id="loginButton" onClick="s_or
 													
 													
 													
-													$("#error_login").html('Synced Successfully');
+													$("#error_login").html('Basic Sync Completed Successfully');
 													
 													$("#wait_image_login").hide();
 													$("#loginButton").show();
@@ -2244,13 +2244,20 @@ localStorage.report_button=' <input type="submit" id="loginButton" onClick="s_or
 													}
 													checkInbox();
 													if (localStorage.user_type=='sup'){
-			$("#chemisVDiv").hide();
-			$("#chSaveDiv").hide();
-		}
-		else{
-			$("#chemisVDiv").show();
-			$("#chSaveDiv").show();
-		}
+														$("#chemisVDiv").hide();
+														$("#chSaveDiv").hide();
+													}
+													else{
+														$("#chemisVDiv").show();
+														$("#chSaveDiv").show();
+													}
+													
+													$("#error_login").html('Basic Sync Completed Successfully');
+													
+													$("#error_login").html('Doctor Sync Processing...');
+													doctor_sync()
+													
+													$("#error_login").html("Doctor Synced Successfully");
 													$.afui.loadContent("#pageHome",true,true,'right');
 													
 													set_doc_all();
@@ -11596,7 +11603,8 @@ function prescription_submit(){
 //											}
 
 											$.afui.loadContent("#page_confirm_visit_success",true,true,'right');
-											
+											$("#wait_image_prescription").hide();
+											$("#btn_prescription_submit").show();
 											
 										}else{						
 											$("#error_prescription_submit").html('Authentication error. Please register and sync to retry.');
@@ -12361,7 +12369,7 @@ function page_opItemPage2(){
 //==============================Sync Doctor=======================
 function doctor_sync(){
 	$("#wait_image_login").show();
-	$("#doctorButton").hide();
+	//$("#doctorButton").hide();
 	$("#loginButton").hide();
 	//alert (localStorage.base_url+'doctor_sync?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+encodeURIComponent(localStorage.user_pass)+'&synccode='+localStorage.synccode)							
 $.ajax(localStorage.base_url+'doctor_sync?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+encodeURIComponent(localStorage.user_pass)+'&synccode='+localStorage.synccode,{
@@ -12372,7 +12380,7 @@ $.ajax(localStorage.base_url+'doctor_sync?cid='+localStorage.cid+'&rep_id='+loca
 									var resultArray = data.split('<SYNCDATA>');
 									$("#error_login").html(resultArray[1]);
 									$("#wait_image_login").hide();
-									$("#doctorButton").show();
+								//	$("#doctorButton").show();
 									$("#loginButton").show();
 											
 								},
@@ -12382,7 +12390,7 @@ $.ajax(localStorage.base_url+'doctor_sync?cid='+localStorage.cid+'&rep_id='+loca
 									
 									$("#error_login").html('Network timeout. Please ensure you have active internet connection.');
 									$("#wait_image_login").hide();
-									$("#doctorButton").show();
+									//$("#doctorButton").show();
 									$("#loginButton").show();
 								}
 								else{
@@ -12390,14 +12398,14 @@ $.ajax(localStorage.base_url+'doctor_sync?cid='+localStorage.cid+'&rep_id='+loca
 									   
 										if (resultArray[0]=='FAILED'){						
 											$("#wait_image_login").hide();
-											$("#doctorButton").show();		
+											//$("#doctorButton").show();		
 											$("#loginButton").show();						
 											$("#error_login").html(resultArray[1]);
 										}else if (resultArray[0]=='SUCCESS'){
 											
 											$("#error_login").html("Doctor Synced Successfully");
 											$("#wait_image_login").hide();
-											$("#doctorButton").show();		
+											//$("#doctorButton").show();		
 											$("#loginButton").show();							
 											localStorage.market_doctorVisit=resultArray[1];
 											localStorage.opProductStr=resultArray[2];
@@ -12516,7 +12524,7 @@ $.ajax(localStorage.base_url+'doctor_sync?cid='+localStorage.cid+'&rep_id='+loca
 										}else{						
 											$("#error_login").html('Authentication error. Please register and sync to retry.');
 											$("#wait_image_login").hide();
-											$("#doctorButton").show();
+											//$("#doctorButton").show();
 											$("#loginButton").show();
 											}
 								}
@@ -12571,10 +12579,14 @@ function uploadPhoto(imageURI, imageName) {
 }
 
 function winPr(r) {
+	$("#wait_image_prescription").hide();
+	$("#btn_prescription_submit").show();
 }
 
 function failPr(error) {
 	$("#error_prescription_submit").text('Memory Error. Please take new picture and Submit');
+	$("#wait_image_prescription").hide();
+	$("#btn_prescription_submit").show();
 }
 
 
