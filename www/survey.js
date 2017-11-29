@@ -11465,7 +11465,7 @@ function prescription_submit_upload(){
 			var now = $.now();
 			 //alert 	('1')
 			var imageName=localStorage.user_id+'_'+now.toString()+'.jpg'
-			alert ('1')
+			//alert ('1')
 			uploadPhoto(prescriptionPhoto, imageName);	 
 	}
 }
@@ -11497,7 +11497,7 @@ function prescription_submit(){
 		
 		
 		
-		alert ('s1')
+		
 		
 		
 		//prescriptionPhoto='dasdfadf'
@@ -12599,7 +12599,8 @@ function failProfile(error) {
 }
 
 function uploadPhoto(imageURI, imageName) {
-   // alert (localStorage.photo_submit_url)
+    alert (localStorage.photo_submit_url)
+	alert (imageURI +'  |  '+ imageName)
 	var options = new FileUploadOptions();
     options.fileKey="upload";
     options.fileName=imageName;
