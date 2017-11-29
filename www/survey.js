@@ -11465,6 +11465,7 @@ function prescription_submit_upload(){
 			var now = $.now();
 			 //alert 	('1')
 			var imageName=localStorage.user_id+'_'+now.toString()+'.jpg'
+			alert ('1')
 			uploadPhoto(prescriptionPhoto, imageName);	 
 	}
 }
@@ -11496,7 +11497,7 @@ function prescription_submit(){
 		
 		
 		
-		
+		alert ('s1')
 		
 		
 		//prescriptionPhoto='dasdfadf'
@@ -12619,6 +12620,7 @@ function uploadPhoto(imageURI, imageName) {
 function winPr(r) {
 	$("#wait_image_prescription").hide();
 	$("#btn_prescription_submit").show();
+	alert ('u1')
 	prescription_submit();
 }
 
