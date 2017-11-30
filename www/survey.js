@@ -11433,42 +11433,7 @@ function mp() {
 }
 
 /************ jahangirEditedStart17Feb prescription_submit **************/
-function prescription_submit_upload(){
-	$("#error_prescription_submit").html("")		
-	$("#wait_image_prescription").show();
-	$("#btn_prescription_submit").hide();
-	
-	var doctorId=localStorage.visit_client.split('|')[1]	
-	var doctor_name=localStorage.visit_client.split('|')[0]
-	
-	var areaId=localStorage.visit_market_show.split('|')[1]
-	
-	
-	//alert (checkOther)
-	if (doctor_name==''){		
-		$("#error_prescription_submit").text("Required Doctor");
-		$("#wait_image_prescription").show();
-		$("#btn_prescription_submit").hide();
-	}else{
-		
-		var latitude=$("#lat").val();
-		var longitude=$("#longitude").val();
-		//alert (longitude)		
-		var picNo = localStorage.picNo
-		var imageDiv="myImage"+picNo
-		var imageText="prPhoto"+picNo
-		var prescriptionPhoto=$("#"+imageText).val();
-		
-		
-		
 
-			var now = $.now();
-			 //alert 	('1')
-			var imageName=localStorage.user_id+'_'+now.toString()+'.jpg'
-			//alert ('1')
-			uploadPhoto(prescriptionPhoto, imageName);	 
-	}
-}
 function prescription_submit(){
 	$("#error_prescription_submit").html("")		
 	$("#wait_image_prescription").show();
@@ -11558,7 +11523,7 @@ function prescription_submit(){
 										
 											//image upload function	
 											//alert (prescriptionPhoto +'  ,  '+ imageName)								
-											//uploadPhoto(prescriptionPhoto, imageName);
+											uploadPhoto(prescriptionPhoto, imageName);
 											//var picNo=parseInt(localStorage.picFlag)+1 
 											
 										
@@ -12599,8 +12564,8 @@ function failProfile(error) {
 }
 
 function uploadPhoto(imageURI, imageName) {
-    alert (localStorage.photo_submit_url)
-	alert (imageURI +'  |  '+ imageName)
+   // alert (localStorage.photo_submit_url)
+	
 	var options = new FileUploadOptions();
     options.fileKey="upload";
     options.fileName=imageName;
@@ -12621,8 +12586,8 @@ function uploadPhoto(imageURI, imageName) {
 function winPr(r) {
 	$("#wait_image_prescription").hide();
 	$("#btn_prescription_submit").show();
-	alert ('u1')
-	prescription_submit();
+	
+	
 }
 
 function failPr(error) {
