@@ -12412,115 +12412,115 @@ $.ajax(localStorage.base_url+'doctor_sync?cid='+localStorage.cid+'&rep_id='+loca
 											//$("#doctorButton").show();		
 											$("#loginButton").show();							
 											localStorage.market_doctorVisit=resultArray[1];
-											localStorage.opProductStr=resultArray[2];
+											// localStorage.opProductStr=resultArray[2];
 											//alert (localStorage.opProductStr)
-											var op_A=localStorage.opProductStr.split('<AEND>')[0].replace('<ASTART>','');
-											var op_after_A=localStorage.opProductStr.split('<AEND>')[1]
-											//alert (op_A)
-											var op_B=op_after_A.split('<BEND>')[0].replace('<BSTART>','');
-											var op_after_B=op_after_A.split('<BEND>')[1]
-											//alert (op_B)
-											var op_C=op_after_B.split('<CEND>')[0].replace('<CSTART>','');
-											var op_after_C=op_after_B.split('<CEND>')[1]
-											//alert (op_C)
-											var op_D=op_after_C.split('<DEND>')[0].replace('<DSTART>','');
-											var op_after_D=op_after_C.split('<DEND>')[1]
-											//alert (op_D)
-											var op_E=op_after_D.split('<EEND>')[0].replace('<ESTART>','');
-											var op_after_E=op_after_D.split('<EEND>')[1]
-											//alert (op_E)
-											var op_F=op_after_E.split('<FEND>')[0].replace('<FSTART>','');
-											var op_after_F=op_after_E.split('<FEND>')[1]
-											//alert (op_F)
-											var op_G=op_after_F.split('<GEND>')[0].replace('<GSTART>','');
-											var op_after_G=op_after_F.split('<GEND>')[1]
-											//alert (op_G)
-											var op_H=op_after_G.split('<HEND>')[0].replace('<HSTART>','');
-											var op_after_H=op_after_G.split('<HEND>')[1]
-											//alert (op_H)
-											var op_I=op_after_H.split('<IEND>')[0].replace('<ISTART>','');
-											var op_after_I=op_after_H.split('<IEND>')[1]
-											//alert (op_I)
-											var op_J=op_after_I.split('<JEND>')[0].replace('<JSTART>','');
-											var op_after_J=op_after_I.split('<JEND>')[1]
-											//alert (op_J)
-											var op_K=op_after_J.split('<KEND>')[0].replace('<KSTART>','');
-											var op_after_K=op_after_J.split('<KEND>')[1]
-											//alert (op_K)
-											var op_L=op_after_K.split('<LEND>')[0].replace('<LSTART>','');
-											var op_after_L=op_after_K.split('<LEND>')[1]
-											//alert (op_L)
-											var op_M=op_after_L.split('<MEND>')[0].replace('<MSTART>','');
-											var op_after_M=op_after_L.split('<MEND>')[1]
-											//alert (op_M)
-											var op_N=op_after_M.split('<NEND>')[0].replace('<NSTART>','');
-											var op_after_N=op_after_M.split('<NEND>')[1]
-											//alert (op_N)
-											var op_O=op_after_N.split('<OEND>')[0].replace('<OSTART>','');
-											var op_after_O=op_after_N.split('<OEND>')[1]
-											//alert (op_O)
-											var op_P=op_after_O.split('<PEND>')[0].replace('<PSTART>','');
-											var op_after_P=op_after_O.split('<PEND>')[1]
-											//alert (op_P)
-											var op_Q=op_after_P.split('<QEND>')[0].replace('<QSTART>','');
-											var op_after_Q=op_after_P.split('<QEND>')[1]
-											//alert (op_Q)
-											var op_R=op_after_Q.split('<REND>')[0].replace('<RSTART>','');
-											var op_after_R=op_after_Q.split('<REND>')[1]
-											//alert (op_R)
-											var op_S=op_after_R.split('<SEND>')[0].replace('<SSTART>','');
-											var op_after_S=op_after_R.split('<SEND>')[1]
-											//alert (op_S)
-											var op_T=op_after_S.split('<TEND>')[0].replace('<TSTART>','');
-											var op_after_T=op_after_S.split('<TEND>')[1]
-											//alert (op_T)
-											var op_U=op_after_T.split('<UEND>')[0].replace('<USTART>','');
-											var op_after_U=op_after_T.split('<UEND>')[1]
-											//alert (op_U)
-											var op_V=op_after_U.split('<VEND>')[0].replace('<VSTART>','');
-											var op_after_V=op_after_U.split('<VEND>')[1]
-											//alert (op_V)
-											var op_W=op_after_V.split('<WEND>')[0].replace('<WSTART>','');
-											var op_after_W=op_after_V.split('<WEND>')[1]
-											//alert (op_W)
-											var op_X=op_after_W.split('<XEND>')[0].replace('<XSTART>','');
-											var op_after_X=op_after_W.split('<XEND>')[1]
-											//alert (op_X)
-											var op_Y=op_after_X.split('<YEND>')[0].replace('<YSTART>','');
-											var op_after_Y=op_after_X.split('<YEND>')[1]
-											//alert (op_after_Y)
-											var op_Z=op_after_Y.split('<ZEND>')[0].replace('<ZSTART>','');
-											//var productListStr_after_E=productListStr_after_D.split('</Z>')[1]
-											//alert (op_Z)
-											localStorage.op_A=op_A
-											//alert (localStorage.op_A)
-											localStorage.op_B=op_B
-											localStorage.op_C=op_C
-											localStorage.op_D=op_D
-											localStorage.op_E=op_E
-											localStorage.op_F=op_F
-											localStorage.op_G=op_G
-											localStorage.op_H=op_H
-											localStorage.op_I=op_I
-											localStorage.op_J=op_J
-											localStorage.op_K=op_K
-											localStorage.op_L=op_L
-											localStorage.op_M=op_M
-											//alert ('1')
-											localStorage.op_N=op_N
-											localStorage.pr_O=op_O
-											localStorage.op_P=op_P
-											localStorage.op_Q=op_Q
-											localStorage.op_R=op_R											
-											localStorage.op_S=op_S
-											localStorage.op_T=op_T
-											//alert ('2')
-											localStorage.op_U=op_U
-											localStorage.op_V=op_V
-											localStorage.op_W=op_W
-											localStorage.op_X=op_X
-											localStorage.op_Y=op_Y
-											localStorage.op_Z=op_Z
+											// var op_A=localStorage.opProductStr.split('<AEND>')[0].replace('<ASTART>','');
+											// var op_after_A=localStorage.opProductStr.split('<AEND>')[1]
+											// //alert (op_A)
+											// var op_B=op_after_A.split('<BEND>')[0].replace('<BSTART>','');
+											// var op_after_B=op_after_A.split('<BEND>')[1]
+											// //alert (op_B)
+											// var op_C=op_after_B.split('<CEND>')[0].replace('<CSTART>','');
+											// var op_after_C=op_after_B.split('<CEND>')[1]
+											// //alert (op_C)
+											// var op_D=op_after_C.split('<DEND>')[0].replace('<DSTART>','');
+											// var op_after_D=op_after_C.split('<DEND>')[1]
+											// //alert (op_D)
+											// var op_E=op_after_D.split('<EEND>')[0].replace('<ESTART>','');
+											// var op_after_E=op_after_D.split('<EEND>')[1]
+											// //alert (op_E)
+											// var op_F=op_after_E.split('<FEND>')[0].replace('<FSTART>','');
+											// var op_after_F=op_after_E.split('<FEND>')[1]
+											// //alert (op_F)
+											// var op_G=op_after_F.split('<GEND>')[0].replace('<GSTART>','');
+											// var op_after_G=op_after_F.split('<GEND>')[1]
+											// //alert (op_G)
+											// var op_H=op_after_G.split('<HEND>')[0].replace('<HSTART>','');
+											// var op_after_H=op_after_G.split('<HEND>')[1]
+											// //alert (op_H)
+											// var op_I=op_after_H.split('<IEND>')[0].replace('<ISTART>','');
+											// var op_after_I=op_after_H.split('<IEND>')[1]
+											// //alert (op_I)
+											// var op_J=op_after_I.split('<JEND>')[0].replace('<JSTART>','');
+											// var op_after_J=op_after_I.split('<JEND>')[1]
+											// //alert (op_J)
+											// var op_K=op_after_J.split('<KEND>')[0].replace('<KSTART>','');
+											// var op_after_K=op_after_J.split('<KEND>')[1]
+											// //alert (op_K)
+											// var op_L=op_after_K.split('<LEND>')[0].replace('<LSTART>','');
+											// var op_after_L=op_after_K.split('<LEND>')[1]
+											// //alert (op_L)
+											// var op_M=op_after_L.split('<MEND>')[0].replace('<MSTART>','');
+											// var op_after_M=op_after_L.split('<MEND>')[1]
+											// //alert (op_M)
+											// var op_N=op_after_M.split('<NEND>')[0].replace('<NSTART>','');
+											// var op_after_N=op_after_M.split('<NEND>')[1]
+											// //alert (op_N)
+											// var op_O=op_after_N.split('<OEND>')[0].replace('<OSTART>','');
+											// var op_after_O=op_after_N.split('<OEND>')[1]
+											// //alert (op_O)
+											// var op_P=op_after_O.split('<PEND>')[0].replace('<PSTART>','');
+											// var op_after_P=op_after_O.split('<PEND>')[1]
+											// //alert (op_P)
+											// var op_Q=op_after_P.split('<QEND>')[0].replace('<QSTART>','');
+											// var op_after_Q=op_after_P.split('<QEND>')[1]
+											// //alert (op_Q)
+											// var op_R=op_after_Q.split('<REND>')[0].replace('<RSTART>','');
+											// var op_after_R=op_after_Q.split('<REND>')[1]
+											// //alert (op_R)
+											// var op_S=op_after_R.split('<SEND>')[0].replace('<SSTART>','');
+											// var op_after_S=op_after_R.split('<SEND>')[1]
+											// //alert (op_S)
+											// var op_T=op_after_S.split('<TEND>')[0].replace('<TSTART>','');
+											// var op_after_T=op_after_S.split('<TEND>')[1]
+											// //alert (op_T)
+											// var op_U=op_after_T.split('<UEND>')[0].replace('<USTART>','');
+											// var op_after_U=op_after_T.split('<UEND>')[1]
+											// //alert (op_U)
+											// var op_V=op_after_U.split('<VEND>')[0].replace('<VSTART>','');
+											// var op_after_V=op_after_U.split('<VEND>')[1]
+											// //alert (op_V)
+											// var op_W=op_after_V.split('<WEND>')[0].replace('<WSTART>','');
+											// var op_after_W=op_after_V.split('<WEND>')[1]
+											// //alert (op_W)
+											// var op_X=op_after_W.split('<XEND>')[0].replace('<XSTART>','');
+											// var op_after_X=op_after_W.split('<XEND>')[1]
+											// //alert (op_X)
+											// var op_Y=op_after_X.split('<YEND>')[0].replace('<YSTART>','');
+											// var op_after_Y=op_after_X.split('<YEND>')[1]
+											// //alert (op_after_Y)
+											// var op_Z=op_after_Y.split('<ZEND>')[0].replace('<ZSTART>','');
+											// //var productListStr_after_E=productListStr_after_D.split('</Z>')[1]
+											// //alert (op_Z)
+											// localStorage.op_A=op_A
+											// //alert (localStorage.op_A)
+											// localStorage.op_B=op_B
+											// localStorage.op_C=op_C
+											// localStorage.op_D=op_D
+											// localStorage.op_E=op_E
+											// localStorage.op_F=op_F
+											// localStorage.op_G=op_G
+											// localStorage.op_H=op_H
+											// localStorage.op_I=op_I
+											// localStorage.op_J=op_J
+											// localStorage.op_K=op_K
+											// localStorage.op_L=op_L
+											// localStorage.op_M=op_M
+											// //alert ('1')
+											// localStorage.op_N=op_N
+											// localStorage.pr_O=op_O
+											// localStorage.op_P=op_P
+											// localStorage.op_Q=op_Q
+											// localStorage.op_R=op_R											
+											// localStorage.op_S=op_S
+											// localStorage.op_T=op_T
+											// //alert ('2')
+											// localStorage.op_U=op_U
+											// localStorage.op_V=op_V
+											// localStorage.op_W=op_W
+											// localStorage.op_X=op_X
+											// localStorage.op_Y=op_Y
+											// localStorage.op_Z=op_Z
 											//alert (localStorage.op_Z)
 									
 											
