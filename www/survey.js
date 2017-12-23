@@ -1450,7 +1450,7 @@ function afterSync(){
 		localStorage.prProdID_Str=''
 		localStorage.opProdID_Str=''
 		localStorage.market_doctorVisit=''
-		localStorage.tourSubmitStr=''
+		//localStorage.tourSubmitStr=''
 		
 		localStorage.picFlag=0;
 		
@@ -3603,6 +3603,8 @@ function tourCheckFirst(){
 	if (monthNextGet==10){monthNext='October'+'  '+year;}
 	if (monthNextGet==11){monthNext='November'+'  '+year;}
 	if (monthNextGet==12){monthNext='December'+'  '+year;}
+	if (monthNextGet==13){year=year+1;monthNext='January'+'  '+year;}
+	
 
 	var daysNext = Math.round(((new Date(yearNext, monthNextGet))-(new Date(yearNext, monthNextGet-1)))/86400000);
 	//alert (localStorage.docNextMonthRow)
