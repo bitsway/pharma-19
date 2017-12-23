@@ -3603,7 +3603,7 @@ function tourCheckFirst(){
 	if (monthNextGet==10){monthNext='October'+'  '+year;}
 	if (monthNextGet==11){monthNext='November'+'  '+year;}
 	if (monthNextGet==12){monthNext='December'+'  '+year;}
-	if (monthNextGet==13){year=year+1;monthNext='January'+'  '+year;}
+	if (monthNextGet==13){year=year+1;monthNextGet=1;monthNext='January'+'  '+year;}
 	
 
 	var daysNext = Math.round(((new Date(yearNext, monthNextGet))-(new Date(yearNext, monthNextGet-1)))/86400000);
@@ -3627,11 +3627,13 @@ function tourCheckFirst(){
 			}
 			nextMonthTable='<table width="100%" border="0">  <tr style="font-size:24px; color:#039">    <td >'+monthNext+'</td><td>&nbsp;</td> <td>&nbsp;</td>    <td align="right" style="font-size:16px; color:#039">'+NextStatus+'</td>  </tr></table><table style="border-style:solid; border-width:thin; border-color:#096;background-color:#EDFEED" width="100%" border="1" cellspacing="0">'
 			
+			//alert (daysNext)
 			for (var i=0; i < daysNext; i++){
 				var dayShow=i+1
 				var aNext = new Date(monthNextGet+'/'+dayShow+'/'+yearNext);
 				//alert (aNext)
 				var dayNameNext=weekday[aNext.getDay()];
+				
 				var dateNextMonth = yearNext+'-'+monthNextGet+'-'+dayShow;
 				//alert (dateNextMonth)
 				
