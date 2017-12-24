@@ -1441,7 +1441,7 @@ function afterSync(){
 		localStorage.promoDate=''
 		localStorage.tour_doc_str=''
 		localStorage.tour_route_str=''
-		localStorage.docSaveData=''
+		//localStorage.docSaveData=''
 		
 		localStorage.marketStrDoc=''
 		localStorage.marketTourStr=''
@@ -3603,7 +3603,7 @@ function tourCheckFirst(){
 	if (monthNextGet==10){monthNext='October'+'  '+year;}
 	if (monthNextGet==11){monthNext='November'+'  '+year;}
 	if (monthNextGet==12){monthNext='December'+'  '+year;}
-	if (monthNextGet==13){year=year+1;monthNextGet=1;monthNext='January'+'  '+year;}
+	if (monthNextGet==13){year=year+1;yearNext=yearNext+1;monthNextGet=1;monthNext='January'+'  '+year;}
 	
 
 	var daysNext = Math.round(((new Date(yearNext, monthNextGet))-(new Date(yearNext, monthNextGet-1)))/86400000);
@@ -5705,6 +5705,8 @@ $("#err_marketTour").html('');
 	var dayNext = d.getDate();
 	var yearNext =d.getFullYear();
 	var daysNext = Math.round(((new Date(yearNext, monthNextGet))-(new Date(yearNext, monthNextGet-1)))/86400000);
+	
+	if (monthNextGet==13){monthNextGet=1;yearNext=yearNext+1}
 	var submitStr=''
 	var errFlag=0
 	//alert (daysNext)
@@ -5767,6 +5769,7 @@ $("#err_marketTour").html('');
 	var dayNext = d.getDate();
 	var yearNext =d.getFullYear();
 	var daysNext = Math.round(((new Date(yearNext, monthNextGet))-(new Date(yearNext, monthNextGet-1)))/86400000);
+	if (monthNextGet==13){monthNextGet=1;yearNext=yearNext+1}
 	var submitStr=''
 	var errFlag=0
 	for (var i=0; i < daysNext; i++){
