@@ -1450,6 +1450,7 @@ function afterSync(){
 		localStorage.prProdID_Str=''
 		localStorage.opProdID_Str=''
 		localStorage.market_doctorVisit=''
+		if  (len(localStorage.docSaveData)<10){localStorage.docSaveData=''}
 		//localStorage.tourSubmitStr=''
 		
 		localStorage.picFlag=0;
