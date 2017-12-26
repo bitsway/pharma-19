@@ -1441,6 +1441,7 @@ function afterSync(){
 		localStorage.promoDate=''
 		localStorage.tour_doc_str=''
 		localStorage.tour_route_str=''
+		if  (localStorage.docSaveData=''){localStorage.docSaveData=''}
 		//localStorage.docSaveData=''
 		
 		localStorage.marketStrDoc=''
@@ -1450,9 +1451,9 @@ function afterSync(){
 		localStorage.prProdID_Str=''
 		localStorage.opProdID_Str=''
 		localStorage.market_doctorVisit=''
-		if  (len(localStorage.docSaveData)<10){localStorage.docSaveData=''}
-		//localStorage.tourSubmitStr=''
 		
+		//localStorage.tourSubmitStr=''
+		if  (localStorage.tourSubmitStr=''){localStorage.tourSubmitStr=''}
 		localStorage.picFlag=0;
 		
 		localStorage.prPhoto1=''
