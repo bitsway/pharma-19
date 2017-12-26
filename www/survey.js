@@ -2965,6 +2965,7 @@ function repPendingDoc(rep_id){
 											if (month==10){monthThisShow='October'+'  '+year;}
 											if (month==11){monthThisShow='November'+'  '+year;}
 											if (month==12){monthThisShow='December'+'  '+year;}
+											if (month==13){year=year+1;month=1;monthThisShow='January'+'  '+year;}
 										
 											var days = Math.round(((new Date(year, month))-(new Date(year, month-1)))/86400000);
 											//alert (monthThisShow)
