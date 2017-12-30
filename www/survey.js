@@ -11139,16 +11139,16 @@ function page_PrescriptionCapture() {
 
 function setPicture(){
 localStorage.picFlag=0;
-//for (j=0; j < 10; j++){
-//		var picNo=parseInt(j)+1 
-//		var imageDiv="myImage"+picNo
-//		var imageText="prPhoto"+picNo
-//		var imageSource=''
-//		var image = document.getElementById(imageDiv);
-//		image.src = imageSource;
-//		imagePath = imageSource;
-//		$("#"+imageText).val(imagePath);
-//	}
+for (j=0; j < 15; j++){
+		var picNo=parseInt(j)+1 
+		var imageDiv="myImage"+picNo
+		var imageText="prPhoto"+picNo
+		var imageSource=''
+		var image = document.getElementById(imageDiv);
+		image.src = imageSource;
+		imagePath = imageSource;
+		$("#"+imageText).val(imagePath);
+	}
 }
 function cancelPicture(i){
 	var imageDiv="myImage"+i
