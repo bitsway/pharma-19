@@ -1471,16 +1471,16 @@ function afterSync(){
 		if  (localStorage.tourSubmitStr=''){localStorage.tourSubmitStr=''}
 		localStorage.picFlag=0;
 		
-		localStorage.prPhoto1=''
-		localStorage.prPhoto2=''
-		localStorage.prPhoto3=''
-		localStorage.prPhoto4=''
-		localStorage.prPhoto5=''
-		localStorage.prPhoto6=''
-		localStorage.prPhoto7=''
-		localStorage.prPhoto8=''
-		localStorage.prPhoto9=''
-		localStorage.prPhoto10=''
+		//localStorage.prPhoto1=''
+//		localStorage.prPhoto2=''
+//		localStorage.prPhoto3=''
+//		localStorage.prPhoto4=''
+//		localStorage.prPhoto5=''
+//		localStorage.prPhoto6=''
+//		localStorage.prPhoto7=''
+//		localStorage.prPhoto8=''
+//		localStorage.prPhoto9=''
+//		localStorage.prPhoto10=''
 		
 		
 		//Oppertunuty
@@ -12417,6 +12417,9 @@ function gotoPic(picNo) {
 		setOpProduct()
 	}
 	localStorage.picNo=picNo
+	
+	
+	
 	
 	
 	var prPic=$("#"+imageText).val();
