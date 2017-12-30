@@ -11521,7 +11521,7 @@ function prescription_submit(){
 								error: function(xhr) {
 											//alert (data)
 											//var resultArray = data.split('<SYNCDATA>');
-											$("#error_prescription_submit").html(resultArray[1]);
+											//$("#error_prescription_submit").html(resultArray[1]);
 											$("#wait_image_prescription").hide();
 											$("#btn_prescription_submit").show();
 											
