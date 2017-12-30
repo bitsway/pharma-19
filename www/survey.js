@@ -11522,6 +11522,7 @@ function prescription_submit(){
 											//alert (data)
 											//var resultArray = data.split('<SYNCDATA>');
 											//$("#error_prescription_submit").html(resultArray[1]);
+											$("#error_prescription_submit").html('Network timeout. Please ensure you have active internet connection.');
 											$("#wait_image_prescription").hide();
 											$("#btn_prescription_submit").show();
 											
