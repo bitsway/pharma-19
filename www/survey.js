@@ -11144,11 +11144,64 @@ for (j=0; j < 15; j++){
 		var imageDiv="myImage"+picNo
 		var imageText="prPhoto"+picNo
 		var imageSource=''
-		var image = document.getElementById(imageDiv);
-		image.src = imageSource;
-		imagePath = imageSource;
-		$("#"+imageText).val(imagePath);
-	}
+		
+		
+		if (picNo==1){
+			imageSource=localStorage.prPhoto1
+		}
+		if (picNo==2){
+			imageSource=localStorage.prPhoto2
+		}
+		if (picNo==3){
+			imageSource=localStorage.prPhoto3
+		}
+		if (picNo==4){
+			imageSource=localStorage.prPhoto4
+		}
+		if (picNo==5){
+			imageSource=localStorage.prPhoto5
+		}
+		if (picNo==6){
+			imageSource=localStorage.prPhoto6
+		}
+		if (picNo==7){
+			imageSource=localStorage.prPhoto7
+		}
+		if (picNo==8){
+			imageSource=localStorage.prPhoto8
+		}
+		if (picNo==9){
+			imageSource=localStorage.prPhoto9
+		}
+		if (picNo==10){
+			imageSource=localStorage.prPhoto10
+		}
+		if (picNo==11){
+			imageSource=localStorage.prPhoto11
+		}
+		if (picNo==12){
+			imageSource=localStorage.prPhoto12
+		}
+		if (picNo==13){
+			imageSource=localStorage.prPhoto13
+		}
+		if (picNo==14){
+			imageSource=localStorage.prPhoto14
+		}
+		if (picNo==15){
+			imageSource=localStorage.prPhoto15
+		}
+}
+//for (j=0; j < 15; j++){
+//		var picNo=parseInt(j)+1 
+//		var imageDiv="myImage"+picNo
+//		var imageText="prPhoto"+picNo
+//		var imageSource=''
+//		var image = document.getElementById(imageDiv);
+//		image.src = imageSource;
+//		imagePath = imageSource;
+//		$("#"+imageText).val(imagePath);
+//	}
 }
 function cancelPicture(i){
 	var imageDiv="myImage"+i
