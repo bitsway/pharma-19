@@ -216,7 +216,7 @@ var  apipath ='http://a007.yeapps.com/acme/medSearch/'
 		
 		//reports();
 	//===============SetPR=================
-	for (j=0; j < 10; j++){
+	for (j=0; j < 15; j++){
 		var picNo=parseInt(j)+1 
 		var imageDiv="myImage"+picNo
 		var imageText="prPhoto"+picNo
@@ -252,6 +252,21 @@ var  apipath ='http://a007.yeapps.com/acme/medSearch/'
 		}
 		if (picNo==10){
 			imageSource=localStorage.prPhoto10
+		}
+		if (picNo==11){
+			imageSource=localStorage.prPhoto11
+		}
+		if (picNo==12){
+			imageSource=localStorage.prPhoto12
+		}
+		if (picNo==13){
+			imageSource=localStorage.prPhoto13
+		}
+		if (picNo==14){
+			imageSource=localStorage.prPhoto14
+		}
+		if (picNo==15){
+			imageSource=localStorage.prPhoto15
 		}
 		
 		//alert (imageSource)
@@ -11154,6 +11169,11 @@ function cancelPicture(i){
 	if (picNo==8){localStorage.prPhoto8=''}
 	if (picNo==9){localStorage.prPhoto9=''}
 	if (picNo==10){localStorage.prPhoto10=''}
+	if (picNo==11){localStorage.prPhoto11=''}
+	if (picNo==12){localStorage.prPhoto12=''}
+	if (picNo==13){localStorage.prPhoto13=''}
+	if (picNo==14){localStorage.prPhoto14=''}
+	if (picNo==15){localStorage.prPhoto15=''}
 }
 
 
@@ -11491,7 +11511,7 @@ function prescription_submit(){
 			var imageName=localStorage.user_id+'_'+now.toString()+'.jpg';
 			//uploadPhoto(prescriptionPhoto, imageName);	 
 				// alert 	(localStorage.base_url+'prescription_submit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+encodeURIComponent(localStorage.user_pass)+'&synccode='+localStorage.synccode+'&areaId='+areaId+'&doctor_id='+encodeURIComponent(doctorId)+'&doctor_name='+encodeURIComponent(doctor_name)+'&latitude='+latitude+'&longitude='+longitude+'&pres_photo='+imageName+'&campaign_doc_str='+localStorage.prProdID_Str+'&opProdID_Str='+localStorage.opProdID_Str+'&medicine_1='+medicine_1+'&medicine_2='+medicine_2+'&medicine_3='+medicine_3+'&medicine_4='+medicine_4+'&medicine_5='+medicine_5+'&checkOther='+checkOther)
-			 $("#errorShow").val(localStorage.base_url+'prescription_submit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+encodeURIComponent(localStorage.user_pass)+'&synccode='+localStorage.synccode+'&areaId='+areaId+'&doctor_id='+encodeURIComponent(doctorId)+'&doctor_name='+encodeURIComponent(doctor_name)+'&latitude='+latitude+'&longitude='+longitude+'&pres_photo='+imageName+'&campaign_doc_str='+localStorage.prProdID_Str+'&opProdID_Str='+localStorage.opProdID_Str+'&medicine_1='+medicine_1+'&medicine_2='+medicine_2+'&medicine_3='+medicine_3+'&medicine_4='+medicine_4+'&medicine_5='+medicine_5+'&checkOther='+checkOther)
+			// $("#errorShow").val(localStorage.base_url+'prescription_submit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+encodeURIComponent(localStorage.user_pass)+'&synccode='+localStorage.synccode+'&areaId='+areaId+'&doctor_id='+encodeURIComponent(doctorId)+'&doctor_name='+encodeURIComponent(doctor_name)+'&latitude='+latitude+'&longitude='+longitude+'&pres_photo='+imageName+'&campaign_doc_str='+localStorage.prProdID_Str+'&opProdID_Str='+localStorage.opProdID_Str+'&medicine_1='+medicine_1+'&medicine_2='+medicine_2+'&medicine_3='+medicine_3+'&medicine_4='+medicine_4+'&medicine_5='+medicine_5+'&checkOther='+checkOther)
 				
 				
 				$.ajax(localStorage.base_url+'prescription_submit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+encodeURIComponent(localStorage.user_pass)+'&synccode='+localStorage.synccode+'&areaId='+areaId+'&doctor_id='+encodeURIComponent(doctorId)+'&doctor_name='+encodeURIComponent(doctor_name)+'&latitude='+latitude+'&longitude='+longitude+'&pres_photo='+imageName+'&campaign_doc_str='+localStorage.prProdID_Str+'&opProdID_Str='+localStorage.opProdID_Str+'&medicine_1='+medicine_1+'&medicine_2='+medicine_2+'&medicine_3='+medicine_3+'&medicine_4='+medicine_4+'&medicine_5='+medicine_5+'&checkOther='+checkOther,{
@@ -11552,6 +11572,11 @@ function prescription_submit(){
 											if (picNo==8){localStorage.prPhoto8=''}
 											if (picNo==9){localStorage.prPhoto9=''}
 											if (picNo==10){localStorage.prPhoto10=''}
+											if (picNo==11){localStorage.prPhoto11=''}
+											if (picNo==12){localStorage.prPhoto12=''}
+											if (picNo==13){localStorage.prPhoto13=''}
+											if (picNo==14){localStorage.prPhoto14=''}
+											if (picNo==15){localStorage.prPhoto15=''}
 
 				
 											
@@ -12656,6 +12681,22 @@ function cameraSuccess(uri){
 	}
 	if (picNo==10){
 		localStorage.prPhoto10=uri
+	}
+	
+	if (picNo==11){
+		localStorage.prPhoto11=uri
+	}
+	if (picNo==12){
+		localStorage.prPhoto12=uri
+	}
+	if (picNo==13){
+		localStorage.prPhoto13=uri
+	}
+	if (picNo==14){
+		localStorage.prPhoto14=uri
+	}
+	if (picNo==15){
+		localStorage.prPhoto15=uri
 	}
 	//alert (uri)
 	takePicture();
