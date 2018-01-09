@@ -1464,7 +1464,7 @@ function afterSync(){
 			localStorage.docSaveData=''
 			var docSaveData=localStorage.docSaveData
 		}
-		
+		alert (localStorage.docSaveData)
 		if (docSaveData.length < 10){localStorage.docSaveData=''}
 		
 		//localStorage.docSaveData=''
