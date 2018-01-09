@@ -1456,8 +1456,17 @@ function afterSync(){
 		localStorage.promoDate=''
 		localStorage.tour_doc_str=''
 		localStorage.tour_route_str=''
-		var docSaveData=localStorage.docSaveData
+		
+		try {
+			var docSaveData=localStorage.docSaveData
+		}
+		catch(err) {
+			localStorage.docSaveData=''
+			var docSaveData=localStorage.docSaveData
+		}
+		
 		if (docSaveData.length < 10){localStorage.docSaveData=''}
+		
 		//localStorage.docSaveData=''
 		
 		localStorage.marketStrDoc=''
