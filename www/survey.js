@@ -1457,15 +1457,14 @@ function afterSync(){
 		localStorage.tour_doc_str=''
 		localStorage.tour_route_str=''
 		
-		try {
+		try{
 			var docSaveData=localStorage.docSaveData
 		}
 		catch(err) {
 			localStorage.docSaveData=''
 			var docSaveData=localStorage.docSaveData
 		}
-		alert (localStorage.docSaveData)
-		if (docSaveData.length < 10){localStorage.docSaveData=''}
+		if (localStorage.docSaveData=="" || localStorage.docSaveData==undefined){localStorage.docSaveData=''}
 		
 		//localStorage.docSaveData=''
 		
