@@ -2264,7 +2264,7 @@ localStorage.report_button=' <input type="submit" id="loginButton" onClick="s_or
 													
 													$("#wait_image_login").hide();
 													$("#loginButton").show();
-													$("#doctorButton").show();
+													//$("#doctorButton").show();
 													if (localStorage.user_type=='sup'){
 													 checkRequest()
 													}
@@ -2282,8 +2282,10 @@ localStorage.report_button=' <input type="submit" id="loginButton" onClick="s_or
 													
 													$("#error_login").html('Doctor Sync Processing...');
 													doctor_sync()
-													
+													$("#wait_image_login").hide();
+													$("#loginButton").show();
 													$("#error_login").html("Doctor Synced Successfully");
+													
 													$.afui.loadContent("#pageHome",true,true,'right');
 													
 													set_doc_all();
