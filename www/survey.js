@@ -301,8 +301,8 @@ var  apipath ='http://a007.yeapps.com/acme/medSearch/'
 	
 	
 	var currentDate = new Date()
-	var day = currentDate.getDate();if(parseInt(day)<9)	{day="0" + day};
-	var month = currentDate.getMonth() + 1;if(parseInt(month)<9){month="0" +month};
+	var day = currentDate.getDate();if(parseInt(day)<10)	{day="0" + day};
+	var month = currentDate.getMonth() + 1;if(parseInt(month)<10){month="0" +month};
 	var year = currentDate.getFullYear()
 	//alert (parseInt(day))
 	var today=  year + "-" + month + "-" + day
@@ -387,8 +387,8 @@ function page_saved_Doc() {
 	var docSaveStr=''
 	docSaveStr=docSaveStr+' <table bordercolor="#009999" style="color:#000091" height="30px" width="100%" border="1" cellpadding="0" cellspacing="0" style="border-radius:5px;">'
 	var currentDate = new Date()
-	var day = currentDate.getDate();if(parseInt(day)<9)	{day="0" + day};
-	var month = currentDate.getMonth() + 1;if(parseInt(month)<9){month="0" +month};
+	var day = currentDate.getDate();if(parseInt(day)<10)	{day="0" + day};
+	var month = currentDate.getMonth() + 1;if(parseInt(month)<10){month="0" +month};
 	var year = currentDate.getFullYear()
 	//alert (parseInt(day))
 	var today=  year + "-" + month + "-" + day
@@ -399,14 +399,28 @@ function page_saved_Doc() {
 		var docShowList=singleDoc.split('<d>');
 		var day_get=docShowList[4].split('-')[2]
 		
-		//alert (parseInt(day)+'           '+parseInt(day_get))
-		//if (parseInt(today)==parseInt(docShowList[4])){
-		if (parseInt(day)==parseInt(day_get)){
-			docSaveStr=docSaveStr+' <tr onClick="saved_Doc_set(\''+i+'\');"><td  height="30px" >'+docShowList[0]+'</td><td align="center" style="background-color:#006464; color:#FFF; font-size:20px; border-right:hidden"> >></td></tr>'
+		var x = new Date(today);
+		var y = new Date(docShowList[4]);
+		if (y < x) {
+			docSaveData=docSaveData.replace(singleDoc+'<doc>','')
 		}
-		else{
+		
+		if (y > x)  { 
 			docSaveStr=docSaveStr+' <tr><td style="color:#900;" height="30px" >'+docShowList[0] +' [Tomorrow]'+'</td><td align="center" style=" border-left:hidden"></td></tr>'
 		}
+		else {
+			docSaveStr=docSaveStr+' <tr onClick="saved_Doc_set(\''+i+'\');"><td  height="30px" >'+docShowList[0]+'</td><td align="center" style="background-color:#006464; color:#FFF; font-size:20px; border-right:hidden"> >></td></tr>'
+		}
+		
+		
+		//alert (parseInt(day)+'           '+parseInt(day_get))
+		//if (parseInt(today)==parseInt(docShowList[4])){
+		//if (parseInt(day)==parseInt(day_get)){
+//			docSaveStr=docSaveStr+' <tr onClick="saved_Doc_set(\''+i+'\');"><td  height="30px" >'+docShowList[0]+'</td><td align="center" style="background-color:#006464; color:#FFF; font-size:20px; border-right:hidden"> >></td></tr>'
+//		}
+//		else{
+//			docSaveStr=docSaveStr+' <tr><td style="color:#900;" height="30px" >'+docShowList[0] +' [Tomorrow]'+'</td><td align="center" style=" border-left:hidden"></td></tr>'
+//		}
 	}
 	docSaveStr=docSaveStr+'</table>'
 	$('#saved_visit_doc').empty()
@@ -466,6 +480,7 @@ function saved_Doc_set(i) {
 	var v_with=docShowList[12]
 	var market_Id=docShowList[13]
 	var doc_others=docShowList[14]
+	var market_IdShow=docShowList[1]
 	
 	
 	//alert ('sadasf')
@@ -477,6 +492,9 @@ function saved_Doc_set(i) {
 	localStorage.productGiftStr=productGiftStr
 	localStorage.productSampleStr=productSampleStr
 	localStorage.productppmStr=productppmStr
+	
+	localStorage.visit_market_show=market_IdShow
+	
 	//alert (v_with.split('|')[1])
 	if (v_with.split('|')[0]!=''){$("#v_with_AM").prop('checked', true);}
 	if (v_with.split('|')[1]!=''){$("#v_with_MPO").prop('checked', true)}
@@ -508,8 +526,8 @@ function saved_Doc_set(i) {
 
 function homePage() {
 	var currentDate = new Date()
-	var day = currentDate.getDate();if(parseInt(day)<9)	{day="0" + day};
-	var month = currentDate.getMonth() + 1;if(parseInt(month)<9){month="0" +month};
+	var day = currentDate.getDate();if(parseInt(day)<10)	{day="0" + day};
+	var month = currentDate.getMonth() + 1;if(parseInt(month)<10){month="0" +month};
 	var year = currentDate.getFullYear()
 	//alert (parseInt(day))
 	var today=  year + "-" + month + "-" + day
@@ -10790,13 +10808,18 @@ function checkInbox() {
 										 	$("#wait_image_docConAdd").hide();
 															},
 										success:function(data, status,xhr){	
-											// alert (data)
-											 if (data==1){
+											var dStr = data.split('<SYNCDATA>')[0];
+											var cStr = data.split('<SYNCDATA>')[1];
+											 if (dStr==1){
 												$("#inboxShow").html('<img onClick="page_inbox();" style="padding-top:0px; padding-bottom:0px;" hight="100px" width="100px" src="inbox_1.png">');
 												
 											 }
 											 else{
 												 $("#inboxShow").html('<img onClick="page_inbox();" style="padding-top:0px; padding-bottom:0px;" hight="100px" width="100px" src="inbox.png">');
+											 }
+											 if (cStr!=''){
+												$("#error_image").html(cStr);
+												
 											 }
 						
 							  }
@@ -11620,7 +11643,10 @@ function prescription_submit(){
 											//alert (prescriptionPhoto +'  ,  '+ imageName)								
 											uploadPhoto(prescriptionPhoto, imageName);
 											//var picNo=parseInt(localStorage.picFlag)+1 
+											localStorage.visit_client=''
+											localStorage.visit_client=''
 											
+											localStorage.visit_market_show=''
 										
 											imageSource=''
 											var image = document.getElementById(imageDiv);
@@ -11705,7 +11731,7 @@ function prescription_submit(){
 //												$("#"+imageText).val(imagePath);
 //											}
 
-											$.afui.loadContent("#page_confirm_visit_success",true,true,'right');
+											$.afui.loadContent("#page_confirm_visit_successP",true,true,'right');
 											$("#wait_image_prescription").hide();
 											$("#btn_prescription_submit").show();
 											
