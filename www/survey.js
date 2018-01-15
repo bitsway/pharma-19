@@ -9263,7 +9263,7 @@ function detail_report_doctor() {
 
 //=====================PRESCRIPTION REPORT======================
 function summary_report_prescription() {
-	$("#wait_image_prescription").show();		
+	$("#wait_image_prescriptionRep").show();		
 	set_report_parameter_doctor();
 	
 
@@ -9280,11 +9280,11 @@ function summary_report_prescription() {
 								type: 'POST',
 								timeout: 30000,
 								error: function(xhr) {
-								$("#wait_image_prescription").hide();
+								$("#wait_image_prescriptionRep").hide();
 								$("#myerror_s_report_prescription").html('Network Timeout. Please check your Internet connection..');
 													},
 								success:function(data, status,xhr){	
-									  $("#wait_image_prescription").hide();
+									  $("#wait_image_prescriptionRep").hide();
 									 if (status!='success'){
 										$("#myerror_s_report_prescription").html('Network Timeout. Please check your Internet connection...');
 										
@@ -9321,7 +9321,7 @@ function summary_report_prescription() {
 
 								
 							}else{	
-								$("#wait_image_prescription").hide();					
+								$("#wait_image_prescriptionRep").hide();					
 								$("#myerror_s_report").html('Network Timeout. Please check your Internet connection.');
 								}
 						}
@@ -9337,7 +9337,7 @@ function summary_report_prescription() {
 
 //========================Detail Report============
 function detail_report_prescription() {	
-	$("#wait_image_prescription").show();
+	$("#wait_image_prescriptionRep").show();
 	set_report_parameter_doctor();
 
 	
@@ -9362,11 +9362,11 @@ function detail_report_prescription() {
 								type: 'POST',
 								timeout: 30000,
 								error: function(xhr) {	
-								$("#wait_image_prescription").hide();
+								$("#wait_image_prescriptionRep").hide();
 								$("#myerror_s_report_prescription").html('Network Timeout. Please check your Internet connection..');
 													},
 								success:function(data, status,xhr){	
-									$("#wait_image_prescription").hide();
+									$("#wait_image_prescriptionRep").hide();
 									 if (status!='success'){
 										$("#myerror_s_report_prescription").html('Network Timeout. Please check your Internet connection...');
 										
@@ -9409,7 +9409,7 @@ function detail_report_prescription() {
 								$("#rep_detail_prescription").html("<div width='70%'>"+report_detal+"</div>");
 								
 							}else{	
-								$("#wait_image_prescription").hide();					
+								$("#wait_image_prescriptionRep").hide();					
 								$("#myerror_s_report").html('Network Timeout. Please check your Internet connection.');
 								}
 						}
