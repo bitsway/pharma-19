@@ -9314,7 +9314,7 @@ function summary_report_prescription() {
 								
 								$("#report_header_prescription").text("Prescription Count");
 								$("#visit_count_prescription").html("<font style='font-size:15px; color:#666'>"+"Prescription Count:"+visit_count+"</font>");
-								$("#rep_detail_doctor").html("");
+								$("#rep_detail_prescription").html("");
 								//$("#visit_withAtt_prescription").html("<font style='font-size:15px; color:#666'>"+visit_areawise+"</font>");
 								//$("#visit_withoutAtt_prescription").html("<font style='font-size:15px; color:#666'>"+visit_repwise+"</font>");
 								
