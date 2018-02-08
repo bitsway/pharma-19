@@ -7382,17 +7382,18 @@ function visitSubmit_doc(){
 																	
 													////-------------
 													// Clear Campaign and sample
-														alert ('0')	
+														
 														//localStorage.productOrderStr='';
 														var productList=localStorage.productListStr.split('<rd>');
 														var productLength=productList.length;
-														alert ('1')
+														alert (localStorage.productListStr)
+														alert (productLength)
 														for ( i=0; i < productLength; i++){
 															var productArray2 = productList[i].split('<fd>');
 															var product_id2=productArray2[0];	
 															var product_name2=productArray2[1];
 															$("#sample_qty"+product_id2).val('');
-															
+															alert (productLength)
 															
 															var camp_combo="#doc_camp"+product_id2
 															$(camp_combo).attr('checked', false);
