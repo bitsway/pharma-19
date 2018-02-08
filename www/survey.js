@@ -7384,10 +7384,10 @@ function visitSubmit_doc(){
 													// Clear Campaign and sample
 														
 														//localStorage.productOrderStr='';
-														var productList=localStorage.productListStr.split('<rd>');
+														var productList=localStorage.productSampleStr.split('<rd>');
 														var productLength=productList.length;
-														alert (localStorage.productListStr)
-														alert (productLength)
+														//alert (localStorage.productListStr)
+														//alert (productLength)
 														for ( i=0; i < productLength; i++){
 															var productArray2 = productList[i].split('<fd>');
 															var product_id2=productArray2[0];	
@@ -7402,7 +7402,7 @@ function visitSubmit_doc(){
 													// Clear Gift
 														alert ('2')	
 														//localStorage.productOrderStr='';
-														var giftList=localStorage.gift_string.split('<rd>');
+														var giftList=localStorage.productGiftStr.split('<rd>');
 														var giftLength=giftList.length;
 														for ( i=0; i < giftLength; i++){
 															var giftArray2 = giftList[i].split('<fd>');
@@ -7413,7 +7413,7 @@ function visitSubmit_doc(){
 														// Clear ppm
 														
 														//localStorage.productOrderStr='';
-														var ppmList=localStorage.ppm_string.split('<rd>');
+														var ppmList=localStorage.productppmStr.split('<rd>');
 														var ppmLength=ppmList.length;
 														for ( i=0; i < ppmLength; i++){
 															var ppmArray2 = ppmList[i].split('<fd>');
