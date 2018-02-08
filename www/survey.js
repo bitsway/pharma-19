@@ -7362,9 +7362,9 @@ function visitSubmit_doc(){
 													$("#visit_submit_doc").show();	
 												}
 											  else if (resultArray[0]=='SUCCESS'){
-												  	alert (resultArray[0])
+												  	
 													uploadPhoto_docVisit(docVisitPhoto, imageName);		
-													alert ('nadira')		
+													alert ('1')		
 													//-----------
 													localStorage.visit_client=''
 													localStorage.visit_page=""
@@ -7378,7 +7378,7 @@ function visitSubmit_doc(){
 													localStorage.gift_show_1='';
 													localStorage.sample_show_1='';
 													localStorage.ppm_show_1='';
-													
+													alert ('2')	
 																	
 													////-------------
 													// Clear Campaign and sample
@@ -7398,7 +7398,7 @@ function visitSubmit_doc(){
 															//alert (product_id2);
 														}	
 													// Clear Gift
-														
+														alert ('3')	
 														//localStorage.productOrderStr='';
 														var giftList=localStorage.gift_string.split('<rd>');
 														var giftLength=giftList.length;
@@ -7423,7 +7423,7 @@ function visitSubmit_doc(){
 														}	
 															
 															//====================================
-														
+														alert ('4')	
 														
 														$("#doc_feedback").val('');
 														$("#doc_others").val('');
@@ -7459,7 +7459,7 @@ function visitSubmit_doc(){
 														
 														//--
 												//$("#visit_success").html('</br></br>Visit SL: '+resultArray[1]+'</br>Submitted Successfully');
-												
+												alert ('nadira')	
 												$("#visit_success").html('</br></br>Submitted Successfully');
 												
 												if (localStorage.saveSubmitDocFlag==1){
