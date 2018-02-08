@@ -7364,7 +7364,7 @@ function visitSubmit_doc(){
 											  else if (resultArray[0]=='SUCCESS'){
 												  	
 													uploadPhoto_docVisit(docVisitPhoto, imageName);		
-													alert ('1')		
+													
 													//-----------
 													localStorage.visit_client=''
 													localStorage.visit_page=""
@@ -7378,7 +7378,7 @@ function visitSubmit_doc(){
 													localStorage.gift_show_1='';
 													localStorage.sample_show_1='';
 													localStorage.ppm_show_1='';
-													alert ('2')	
+													alert ('1')	
 																	
 													////-------------
 													// Clear Campaign and sample
