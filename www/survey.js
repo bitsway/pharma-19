@@ -7362,8 +7362,9 @@ function visitSubmit_doc(){
 													$("#visit_submit_doc").show();	
 												}
 											  else if (resultArray[0]=='SUCCESS'){
-												  
-													uploadPhoto_docVisit(docVisitPhoto, imageName);				
+												  	alert (resultArray[0])
+													uploadPhoto_docVisit(docVisitPhoto, imageName);		
+													alert ('nadira')		
 													//-----------
 													localStorage.visit_client=''
 													localStorage.visit_page=""
