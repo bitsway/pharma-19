@@ -2128,7 +2128,7 @@ localStorage.report_button=' <input type="submit" id="loginButton" onClick="s_or
 //													===========================ppm end===============
 
 //											=================prItemStart
-														
+											alert (localStorage.prProductStr)	
 											localStorage.pr_A=''
 											localStorage.pr_B=''
 											localStorage.pr_C=''
