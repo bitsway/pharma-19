@@ -7378,14 +7378,15 @@ function visitSubmit_doc(){
 													localStorage.gift_show_1='';
 													localStorage.sample_show_1='';
 													localStorage.ppm_show_1='';
-													alert ('1')	
+													
 																	
 													////-------------
 													// Clear Campaign and sample
-														
+														alert ('0')	
 														//localStorage.productOrderStr='';
 														var productList=localStorage.productListStr.split('<rd>');
 														var productLength=productList.length;
+														alert ('1')
 														for ( i=0; i < productLength; i++){
 															var productArray2 = productList[i].split('<fd>');
 															var product_id2=productArray2[0];	
@@ -7398,7 +7399,7 @@ function visitSubmit_doc(){
 															//alert (product_id2);
 														}	
 													// Clear Gift
-														alert ('3')	
+														alert ('2')	
 														//localStorage.productOrderStr='';
 														var giftList=localStorage.gift_string.split('<rd>');
 														var giftLength=giftList.length;
