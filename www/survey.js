@@ -7393,14 +7393,14 @@ function visitSubmit_doc(){
 															var product_id2=productArray2[0];	
 															var product_name2=productArray2[1];
 															$("#sample_qty"+product_id2).val('');
-															alert (productLength)
+															
 															
 															var camp_combo="#doc_camp"+product_id2
 															$(camp_combo).attr('checked', false);
 															//alert (product_id2);
 														}	
 													// Clear Gift
-														alert ('2')	
+														
 														//localStorage.productOrderStr='';
 														var giftList=localStorage.productGiftStr.split('<rd>');
 														var giftLength=giftList.length;
@@ -7425,7 +7425,7 @@ function visitSubmit_doc(){
 														}	
 															
 															//====================================
-														alert ('4')	
+														
 														
 														$("#doc_feedback").val('');
 														$("#doc_others").val('');
@@ -7461,7 +7461,7 @@ function visitSubmit_doc(){
 														
 														//--
 												//$("#visit_success").html('</br></br>Visit SL: '+resultArray[1]+'</br>Submitted Successfully');
-												alert ('nadira')	
+													
 												$("#visit_success").html('</br></br>Submitted Successfully');
 												
 												if (localStorage.saveSubmitDocFlag==1){
