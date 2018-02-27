@@ -9344,7 +9344,14 @@ function detail_report_prescription() {
 	$("#wait_image_prescriptionRep").show();
 	set_report_parameter_doctor();
 
+	var se_mpo_docG=$("#se_mpo_docG").val();
 	
+	if ((se_mpo_docG!='undefined') & (se_mpo_docG!='')& (se_mpo_docG!='null')& (se_mpo_docG!=null)){
+		rflag=1
+	}
+	else{
+		rflag=0
+	}
 	
 	localStorage.date_to_doc=localStorage.date_from_doc;
 	$("#date_f_doctor").html("Date :"+date_from_show_doc);
@@ -9403,7 +9410,7 @@ function detail_report_prescription() {
 								
 								
 								
-								$("#visit_count_prescription").html("Prescription Count:"+visit_count);
+								$("#visit_count_prescription").html(visit_count);
 								
 //                              if (localStorage.user_type=='sup'){
 //									$("#visit_withAtt_prescription").html(visit_with_attribute);
@@ -9423,7 +9430,9 @@ function detail_report_prescription() {
 	
 	
 	
-	$.afui.loadContent("#page_report_prescription",true,true,'right');
+	if (rflag==0){
+		$.afui.loadContent("#page_report_prescription",true,true,'right');
+	}
 ;	
 }
 
