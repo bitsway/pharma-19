@@ -616,6 +616,7 @@ function page_visit_doc() {
 }
 function page_reports_dcr() {
 	//$("#order_load").hide();
+	$("#se_mpo_docG").val('');
 	$.afui.loadContent("#page_reports_dcr",true,true,'right');
 }
 
