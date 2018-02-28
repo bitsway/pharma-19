@@ -9410,7 +9410,7 @@ function detail_report_prescription() {
 								$("#report_header_prescription").text("prescription Detail");
 								
 								
-								alert (visit_count)
+								//alert (visit_count)
 								$("#visit_count_prescription").html(visit_count);
 								
 //                              if (localStorage.user_type=='sup'){
