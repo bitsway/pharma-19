@@ -10814,7 +10814,7 @@ function onFail_getDocImage(message) {
 function checkInbox() {	
 			//alert (localStorage.report_url+'checkInbox?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode)
 				
-		  $.ajax(localStorage.report_url+'checkInbox?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&version=11',{
+		  $.ajax(localStorage.report_url+'checkInbox?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&version=12',{
 		
 										type: 'POST',
 										timeout: 30000,
@@ -11745,7 +11745,7 @@ function prescription_submit(){
 //												$("#"+imageText).val(imagePath);
 //											}
 
-											$.afui.loadContent("#page_confirm_visit_successP",true,true,'right');
+											//$.afui.loadContent("#page_confirm_visit_successP",true,true,'right');
 											$("#wait_image_prescription").hide();
 											$("#btn_prescription_submit").show();
 											
@@ -12729,12 +12729,12 @@ function uploadPhoto(imageURI, imageName) {
 function winPr(r) {
 	$("#wait_image_prescription").hide();
 	$("#btn_prescription_submit").show();
-	
+	$.afui.loadContent("#page_confirm_visit_successP",true,true,'right');
 	
 }
 
 function failPr(error) {
-	$("#error_prescription_submit").text('Memory Error. Please Try Later');
+	$("#error_prescription_submit").text('Please Try Later');
 	$("#wait_image_prescription").hide();
 	$("#btn_prescription_submit").show();
 }
