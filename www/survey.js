@@ -12727,9 +12727,10 @@ function uploadPhoto(imageURI, imageName) {
 }
 
 function winPr(r) {
+	
+	$.afui.loadContent("#page_confirm_visit_successP",true,true,'right');
 	$("#wait_image_prescription").hide();
 	$("#btn_prescription_submit").show();
-	$.afui.loadContent("#page_confirm_visit_successP",true,true,'right');
 	
 }
 
