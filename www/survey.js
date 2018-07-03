@@ -11679,19 +11679,16 @@ function data_submit(){
 											
 											
 											
-											alert (localStorage.picNo)	
 											
-											var picNo = localStorage.picNo	
-											alert ('1')								
+											
+											var picNo = localStorage.picNo					
 											var imageDiv="myImage"+picNo
 											var imageText="prPhoto"+picNo
-											alert ('2')
 											var uri=''
 											var image = document.getElementById(imageDiv);
 											image.src = uri;
-											alert ('3')
 											$("#"+imageText).val(uri);
-											alert ('4')
+											
 											
 											
 											
