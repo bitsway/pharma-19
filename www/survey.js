@@ -12728,12 +12728,13 @@ function uploadPhoto(imageURI, imageName) {
 }
 
 function winPr(r) {
-
+	$("#error_prescription_submit").text('Uploading Image.....');
 	data_submit()
 	localStorage.prSubmitUrl=''	
+	
 	//$.afui.loadContent("#page_confirm_visit_successP",true,true,'right');
-	$("#wait_image_prescription").hide();
-	$("#btn_prescription_submit").show();
+	//$("#wait_image_prescription").hide();
+	//$("#btn_prescription_submit").show();
 	
 }
 
