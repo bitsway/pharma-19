@@ -11610,157 +11610,11 @@ function prescription_submit(){
 			var now = $.now();
 			 //alert 	('1')
 			var imageName=localStorage.user_id+'_'+now.toString()+'.jpg';
-			
-			localStorage.prSubmitUrl=''
-			if (prescriptionPhoto!=''){
-				uploadPhoto(prescriptionPhoto, imageName);
-				var url_test='http://w02.yeapps.com/acme/syncmobile_417_new_test/'
-				// localStorage.base_url
-				localStorage.prSubmitUrl=url_test+'prescription_submit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+encodeURIComponent(localStorage.user_pass)+'&synccode='+localStorage.synccode+'&areaId='+areaId+'&doctor_id='+encodeURIComponent(doctorId)+'&doctor_name='+encodeURIComponent(doctor_name)+'&latitude='+latitude+'&longitude='+longitude+'&pres_photo='+imageName+'&campaign_doc_str='+localStorage.prProdID_Str+'&opProdID_Str='+localStorage.opProdID_Str+'&medicine_1='+medicine_1+'&medicine_2='+medicine_2+'&medicine_3='+medicine_3+'&medicine_4='+medicine_4+'&medicine_5='+medicine_5+'&checkOther='+checkOther
-				
-				
-				}
-			else{
-				$("#error_prescription_submit").text("Please try with image");
-				$("#wait_image_prescription").hide();
-				$("#btn_prescription_submit").show();
-			}
-
-			 	
+			//uploadPhoto(prescriptionPhoto, imageName);	 
 				// alert 	(localStorage.base_url+'prescription_submit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+encodeURIComponent(localStorage.user_pass)+'&synccode='+localStorage.synccode+'&areaId='+areaId+'&doctor_id='+encodeURIComponent(doctorId)+'&doctor_name='+encodeURIComponent(doctor_name)+'&latitude='+latitude+'&longitude='+longitude+'&pres_photo='+imageName+'&campaign_doc_str='+localStorage.prProdID_Str+'&opProdID_Str='+localStorage.opProdID_Str+'&medicine_1='+medicine_1+'&medicine_2='+medicine_2+'&medicine_3='+medicine_3+'&medicine_4='+medicine_4+'&medicine_5='+medicine_5+'&checkOther='+checkOther)
 			// $("#errorShow").val(localStorage.base_url+'prescription_submit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+encodeURIComponent(localStorage.user_pass)+'&synccode='+localStorage.synccode+'&areaId='+areaId+'&doctor_id='+encodeURIComponent(doctorId)+'&doctor_name='+encodeURIComponent(doctor_name)+'&latitude='+latitude+'&longitude='+longitude+'&pres_photo='+imageName+'&campaign_doc_str='+localStorage.prProdID_Str+'&opProdID_Str='+localStorage.opProdID_Str+'&medicine_1='+medicine_1+'&medicine_2='+medicine_2+'&medicine_3='+medicine_3+'&medicine_4='+medicine_4+'&medicine_5='+medicine_5+'&checkOther='+checkOther)
 				localStorage.pImageup=0;
 				
-<<<<<<< HEAD
-				
-				
-				
-				
-					 
-				
-						
-//		}pic else
-	}
-//$.afui.loadContent("#page_confirm_visit_success",true,true,'right');
-}
-
-
-function data_submit(){
-	var submit_url=localStorage.prSubmitUrl
-	$.ajax(localStorage.prSubmitUrl,{
-								// cid:localStorage.cid,rep_id:localStorage.user_id,rep_pass:localStorage.user_pass,synccode:localStorage.synccode,
-								type: 'POST',
-								timeout: 30000,
-								error: function(xhr) {
-											//alert (data)
-											//var resultArray = data.split('<SYNCDATA>');
-											//$("#error_prescription_submit").html(resultArray[1]);
-											$("#error_prescription_submit").html('Network timeout. Please ensure you have active internet connection.');
-											$("#wait_image_prescription").hide();
-											$("#btn_prescription_submit").show();
-											
-								},
-							success:function(data, status,xhr){				
-						//alert (status)
-								if (status!='success'){
-									
-									$("#error_prescription_submit").html('Network timeout. Please ensure you have active internet connection.');
-									$("#wait_image_prescription").hide();
-									$("#btn_prescription_submit").show();
-								}
-								else{
-									//alert (data)
-									   var resultArray = data.split('<SYNCDATA>');	
-										if (resultArray[0]=='FAILED'){						
-											$("#error_prescription_submit").html(resultArray[1]);
-											$("#wait_image_prescription").hide();
-											$("#btn_prescription_submit").show();
-										}else if (resultArray[0]=='SUCCESS'){									
-											//var result_string=resultArray[1];
-											
-											
-											localStorage.opProdID_Str='';
-											localStorage.prProdID_Str='';
-											oprtunityVal='';
-											optionVal='';
-
-											localStorage.visit_client=''
-											localStorage.visit_client=''
-											
-											localStorage.visit_market_show=''
-										
-											imageSource=''
-											var image = document.getElementById(imageDiv);
-											image.src = imageSource;
-											imagePath = imageSource;
-											$("#"+imageText).val(imagePath);
-											if (picNo==1){localStorage.prPhoto1=''}
-											if (picNo==2){localStorage.prPhoto2=''}
-											if (picNo==3){localStorage.prPhoto3=''}
-											if (picNo==4){localStorage.prPhoto4=''}
-											if (picNo==5){localStorage.prPhoto5=''}
-											if (picNo==6){localStorage.prPhoto6=''}
-											if (picNo==7){localStorage.prPhoto7=''}
-											if (picNo==8){localStorage.prPhoto8=''}
-											if (picNo==9){localStorage.prPhoto9=''}
-											if (picNo==10){localStorage.prPhoto10=''}
-											if (picNo==11){localStorage.prPhoto11=''}
-											if (picNo==12){localStorage.prPhoto12=''}
-											if (picNo==13){localStorage.prPhoto13=''}
-											if (picNo==14){localStorage.prPhoto14=''}
-											if (picNo==15){localStorage.prPhoto15=''}
-
-				
-											
-											 
-											$('#market_combo_id_lv').empty();
-											$('#market_combo_id_lv').append(localStorage.unschedule_market_cmb_id);
-
-											
-											//alert ('aaaa')
-											$("#lat").val("");
-											$("#long").val("");
-											//alert ('1')
-											//$("#prescriptionPhoto").val("");
-											
-											$(checkOther).prop('checked', false);
-											$("#medicine_1").val('');
-											$("#medicine_2").val('');
-											$("#medicine_3").val('');
-											$("#medicine_4").val('');
-											$("#medicine_5").val('');
-											$("#wait_image_prescription").hide();
-											$("#btn_prescription_submit").show();
-											
-											getDocDataprCart()
-											getDocDataopCart()
-											$("#pr_id_lv").empty()
-											setPrProduct()
-											$("#op_id_lv").empty()
-											setOpProduct()
-
-											//--------------------------
-											var picNo = localStorage.picNo
-											var imageDiv="myImage"+picNo
-											var imageText="prPhoto"+picNo
-											var imageSource=''
-											
-											var image = document.getElementById(imageDiv);
-											$("#"+imageText).val('');
-											image.src = imageSource;
-											
-											$("#wait_image_prescription").hide();
-											$("#btn_prescription_submit").show();
-											
-										}else{						
-											$("#error_prescription_submit").html('Authentication error. Please register and sync to retry.');
-											$("#wait_image_prescription").hide();
-											$("#btn_prescription_submit").show();
-											}
-								}
-}
-						});		
-=======
 				uploadPhoto(prescriptionPhoto, imageName);
 				if (localStorage.pImageup==0){
 						$("#error_prescription_submit").html('Please try later.');
@@ -11915,7 +11769,6 @@ function data_submit(){
 		}//pic else
 	}
 //$.afui.loadContent("#page_confirm_visit_success",true,true,'right');
->>>>>>> origin/master
 }
 
 /************ jahangirEditedEnd17Feb prescription_submit **************/
@@ -12881,13 +12734,8 @@ function uploadPhoto(imageURI, imageName) {
 }
 
 function winPr(r) {
-<<<<<<< HEAD
-	data_submit()
-	localStorage.prSubmitUrl=''	
-=======
 	localStorage.pImageup=1;
 	
->>>>>>> origin/master
 	$.afui.loadContent("#page_confirm_visit_successP",true,true,'right');
 	$("#wait_image_prescription").hide();
 	$("#btn_prescription_submit").show();
