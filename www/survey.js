@@ -1714,6 +1714,53 @@ function check_user() {
 													localStorage.marketTourStr=resultArray[32]
 													localStorage.docTThisMonthRow=resultArray[33]
 													localStorage.prProductStr=resultArray[34]
+													localStorage.linkStr=resultArray[35]
+													
+													
+													
+													
+													//===============================================
+													var linkStrList = localStorage.linkStr.split('<rd>');							
+													var linkStr_combo=''
+													
+													for (var l=0; l < linkStrList.length; l++){
+														linkStrListArray = linkStrList[l].split('<fd>');
+														var pathName=linkStrListArray[0];
+														var path_value=linkStrListArray[1];
+														var check=linkStrListArray[2];
+														
+														if (check=='Check'){
+															//alert ('1')
+														 var linkPath="window.open('"+path_value+"cid="+localStorage.cid+"&rep_id="+localStorage.user_id+"&rep_pass="+localStorage.user_pass	+"', '_system');"
+														}
+														else{
+															//alert ('2')
+															 var linkPath="window.open('"+path_value+"', '_system');"
+														}
+														
+														//alert (linkPath);
+														if(path_value!=''){
+															linkStr_combo+='<li style="border-bottom-style:solid; border-color:#CBE4E4;border-bottom-width:thin"><table width="100%" border="0" id="order_tbl" cellpadding="0" cellspacing="0" style="border-radius:5px;"><tr><td><a href="#" onclick="'+linkPath+'">'+pathName+'</a></td></tr></table></li>';
+															
+															
+															}
+													}
+													
+																		
+													localStorage.linkStr_combo=linkStr_combo;	
+													//alert (localStorage.linkStr_combo)								
+													$('#page_link_lv').empty();
+													$('#page_link_lv').append(localStorage.linkStr_combo);									
+
+													
+													
+													
+													//================================================
+													
+													
+													
+													
+													
 													//alert (localStorage.marketStrDoc)
 													
 													//alert (localStorage.menu)
@@ -10814,7 +10861,7 @@ function onFail_getDocImage(message) {
 function checkInbox() {	
 			//alert (localStorage.report_url+'checkInbox?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode)
 				
-		  $.ajax(localStorage.report_url+'checkInbox?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&version=12',{
+		  $.ajax(localStorage.report_url+'checkInbox?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&version=13',{
 		
 										type: 'POST',
 										timeout: 30000,
@@ -12679,6 +12726,19 @@ $.ajax(localStorage.base_url+'doctor_sync?cid='+localStorage.cid+'&rep_id='+loca
 }
 						});			 
 
+}
+
+function page_Link() {	
+	
+	
+						
+	//localStorage.linkStr_combo=linkStr_combo;	
+	//alert (localStorage.linkStr_combo)								
+	$('#page_link_lv').empty();
+	$('#page_link_lv').append(localStorage.linkStr_combo);	
+	
+	
+	$.afui.loadContent("#page_link",true,true,'right');
 }
 //========================================UploadImages================
 function uploadPhoto_docVisit(imageURI, imageName) {
