@@ -11676,12 +11676,24 @@ function data_submit(){
 											localStorage.visit_client=''
 											
 											localStorage.visit_market_show=''
-										
+											
+											
+											
 											imageSource=''
 											var image = document.getElementById(imageDiv);
 											image.src = imageSource;
 											imagePath = imageSource;
-											$("#"+imageText).val(imagePath);
+											var picNo = localStorage.picNo
+											var imageDiv="myImage"+picNo
+											var imageText="prPhoto"+picNo
+											var imageSource=''
+											
+											var image = document.getElementById(imageDiv);
+											$("#"+imageText).val('');
+											image.src = imageSource;
+											
+											
+											//$("#"+imageText).val(imagePath);
 											if (picNo==1){localStorage.prPhoto1=''}
 											if (picNo==2){localStorage.prPhoto2=''}
 											if (picNo==3){localStorage.prPhoto3=''}
@@ -11728,14 +11740,7 @@ function data_submit(){
 											setOpProduct()
 
 											//--------------------------
-											var picNo = localStorage.picNo
-											var imageDiv="myImage"+picNo
-											var imageText="prPhoto"+picNo
-											var imageSource=''
 											
-											var image = document.getElementById(imageDiv);
-											$("#"+imageText).val('');
-											image.src = imageSource;
 											
 											$("#wait_image_prescription").hide();
 											$("#btn_prescription_submit").show();
