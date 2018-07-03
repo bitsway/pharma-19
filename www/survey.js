@@ -11679,21 +11679,29 @@ function data_submit(){
 											
 											
 											
-											imageSource=''
-											var image = document.getElementById(imageDiv);
-											image.src = imageSource;
-											imagePath = imageSource;
-											var picNo = localStorage.picNo
+											alert (localStorage.picNo)	
+											
+											var picNo = localStorage.picNo	
+											alert ('1')								
 											var imageDiv="myImage"+picNo
 											var imageText="prPhoto"+picNo
-											var imageSource=''
-											
+											alert ('2')
+											var uri=''
 											var image = document.getElementById(imageDiv);
-											$("#"+imageText).val('');
-											image.src = imageSource;
+											image.src = uri;
+											alert ('3')
+											$("#"+imageText).val(uri);
+											alert ('4')
 											
 											
-											//$("#"+imageText).val(imagePath);
+											
+											
+											
+											
+											
+											
+											
+											
 											if (picNo==1){localStorage.prPhoto1=''}
 											if (picNo==2){localStorage.prPhoto2=''}
 											if (picNo==3){localStorage.prPhoto3=''}
