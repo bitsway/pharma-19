@@ -11739,13 +11739,6 @@ function data_submit(){
 											
 											
 											
-											
-											
-											
-											
-											
-											
-											
 											if (picNo==1){localStorage.prPhoto1=''}
 											if (picNo==2){localStorage.prPhoto2=''}
 											if (picNo==3){localStorage.prPhoto3=''}
@@ -11792,7 +11785,7 @@ function data_submit(){
 											setOpProduct()
 
 											//--------------------------
-											
+											$("#error_prescription_submit").html('');
 											
 											$("#wait_image_prescription").hide();
 											$("#btn_prescription_submit").show();
