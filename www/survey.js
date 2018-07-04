@@ -5349,6 +5349,7 @@ function marketRetailerNext_doc() {
 			if (localStorage.doctor_pr==1){
 				$("#wait_image_prescription").hide();
 				
+				$("#error_prescription_submit").html('');
 				$.afui.loadContent("#page_prescription",true,true,'right');
 			}
 	
