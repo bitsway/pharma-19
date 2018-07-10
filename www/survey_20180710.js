@@ -11501,8 +11501,7 @@ function getDocDatapr(){
 */
 function getDocDatapr(){
 	getDocDataprCart();	
-	//$.afui.loadContent("#doctorprCartPage",true,true,'right');
-	//$.afui.loadContent("#page_market",true,true,'right');
+	$.afui.loadContent("#doctorprCartPage",true,true,'right');
 
 }
 
@@ -11540,7 +11539,6 @@ function getDocDataprCart(){
 			
 	}
 	$('#prCart').append(cart_list);
-	if (cart_list!=''){$.afui.loadContent("#doctorprCartPage",true,true,'right');}
 }
 /************* jahangirEditedEnd15Feb getDocDataprCart *****************/
 
@@ -12550,8 +12548,7 @@ function page_opItemPage(){
 	$("#medicineList").empty();
 	
 	//localStorage.opProdID_Str='';
-	//$.afui.loadContent("#page_opItemPage",true,true,'right');
-	$.afui.loadContent("#page_market",true,true,'right');
+	$.afui.loadContent("#page_opItemPage",true,true,'right');
 }
 function page_opItemPage2(){
 	$.afui.loadContent("#page_opItemPage",true,true,'right');
