@@ -10862,7 +10862,7 @@ function onFail_getDocImage(message) {
 function checkInbox() {	
 			//alert (localStorage.report_url+'checkInbox?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode)
 				
-		  $.ajax(localStorage.report_url+'checkInbox?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&version=13',{
+		  $.ajax(localStorage.report_url+'checkInbox?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&version=14',{
 		
 										type: 'POST',
 										timeout: 30000,
