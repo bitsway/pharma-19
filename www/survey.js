@@ -12551,7 +12551,10 @@ function page_opItemPage(){
 	
 	//localStorage.opProdID_Str='';
 	//$.afui.loadContent("#page_opItemPage",true,true,'right');
+	prProdID_Str=localStorage.prProdID_Str
+	if (prProdID_Str.length >10){
 	$.afui.loadContent("#page_market",true,true,'right');
+	}
 }
 function page_opItemPage2(){
 	$.afui.loadContent("#page_opItemPage",true,true,'right');
